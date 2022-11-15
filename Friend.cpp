@@ -5,5 +5,5 @@ using namespace std;
 
 void Friend::gon()
 {
-	cout << "hello Ori!!!!!" << endl;
+	cout << "hello gon!" << endl;
 }
