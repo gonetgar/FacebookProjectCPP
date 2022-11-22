@@ -11,6 +11,7 @@ using namespace std;
 int main()
 {
 	Date* d;
+	User u("gon");
 	d = new Date(11, 15, 2022);
 	d->display();
 	d->display();
