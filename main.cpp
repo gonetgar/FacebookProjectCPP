@@ -10,6 +10,10 @@ using namespace std;
 
 int main()
 {
+	Operation operation;
+
+
+
 	cout << "hello";
 
 	return 0;

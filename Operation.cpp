@@ -5,12 +5,17 @@ using namespace std;
 #include "Operation.h"
 
 // no default constructor is needed
+Operation::Operation()
+{
+	User* allUsers = new User[1];
+	Page* allPages = new Page[1];
+}
+
 Operation::Operation(User* allUsers = new User[1], Page* allPages = new Page[1])
 {
 	_allUsers = allUsers;
 	_allPages = allPages;
 }
-
 
 void Operation::initiateData(User* users, int usersSize, Page* pages, int pagesSize)
 {
@@ -39,19 +44,25 @@ User* Operation::getAllUsers()
 
 void Operation::displayAllEntities()
 {
+
 	int users_length = sizeof(_allUsers) / sizeof(User);
-
-	for (int i = 0; i < users_length; i++)
-	{
-		cout << "user " << i << " " << _allUsers[i]._name << endl;
-	}
-
 	int pages_length = sizeof(_allPages) / sizeof(Page);
 
-	for (int i = 0; i < pages_length; i++)
-	{
-		cout << "page " << i << " " << _allUsers[i]._name << endl;
+	if (users_length != 0) {
+		for (int i = 0; i < users_length; i++)
+		{
+			cout << "user " << i << " " << _allUsers[i]._name << endl;
+		}
 	}
+	else cout << "no users";
+
+	if (pages_length != 0) {
+		for (int i = 0; i < pages_length; i++)
+		{
+			cout << "page " << i << " " << _allUsers[i]._name << endl;
+		}
+	}
+	else cout << "no pages";
 }
 
 void Operation::getCurrentMember()
