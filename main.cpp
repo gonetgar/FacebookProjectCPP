@@ -11,9 +11,10 @@ using namespace std;
 int main()
 {
 	User gon;
+	User ori;
 
 	gon.createStatus();
-
+	ori.createStatus();
 
 	return 0;
 }
