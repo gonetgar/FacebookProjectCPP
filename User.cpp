@@ -67,6 +67,7 @@ void User::addFriend(User* allUsers)
 
 	cout << "Enter friend's name: ";
 	cin.getline(friendsName, MAX_CHARACTERS);
+	cout << "you entered: " << friendsName;; // for debugging
 
 	int numOfAllUsers = sizeof(allUsers) / sizeof(User); // check
 
@@ -85,6 +86,7 @@ void User::addFriend(User* allUsers)
 	}
 	else
 	{
+		cout << "you found this friend!"; // for debugging
 		// reallocate the array of friends:
 		Friend* newFriendList = new Friend[index + 1];
 		newFriendList = _friendList;
@@ -99,8 +101,24 @@ void User::addFriend(User* allUsers)
 		_friendList[index].birthday = allUsers[i]._birthday;
 		_friendList[index].statuses = allUsers[i]._statuses;
 
+
+		// for debugging:
+		cout << "you added: ";
+		cout << _friendList[index].name << ", ";
+		_friendList[index].birthday.display();
+		cout << "\nlist of statuses:\n";
+		int numOfStatuses = sizeof(_friendList[index].statuses) / sizeof(Status);
+		for (int j = 0; j < numOfStatuses; j++)
+		{
+			cout << _friendList[index].statuses[j].text << endl;
+		}
+
 		// TODO: add myself to his friend list
-		//allUsers[i];
+		
+
+
+
+
 
 		_numOfFriends++; // updates the number of friends
 	}
