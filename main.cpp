@@ -10,8 +10,11 @@ using namespace std;
 
 int main()
 {
-	cout << "hello clarice\n";
+	Operation operation;
 
+
+
+	cout << "hello";
 
 	return 0;
 }
