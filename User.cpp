@@ -31,7 +31,6 @@ User::User(char name[MAX_CHARACTERS], int _numOfFriends, Date birthday, Friend* 
 void User::setName(char* username)
 {
 	_name = username;
-
 	cout << "new name for user is: " << _name;
 }
 
@@ -69,13 +68,12 @@ void User::addFriend(User* allUsers)
 	cout << "Enter friend's name: ";
 	cin.getline(friendsName, MAX_CHARACTERS);
 
-	// TODO: search this friend in the system:
 	int numOfAllUsers = sizeof(allUsers) / sizeof(User); // check
 
-	//search this user in the array:
+	//search this user in the array: // TODO: change it to binary search
 	bool found = false;
-	int i = 0;
-	for (i = 0; i < numOfAllUsers && !found; i++) // TODO: change it to binary search. like a boss
+	int i;
+	for (i = 0; i < numOfAllUsers && !found; i++)
 	{
 		if (strcmp(allUsers[i]._name, friendsName) == 0)
 			found = true;
@@ -91,12 +89,15 @@ void User::addFriend(User* allUsers)
 		Friend* newFriendList = new Friend[index + 1];
 		newFriendList = _friendList;
 
-		_friendList = new Friend[index + 1];
+		_friendList = new Friend[index];
 		_friendList = newFriendList;
 		delete[] newFriendList;
 
-		// add this new friend to the user's friend list.
-		//_friendList[index] = allUsers[i];
+		// add this new friend to the user's friend list:
+		_friendList[index].name = new char[MAX_CHARACTERS];
+		_friendList[index].name = allUsers[i]._name;
+		_friendList[index].birthday = allUsers[i]._birthday;
+		_friendList[index].statuses = allUsers[i]._statuses;
 
 		// TODO: add myself to his friend list
 		//allUsers[i];
@@ -106,11 +107,12 @@ void User::addFriend(User* allUsers)
 
 }
 
-void User::cancelFriendship(char friendToDelete)
+void User::cancelFriendship(char* friendToDelete)
 {
 	cout << "bye bye :(\n";
 	cout << "Please enter friend's name you want to cancel: ";
 
+	// search this friend in the friend list:
 }
 
 void User::likePage()
@@ -123,7 +125,7 @@ void User::dislikePage()
 	cout << "unlike\n";
 }
 
-void User::displayRecentStatusesOfaFriend(Friend* friendToDisplay) // 10 most recent statuses of all his friends
+void User::displayRecentStatusesOfaFriend(char* friendToDisplay) // 10 most recent statuses of all his friends
 {
 	cout << ":)\n";
 }
