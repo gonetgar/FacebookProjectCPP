@@ -1,6 +1,5 @@
 #include <iostream>
 using namespace std;
-#define _CRT_SECURE_NO_WARNINGS
 
 #include "User.h"
 
@@ -17,10 +16,9 @@ User::User()
 
 User::User(char name[MAX_CHARACTERS], int numOfFriends, Date birthday, Friend* friendList, Status* statuses, Page* likedPages)
 {
-	if(name)
-	{
+	if(name){
 	_name = new char[strlen(name)+1];
-	//strcpy(_name, name); ERROR: doesn't recognize strcpy.
+	strcpy(_name, name);
 	}
 
 	_numOfFriends = 0;
@@ -30,27 +28,9 @@ User::User(char name[MAX_CHARACTERS], int numOfFriends, Date birthday, Friend* f
 	_likedPages = likedPages ? likedPages : new Page[1];
 }
 
-Status User::createStatus()
+void User::createStatus()
 {
-	Status status;
-
-	status.text = new char[MAX_CHARACTERS];
-
-	cout << "Please insert your status: ";
-	cin.getline(status.text, MAX_CHARACTERS);
-
-	// TODO: "realloc" to physical size.
-
-	// TODO: insert current time and date (automatically).
-	// instead this is fictivi:
-	status.date = Date(1, 1, 2022);
-
-	// TODO: insert to statuses array of the user.
-
-	cout << status.text;
-	status.date.display();
-
-	return status;
+	cout << "this is status :)\n";
 }
 
 

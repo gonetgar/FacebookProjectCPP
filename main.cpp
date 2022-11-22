@@ -10,10 +10,11 @@ using namespace std;
 
 int main()
 {
-	User gon;
-
-	gon.createStatus();
-
+	Date* d;
+	User u("gon");
+	d = new Date(11, 15, 2022);
+	d->display();
+	d->display();
 
 	return 0;
 }

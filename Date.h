@@ -13,7 +13,6 @@ public:
     int GetMonth();
     void SetMonth(int mn);
     ~Date();
-    time_t getCurrentDate();
 private:
     int month, day, year;
 };

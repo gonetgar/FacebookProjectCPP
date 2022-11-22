@@ -45,11 +45,3 @@ void Date::SetMonth(int mn)
     month = max(1, mn);
     month = min(month, 12);
 }
-
-time_t Date::getCurrentDate()
-{
-    return time(0);
-}
-
-
-
