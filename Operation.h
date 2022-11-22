@@ -6,7 +6,6 @@
 
 class Operation
 {
-private:
 	User* _allUsers;
 	Page* _allPages;
 	User _currentUser;
@@ -17,12 +16,12 @@ public:
 	User* getAllUsers(); // returns all users 
 	void displayMenu();
 	void getCurrentMember();
-	void addUserToOperation(User user, User* allUsers);
-	void addPageToOperation(Page page, Page* allPages);
-	void displayAllEntities(User* allUsers, Page* allPages);
+	void addUserToOperation(User user);
+	void addPageToOperation(Page page);
+	void displayAllEntities();
 	bool isValidUserName(char* userName, User* allUsers); // sort & binary serach?
 	bool isValidPageName(char* pageName, Page* allPages);
-	~Operation(); // TODO: free all memory here
+	//	~Operation(); // TODO: free all memory here
 
 };
 

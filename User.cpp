@@ -9,7 +9,7 @@ User::User()
 	_name = new char[MAX_CHARACTERS];
 	//strcpy(_name, "new user"); ERROR: doesn't recognize strcpy.
 	_numOfFriends = 0;
-	_birthday = Date(1,1,2000);
+	_birthday = Date(1, 1, 2000);
 	_friendList = new Friend[1];
 	_statuses = new Status[1];
 	_likedPages = new Page[1];
@@ -63,16 +63,16 @@ void User::addFriend(User* allUsers)
 
 	cout << "Enter friend's name: ";
 	cin.getline(friendsName, MAX_CHARACTERS);
-	
+
 	// TODO: search this friend in the system:
-	int numOfAllUsers = sizeof(allUsers)/sizeof(User); // check
+	int numOfAllUsers = sizeof(allUsers) / sizeof(User); // check
 	//search this user in the array:
 	bool found = false;
 	int i = 0;
 	for (i = 0; i < numOfAllUsers && !found; i++) // TODO: change it to binary search. like a boss
 	{
 		//if (strcmp(allUsers[i]._name, friendsName) == 0)
-			found = true;
+		found = true;
 	}
 
 	if (found == false)

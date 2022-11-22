@@ -15,10 +15,10 @@ const int MAX_CHARACTERS = 256;
 class User
 {
 public:
+	char* _name = new char[MAX_CHARACTERS]; // name of the user
 	int _numOfFriends;
 	Friend* _friendList;
 private:
-	char* _name = new char[MAX_CHARACTERS]; // name of the user
 	Date _birthday;
 	Status* _statuses; // array of statuses
 	Page* _likedPages; // array of liked pages
