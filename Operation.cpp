@@ -21,6 +21,7 @@ void Operation::initiateData(User* users, int usersSize, Page* pages, int pagesS
 	_allPages = pages;
 }
 
+
 User* Operation::getAllUsers()
 {
 	return _allUsers;
@@ -38,16 +39,16 @@ User* Operation::getAllUsers()
 
 void Operation::displayAllEntities()
 {
-	int arr_length = sizeof(_allUsers) / sizeof(User);
+	int users_length = sizeof(_allUsers) / sizeof(User);
 
-	for (int i = 0; i < arr_length; i++)
+	for (int i = 0; i < users_length; i++)
 	{
 		cout << "user " << i << " " << _allUsers[i]._name << endl;
 	}
 
-	int arr_length = sizeof(_allPages) / sizeof(Page);
+	int pages_length = sizeof(_allPages) / sizeof(Page);
 
-	for (int i = 0; i < arr_length; i++)
+	for (int i = 0; i < pages_length; i++)
 	{
 		cout << "page " << i << " " << _allUsers[i]._name << endl;
 	}
@@ -60,25 +61,17 @@ void Operation::getCurrentMember()
 	cout << "Hello, please enter your name for varification: ";
 	cin >> username;
 
-	_currentMember.setName(username);
+	_currentUser.setName(username);
 }
 
-void Operation::getCurrentMember()
-{
-	char username[256];
 
-	cout << "Hello, please enter your name for varification: ";
-	cin >> username;
-
-	// TODO: setName for User class   
-	//_currentMember.setName(username);
-}
 
 void Operation::displayMenu()
 {
 	int userChoice = 0;
 
 	cout << "1 -הוספת חבר   \n 2 - הוספת דף אוהדים \n 3 - הוספת סטטוס .\n 4 - הצגת כל הסטטוסים  \n 5 - הצגת 10 הסטטוסים העדכניים ביותר של חבריו של חבר מסויים \n 6 - קישור חברות בין שני חברים \n 7 - ביטול חברות בין שני חברים \n 8 - הוספת אוהד לדף \n 9 - הסרת אוהד מדף \n 10 - הצגת כל הישויות הרשומות למערכת \n 11 - הצגת כל החברים של חבר מסויים / האוהדים של דף מסויים \n 12 - יציאה";
+	cout << "1 -הוספת חבר   \n 2 - הוספת דף אוהדים \n 3 - הוספת סטטוס לחבר / דף אוהדים.בשלב זה סטטוס הוא רק טקסט \n 4 - הצגת כל הסטטוסים של חבר / דף אוהדים.בשלב זה סטטוס הוא רק טקסט \n 5 - הצגת 10 הסטטוסים העדכניים ביותר של חבריו של חבר מסויים \n 6 - קישור חברות בין שני חברים \n 7 - ביטול חברות בין שני חברים \n 8 - הוספת אוהד לדף \n 9 - הסרת אוהד מדף \n 10 - הצגת כל הישויות הרשומות למערכת \n 11 - הצגת כל החברים של חבר מסויים / האוהדים של דף מסויים \n 12 - יציאה";
 	cin >> userChoice;
 
 	// validation
@@ -127,7 +120,7 @@ void Operation::displayMenu()
 		break;
 	case 10:
 		// TODO: print in loop with indices
-		displayAllEntities(_allUsers, _allPages);
+		displayAllEntities();
 		break;
 	case 11:
 		// TODO: check inside function if create for user or page

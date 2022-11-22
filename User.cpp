@@ -16,9 +16,9 @@ User::User()
 
 User::User(char name[MAX_CHARACTERS], int _numOfFriends, Date birthday, Friend* friendList, Status* statuses, Page* likedPages)
 {
-	if(name){
-	_name = new char[strlen(name)+1];
-	//strcpy(_name, name); // TODO
+	if (name) {
+		_name = new char[strlen(name) + 1];
+		//strcpy(_name, name); // TODO
 	}
 
 	_numOfFriends = 0;
@@ -106,7 +106,7 @@ void User::addFriend(User* allUsers)
 
 }
 
-void User::cancelFriendship(char friendToDelete)
+void User::cancelFriendship(char* friendToDelete)
 {
 	cout << "bye bye :(\n";
 	cout << "Please enter friend's name you want to cancel: ";
@@ -123,7 +123,7 @@ void User::dislikePage()
 	cout << "unlike\n";
 }
 
-void User::displayRecentStatusesOfaFriend(Friend* friendToDisplay) // 10 most recent statuses of all his friends
+void User::displayRecentStatusesOfaFriend(char* friendToDisplay) // 10 most recent statuses of all his friends
 {
 	cout << ":)\n";
 }

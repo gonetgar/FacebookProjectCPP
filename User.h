@@ -16,8 +16,8 @@ class User
 public:
 	char* _name = new char[MAX_CHARACTERS]; // name of the user
 	int _numOfFriends;
-	Date _birthday;
 	Friend* _friendList;
+
 private:
 	Date _birthday;
 	Status* _statuses; // array of statuses
@@ -29,10 +29,10 @@ public:
 	Status createStatus();
 	void setName(char* username);
 	void addFriend(User* allUsers);
-	void cancelFriendship(char friendToDelete);
+	void cancelFriendship(char* friendToDelete);
 	void likePage();
 	void dislikePage();
-	void displayRecentStatusesOfaFriend(Friend* friendToDisplay); // 10 most recent statuses of all his friends
+	void displayRecentStatusesOfaFriend(char* friendToDisplay); // 10 most recent statuses of all his friends
 	void displayAllStatuses();
 	void displayAllFriends();
 };
