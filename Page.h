@@ -6,11 +6,11 @@
 
 class Page
 {
-public:
 	char* name;
 	Friend** fansList;
 	Status* statuses;
 
+public:
 	void createStatus();
 	void displayAllStatuses();
 	void displayAllFans();

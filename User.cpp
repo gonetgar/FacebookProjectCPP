@@ -8,7 +8,7 @@ User::User()
 	_name = new char[MAX_CHARACTERS];
 	//strcpy(_name, "new user"); ERROR: doesn't recognize strcpy.
 	_numOfFriends = 0;
-	_birthday = Date(1,1,2000);
+	_birthday = Date(1, 1, 2000);
 	_friendList = new Friend[1];
 	_statuses = new Status[1];
 	_likedPages = new Page[1];
@@ -16,15 +16,15 @@ User::User()
 
 User::User(char name[MAX_CHARACTERS], int _numOfFriends, Date birthday, Friend* friendList, Status* statuses, Page* likedPages)
 {
-	if(name){
-	_name = new char[strlen(name)+1];
-	//strcpy(_name, name); // TODO
+	if (name) {
+		_name = new char[strlen(name) + 1];
+		//strcpy(_name, name); // TODO
 	}
 
 	_numOfFriends = 0;
 	_birthday = birthday;
 	_friendList = friendList ? friendList : new Friend[1];
-	_statuses = statuses ? statuses: new Status[1];
+	_statuses = statuses ? statuses : new Status[1];
 	_likedPages = likedPages ? likedPages : new Page[1];
 }
 
