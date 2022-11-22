@@ -10,9 +10,9 @@ using namespace std;
 int main()
 {
 	Date* d;
-	
+
 	d = new Date(11, 15, 2022);
-	
+
 	d->display();
 
 	return 0;
