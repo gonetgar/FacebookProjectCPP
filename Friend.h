@@ -3,7 +3,7 @@
 
 #include "Status.h"
 #include "Date.h"
-#include "User.h"
+// do not call user!
 
 class Friend
 {
