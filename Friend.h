@@ -2,15 +2,15 @@
 #define __FRIEND_H__
 
 #include "Status.h"
+#include "Date.h"
 
 class Friend
 {
 public:
 	char* name;
-	//Date date;
+	Date date;
 	Status* statuses;
 
-	void gon();
 };
 
 #endif // __FRIEND_H__
