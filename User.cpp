@@ -1,6 +1,5 @@
 #include <iostream>
 using namespace std;
-#define _CRT_SECURE_NO_WARNINGS
 
 #include "User.h"
 
@@ -15,11 +14,11 @@ User::User()
 	_likedPages = new Page[1];
 }
 
-User::User(char name[MAX_CHARACTERS], int numOfFriends, Date birthday, Friend* friendList, Status* statuses, Page* likedPages)
+User::User(char name[MAX_CHARACTERS], int _numOfFriends, Date birthday, Friend* friendList, Status* statuses, Page* likedPages)
 {
-	if (name) {
-		_name = new char[strlen(name) + 1];
-		//strcpy(_name, name);
+	if(name){
+	_name = new char[strlen(name)+1];
+	//strcpy(_name, name); // TODO
 	}
 
 	_numOfFriends = 0;
@@ -27,6 +26,13 @@ User::User(char name[MAX_CHARACTERS], int numOfFriends, Date birthday, Friend* f
 	_friendList = friendList ? friendList : new Friend[1];
 	_statuses = statuses ? statuses : new Status[1];
 	_likedPages = likedPages ? likedPages : new Page[1];
+}
+
+void User::setName(char* username)
+{
+	_name = username;
+
+	cout << "new name for user is: " << _name;
 }
 
 Status User::createStatus()
@@ -38,7 +44,6 @@ Status User::createStatus()
 	cout << "Please insert your status: ";
 	cin.getline(status.text, MAX_CHARACTERS);
 
-	// TODO: "realloc" to physical size.
 
 	// TODO: insert current time and date (automatically).
 	// instead this is fictivi:
@@ -53,9 +58,9 @@ Status User::createStatus()
 }
 
 
-// 1. searches this person in the system
-// 2. if found -> add it to my friend list
-// 3. add myself to his friend list. :-)
+//// 1. searches this person in the system
+//// 2. if found -> add it to my friend list
+//// 3. add myself to his friend list. :-)
 void User::addFriend(User* allUsers)
 {
 	char* friendsName = new char[MAX_CHARACTERS];
@@ -66,13 +71,14 @@ void User::addFriend(User* allUsers)
 
 	// TODO: search this friend in the system:
 	int numOfAllUsers = sizeof(allUsers) / sizeof(User); // check
+
 	//search this user in the array:
 	bool found = false;
 	int i = 0;
 	for (i = 0; i < numOfAllUsers && !found; i++) // TODO: change it to binary search. like a boss
 	{
-		//if (strcmp(allUsers[i]._name, friendsName) == 0)
-		found = true;
+		if (strcmp(allUsers[i]._name, friendsName) == 0)
+			found = true;
 	}
 
 	if (found == false)
@@ -97,12 +103,12 @@ void User::addFriend(User* allUsers)
 
 		_numOfFriends++; // updates the number of friends
 	}
+
 }
 
-void User::cancelFriendship()
+void User::cancelFriendship(char friendToDelete)
 {
 	cout << "bye bye :(\n";
-
 	cout << "Please enter friend's name you want to cancel: ";
 
 }
@@ -111,12 +117,13 @@ void User::likePage()
 {
 	cout << "like\n";
 }
+
 void User::dislikePage()
 {
 	cout << "unlike\n";
 }
 
-void User::displayRecentStatusesOfFriends() // 10 most recent statuses of all his friends
+void User::displayRecentStatusesOfaFriend(Friend* friendToDisplay) // 10 most recent statuses of all his friends
 {
 	cout << ":)\n";
 }

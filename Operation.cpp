@@ -63,6 +63,17 @@ void Operation::getCurrentMember()
 	_currentMember.setName(username);
 }
 
+void Operation::getCurrentMember()
+{
+	char username[256];
+
+	cout << "Hello, please enter your name for varification: ";
+	cin >> username;
+
+	// TODO: setName for User class   
+	//_currentMember.setName(username);
+}
+
 void Operation::displayMenu()
 {
 	int userChoice = 0;

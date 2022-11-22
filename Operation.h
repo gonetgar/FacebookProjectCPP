@@ -1,5 +1,5 @@
-#ifndef __OPERATION__H_
-#define __OPERATION__H_
+#ifndef __OPERATION_H
+#define __OPERATION_H
 
 #include "User.h"
 #include "Page.h"
@@ -25,4 +25,4 @@ public:
 
 };
 
-#endif // __OPERATION__H_
+#endif // __OPERATION_H

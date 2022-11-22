@@ -1,5 +1,5 @@
-#ifndef __PAGE__H_
-#define __PAGE__H_
+#ifndef __PAGE_H
+#define __PAGE_H
 
 #include "Status.h"
 #include "Friend.h"
@@ -16,4 +16,4 @@ public:
 	void displayAllFans();
 };
 
-#endif // __PAGE__H_
+#endif // __PAGE_H

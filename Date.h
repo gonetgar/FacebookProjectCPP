@@ -1,5 +1,5 @@
-#ifndef __DATE__H_
-#define __DATE__H_
+#ifndef __DATE_H
+#define __DATE_H
 #define _CRT_SECURE_NO_WARNINGS
 
 #include <ctime>
@@ -13,9 +13,8 @@ public:
     int GetMonth();
     void SetMonth(int mn);
     ~Date();
-    time_t getCurrentDate();
 private:
     int month, day, year;
 };
 
-#endif // __DATE__H_
+#endif // __DATE_H

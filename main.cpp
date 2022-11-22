@@ -10,11 +10,7 @@ using namespace std;
 
 int main()
 {
-	User gon;
-	User ori;
-
-	gon.createStatus();
-	ori.createStatus();
+	cout << "hello";
 
 	return 0;
 }
