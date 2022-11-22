@@ -1,17 +1,19 @@
 #ifndef __USER_H__
 #define __USER_H__
 
-const int MAX_CHARACTERS = 256;
-
+#include <string.h>
 #include "Friend.h"
 #include "Status.h"
 #include "Page.h"
 #include "Date.h"
+#define _CRT_SECURE_NO_WARNINGS
+
+const int MAX_CHARACTERS = 256;
 
 class User
 {
 private:
-	char* _name; // name of the user
+	char* _name = new char[MAX_CHARACTERS]; // name of the user
 	Date _birthday;
 	Friend* _friendList;
 	Status* _statuses; // array of statuses
@@ -19,10 +21,9 @@ private:
 
 public:
 	User();
-	User(char* name, Date birthday, Friend* friendList, Status* statuses, Page* likedPages);
+	User(char name[MAX_CHARACTERS], Date birthday, Friend* friendList, Status* statuses, Page* likedPages);
 
-	//char* createStatus();
-	void createStatus();
+	Status createStatus();
 	void addFriend();
 	void cancelFriendship();
 	void likePage();
