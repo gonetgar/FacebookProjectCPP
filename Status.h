@@ -1,5 +1,5 @@
-#ifndef __STATUS_H__
-#define __STATUS_H__
+#ifndef __STATUS_H
+#define __STATUS_H
 
 #include "Date.h"
 
@@ -12,4 +12,4 @@ public:
 
 };
 
-#endif // __STATUS_H__
+#endif // __STATUS_H

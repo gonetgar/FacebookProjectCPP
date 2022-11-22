@@ -1,26 +1,27 @@
-#ifndef __OPERATION__H_
-#define __OPERATION__H_
+#ifndef __OPERATION_H
+#define __OPERATION_H
 
 #include "User.h"
 #include "Page.h"
 
 class Operation
 {
-private:
 	User* _allUsers;
 	Page* _allPages;
+	User _currentUser;
 
 public:
 	Operation(User* allUsers, Page* allPages);
-	void initiateData(User* users, Page* pages, User* allUsers, Page* allPages);
+	void initiateData(User* users, int usersSize, Page* pages, int pagesSize);
+	User* getAllUsers(); // returns all users 
+	void displayMenu();
+	void getCurrentMember();
 	void addUserToOperation(User user, User* allUsers);
 	void addPageToOperation(Page page, Page* allPages);
 	void displayAllEntities(User* allUsers, Page* allPages);
-	void displayMenu();
 	bool isValidUserName(char* userName, User* allUsers); // sort & binary serach?
 	bool isValidPageName(char* pageName, Page* allPages);
-	~Operation(); // TODO: free all memory here
-
+	//	~Operation(); // TODO: free all memory here
 };
 
-#endif // __OPERATION__H_
+#endif // __OPERATION_H

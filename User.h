@@ -1,14 +1,15 @@
-#ifndef __USER_H__
-#define __USER_H__
+#ifndef __USER_H
+#define __USER_H
+
+#define _CRT_SECURE_NO_WARNINGS
 
 #include <string.h>
+
 #include "Friend.h"
 #include "Status.h"
 #include "Page.h"
 #include "Date.h"
 #include "Operation.h"
-
-#define _CRT_SECURE_NO_WARNINGS
 
 const int MAX_CHARACTERS = 256;
 
@@ -37,4 +38,4 @@ public:
 	void displayAllFriends();
 };
 
-#endif // __USER_H__
+#endif // __USER_H

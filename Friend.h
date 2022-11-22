@@ -1,5 +1,5 @@
-#ifndef __FRIEND_H__
-#define __FRIEND_H__
+#ifndef __FRIEND_H
+#define __FRIEND_H
 
 #include "Status.h"
 #include "Date.h"
@@ -12,8 +12,6 @@ public:
 	Date birthday;
 	Status* statuses;
 
-	Friend* reallocFriend(User* u);
-
+	//Friend* reallocFriend(User* u);
 };
-
-#endif // __FRIEND_H__
+#endif // __FRIEND_H
