@@ -3,22 +3,19 @@ using namespace std;
 #define _CRT_SECURE_NO_WARNINGS
 
 #include "User.h"
-#include "Date.h"
-
 
 User::User()
 {
-	_name = new char[256];
+	_name = new char[MAX_CHARACTERS];
 	//strcpy(_name, "new user"); ERROR: doesn't recognize strcpy.
-	
+	_numOfFriends = 0;
 	_birthday = Date(1,1,2000);
-
 	_friendList = new Friend[1];
 	_statuses = new Status[1];
 	_likedPages = new Page[1];
 }
 
-User::User(char name[MAX_CHARACTERS], Date birthday, Friend* friendList, Status* statuses, Page* likedPages)
+User::User(char name[MAX_CHARACTERS], int numOfFriends, Date birthday, Friend* friendList, Status* statuses, Page* likedPages)
 {
 	if(name)
 	{
@@ -26,8 +23,8 @@ User::User(char name[MAX_CHARACTERS], Date birthday, Friend* friendList, Status*
 	//strcpy(_name, name); ERROR: doesn't recognize strcpy.
 	}
 
+	_numOfFriends = 0;
 	_birthday = birthday;
-
 	_friendList = friendList ? friendList : new Friend[1];
 	_statuses = statuses ? statuses: new Status[1];
 	_likedPages = likedPages ? likedPages : new Page[1];
@@ -42,6 +39,7 @@ Status User::createStatus()
 	cout << "Please insert your status: ";
 	cin.getline(status.text, MAX_CHARACTERS);
 
+	// TODO: "realloc" to physical size.
 
 	// TODO: insert current time and date (automatically).
 	// instead this is fictivi:
@@ -55,15 +53,61 @@ Status User::createStatus()
 	return status;
 }
 
-void User::addFriend()
+
+// 1. searches this person in the system
+// 2. if found -> add it to my friend list
+// 3. add myself to his friend list. :-)
+void User::addFriend(User* allUsers)
 {
-	cout << "friend\n";
+	char* friendsName = new char[MAX_CHARACTERS];
+	int index = _numOfFriends;
+
+	cout << "Enter friend's name: ";
+	cin.getline(friendsName, MAX_CHARACTERS);
+	
+	// TODO: search this friend in the system:
+	int numOfAllUsers = sizeof(allUsers)/sizeof(User); // check
+	//search this user in the array:
+	bool found = false;
+	int i = 0;
+	for (i = 0; i < numOfAllUsers && !found; i++) // TODO: change it to binary search. like a boss
+	{
+		//if (strcmp(allUsers[i]._name, friendsName) == 0)
+			found = true;
+	}
+
+	if (found == false)
+	{
+		cout << "User not found!\n";
+	}
+	else
+	{
+		// reallocate the array of friends:
+		Friend* newFriendList = new Friend[index + 1];
+		newFriendList = _friendList;
+
+		_friendList = new Friend[index + 1];
+		_friendList = newFriendList;
+		delete[] newFriendList;
+
+		// add this new friend to the user's friend list.
+		//_friendList[index] = allUsers[i];
+
+		// TODO: add myself to his friend list
+		//allUsers[i];
+
+		_numOfFriends++; // updates the number of friends
+	}
 }
 
 void User::cancelFriendship()
 {
 	cout << "bye bye :(\n";
+
+	cout << "Please enter friend's name you want to cancel: ";
+
 }
+
 void User::likePage()
 {
 	cout << "like\n";
