@@ -28,6 +28,13 @@ User::User(char name[MAX_CHARACTERS], int _numOfFriends, Date birthday, Friend* 
 	_likedPages = likedPages ? likedPages : new Page[1];
 }
 
+void User::setName(char* username)
+{
+	_name = username;
+
+	cout << "new name for user is: " << _name;
+}
+
 Status User::createStatus()
 {
 	Status status;

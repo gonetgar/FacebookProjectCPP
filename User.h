@@ -24,6 +24,7 @@ public:
 	User();
 	User(char name[MAX_CHARACTERS], int _numOfFriends, Date birthday, Friend* friendList, Status* statuses, Page* likedPages);
 	Status createStatus();
+	void setName(char* username);
 	void addFriend(User* allUsers);
 	void cancelFriendship(char friendToDelete);
 	void likePage();
