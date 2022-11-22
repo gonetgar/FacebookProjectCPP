@@ -2,12 +2,13 @@
 #define __PAGE__H_
 
 #include "Status.h"
+#include "Friend.h"
 
 class Page
 {
 public:
 	char* name;
-	char** fansList;
+	Friend** fansList;
 	Status* statuses;
 
 	void createStatus();
