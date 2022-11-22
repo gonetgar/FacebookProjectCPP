@@ -6,25 +6,29 @@
 #include "Status.h"
 #include "Page.h"
 #include "Date.h"
+#include "Operation.h"
+
 #define _CRT_SECURE_NO_WARNINGS
 
 const int MAX_CHARACTERS = 256;
 
 class User
 {
+public:
+	int _numOfFriends;
+	Friend* _friendList;
 private:
 	char* _name = new char[MAX_CHARACTERS]; // name of the user
 	Date _birthday;
-	Friend* _friendList;
 	Status* _statuses; // array of statuses
 	Page* _likedPages; // array of liked pages
 
 public:
 	User();
-	User(char name[MAX_CHARACTERS], Date birthday, Friend* friendList, Status* statuses, Page* likedPages);
+	User(char name[MAX_CHARACTERS], int _numOfFriends, Date birthday, Friend* friendList, Status* statuses, Page* likedPages);
 
 	Status createStatus();
-	void addFriend();
+	void addFriend(User* allUsers);
 	void cancelFriendship();
 	void likePage();
 	void dislikePage();

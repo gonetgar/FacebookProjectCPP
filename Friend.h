@@ -3,13 +3,16 @@
 
 #include "Status.h"
 #include "Date.h"
+#include "User.h"
 
 class Friend
 {
 public:
 	char* name;
-	Date date;
+	Date birthday;
 	Status* statuses;
+
+	Friend* reallocFriend(User* u);
 
 };
 
