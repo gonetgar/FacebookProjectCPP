@@ -6,7 +6,7 @@ class Date
 public:
     Date();
     Date(int mn, int day, int yr);  // constructor
-    void display();                   // function to display date
+    void display();                 // function to display date
     int GetMonth();
     void SetMonth(int mn);
     ~Date();
