@@ -31,7 +31,6 @@ User::User(char name[MAX_CHARACTERS], int _numOfFriends, Date birthday, Friend* 
 void User::setName(char* username)
 {
 	_name = username;
-	cout << "new name for user is: " << _name;
 }
 
 Status User::createStatus()
@@ -56,7 +55,6 @@ Status User::createStatus()
 	return status;
 }
 
-
 //// 1. searches this person in the system
 //// 2. if found -> add it to my friend list
 //// 3. add myself to his friend list. :-)
@@ -69,7 +67,7 @@ void User::addFriend(User* allUsers)
 	cin.getline(friendsName, MAX_CHARACTERS);
 	cout << "you entered: " << friendsName;; // for debugging
 
-	int numOfAllUsers = sizeof(allUsers) / sizeof(User); // check
+	int numOfAllUsers = sizeof(*allUsers) / sizeof(User); // check
 
 	//search this user in the array: // TODO: change it to binary search
 	bool found = false;
@@ -96,31 +94,40 @@ void User::addFriend(User* allUsers)
 		delete[] newFriendList;
 
 		// add this new friend to the user's friend list:
-		_friendList[index].name = new char[MAX_CHARACTERS];
-		_friendList[index].name = allUsers[i]._name;
-		_friendList[index].birthday = allUsers[i]._birthday;
-		_friendList[index].statuses = allUsers[i]._statuses;
+		_friendList[index]._name = new char[MAX_CHARACTERS];
+		_friendList[index]._name = allUsers[i]._name;
+		_friendList[index]._birthday = allUsers[i]._birthday;
+		_friendList[index]._statuses = allUsers[i]._statuses;
 
 
 		// for debugging:
 		cout << "you added: ";
-		cout << _friendList[index].name << ", ";
-		_friendList[index].birthday.display();
+		cout << _friendList[index]._name << ", birthday: ";
+		_friendList[index]._birthday.display();
 		cout << "\nlist of statuses:\n";
-		int numOfStatuses = sizeof(_friendList[index].statuses) / sizeof(Status);
+		int numOfStatuses = sizeof(_friendList[index]._statuses) / sizeof(Status);
 		for (int j = 0; j < numOfStatuses; j++)
 		{
-			cout << _friendList[index].statuses[j].text << endl;
+			cout << _friendList[index]._statuses[j].text << endl;
 		}
 
 		// TODO: add myself to his friend list
+		// allocate place for new friends
+		Friend* newFriendList = new Friend[allUsers[i]._numOfFriends + 1];
+		newFriendList = allUsers[i]._friendList;
+		delete[] (allUsers[i]._friendList);
+		allUsers[i]._friendList = newFriendList;
+
+		// copy the information about me to the friend list
+		allUsers[i]._friendList[_numOfFriends]._name = _name;
+		allUsers[i]._friendList[_numOfFriends]._birthday = _birthday;
+		allUsers[i]._friendList[_numOfFriends]._friendsList = _friendList;
+		allUsers[i]._friendList[_numOfFriends]._numOfFriends = _numOfFriends;
+		allUsers[i]._friendList[_numOfFriends]._statuses = _statuses;
+
 		
-
-
-
-
-
-		_numOfFriends++; // updates the number of friends
+		_numOfFriends++; // updates the number of my friends
+		allUsers[i]._numOfFriends++; // updates number of his friends.
 	}
 
 }

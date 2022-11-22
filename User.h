@@ -9,8 +9,6 @@
 #include "Page.h"
 // do not call operation!
 
-const int MAX_CHARACTERS = 256;
-
 class User
 {
 public:

@@ -6,9 +6,9 @@
 
 class Page
 {
-	char* name;
-	Friend** fansList;
-	Status* statuses;
+	char* _name;
+	Friend** _fansList;
+	Status* _statuses;
 
 public:
 	void createStatus();
