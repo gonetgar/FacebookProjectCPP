@@ -4,22 +4,26 @@
 #include "Friend.h"
 #include "Status.h"
 #include "Page.h"
+#include "Date.h"
 
 class User
 {
 public:
 	char* name; // name of the user
-	// birth date
+	Date birthday;
 	Friend* friendList;
-	Status* status; // array of statuses
+	Status* statuses; // array of statuses
 	Page* likedPages; // array of liked pages
 
-	char* createStatus();
+	//char* createStatus();
+	void createStatus();
 	void addFriend();
 	void cancelFriendship();
 	void likePage();
 	void dislikePage();
-	void displayRecentStatusesOfFriends();
+	void displayRecentStatusesOfFriends(); // 10 most recent statuses of all his friends
+	void displayAllStatuses();
+	void displayAllFriends();
 };
 
 #endif // __USER_H__

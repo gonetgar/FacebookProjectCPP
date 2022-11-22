@@ -2,6 +2,7 @@
 using namespace std;
 
 #include "User.h"
+#include "Operation.h"
 #include "Status.h"
 #include "Friend.h"
 #include "Page.h"
@@ -10,9 +11,8 @@ using namespace std;
 int main()
 {
 	Date* d;
-	
 	d = new Date(11, 15, 2022);
-	
+	d->display();
 	d->display();
 
 	return 0;
