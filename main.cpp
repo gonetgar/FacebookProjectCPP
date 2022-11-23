@@ -10,21 +10,36 @@ using namespace std;
 
 int main()
 {
-	/*Operation operation;
-	User* users = new User[2];
-	Page* pages = new Page[2];
+	Operation operation;
+	User* initiateUsers = new User[3];
+	Page* initiatePages = new Page[2];
 
 	User ori;
+	char username[256] = "ori nurieli";
+	ori.setName(username);
+
 	User gon;
+	char username2[256] = "gon etgar";
+	gon.setName(username2);
 
-	users[0] = ori;
-	users[1] = gon;
+	User gon2;
+	char username3[256] = "gon etgar2";
+	gon2.setName(username3);
 
-	Page oriPage;
-	Page gonPage;
+	Page oripage;
+	Page gonpage;
 
-	operation.initiateData(users, 2, pages, 2);
+	initiateUsers[0] = ori;
+	initiateUsers[1] = gon;
+	initiateUsers[2] = gon2;
 
+	initiatePages[0] = oripage;
+	initiatePages[1] = gonpage;
+
+
+	operation.initiateData(initiateUsers, 3, initiatePages, 2);
+
+	operation.displayAllEntities();
 
 	cout << "hello";*/
 

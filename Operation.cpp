@@ -4,7 +4,6 @@ using namespace std;
 
 #include "Operation.h"
 
-// no default constructor is needed
 Operation::Operation()
 {
 	User* allUsers = new User[1];
@@ -21,6 +20,7 @@ void Operation::initiateData(User* users, int usersSize, Page* pages, int pagesS
 {
 	_allUsers = new User[usersSize];
 	_allPages = new Page[pagesSize];
+
 
 	_allUsers = users;
 	_allPages = pages;
@@ -44,9 +44,15 @@ User* Operation::getAllUsers()
 
 void Operation::displayAllEntities()
 {
+	cout << "\n";
+	cout << _allUsers[0]._name << endl;
+	cout << _allUsers[1]._name << endl;
+	cout << _allUsers[2]._name << endl;
 
-	int users_length = sizeof(_allUsers) / sizeof(User);
-	int pages_length = sizeof(_allPages) / sizeof(Page);
+	// TODO: find and fix arrays length 
+	int users_length = sizeof(_allUsers) / sizeof(_allUsers[0]);
+	cout << "length: " << users_length << endl;
+	int pages_length = sizeof(_allPages) / sizeof(_allPages[0]);
 
 	if (users_length != 0) {
 		for (int i = 0; i < users_length; i++)
@@ -54,7 +60,7 @@ void Operation::displayAllEntities()
 			cout << "user " << i << " " << _allUsers[i]._name << endl;
 		}
 	}
-	else cout << "no users";
+	else cout << "no users" << endl;
 
 	if (pages_length != 0) {
 		for (int i = 0; i < pages_length; i++)
@@ -62,7 +68,7 @@ void Operation::displayAllEntities()
 			cout << "page " << i << " " << _allUsers[i]._name << endl;
 		}
 	}
-	else cout << "no pages";
+	else cout << "no pages" << endl;
 }
 
 void Operation::getCurrentMember()
