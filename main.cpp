@@ -10,38 +10,51 @@ using namespace std;
 
 int main()
 {
-	Operation operation;
-	User* initiateUsers = new User[3];
-	Page* initiatePages = new Page[2];
+	/// gon try
 
-	User ori;
-	char username[256] = "ori nurieli";
-	ori.setName(username);
+	cout << "this is the main";
 
-	User gon;
-	char username2[256] = "gon etgar";
-	gon.setName(username2);
+	User u1;
 
-	User gon2;
-	char username3[256] = "gon etgar2";
-	gon2.setName(username3);
+	u1.createStatus();
 
-	Page oripage;
-	Page gonpage;
+	//Operation operation;
+	//User* initiateUsers = new User[3];
+	//Page* initiatePages = new Page[2];
 
-	initiateUsers[0] = ori;
-	initiateUsers[1] = gon;
-	initiateUsers[2] = gon2;
+	//User ori;
+	//char username[256] = "ori nurieli";
+	//ori.setName(username);
 
-	initiatePages[0] = oripage;
-	initiatePages[1] = gonpage;
+	//User gon;
+	//char username2[256] = "gon etgar";
+	//gon.setName(username2);
+
+	//User gon2;
+	//char username3[256] = "gon etgar2";
+	//gon2.setName(username3);
 
 
-	operation.initiateData(initiateUsers, 3, initiatePages, 2);
+	//Page oripage;
+	//Page gonpage;
 
-	operation.displayAllEntities();
+	//initiateUsers[0] = ori;
+	//initiateUsers[1] = gon;
+	//initiateUsers[2] = gon2;
 
-	cout << "hello";*/
+	//initiatePages[0] = oripage;
+	//initiatePages[1] = gonpage;
+
+
+	//operation.initiateData(initiateUsers, 3, initiatePages, 2);
+
+	//operation.displayAllEntities();
+
+
+	//cout << "\n\ngon try:\n";
+
+	//ori.addFriend(operation.getAllUsers());
+
 
 	return 0;
 }

@@ -5,28 +5,60 @@ using namespace std;
 
 User::User()
 {
+	char temp_name[9] = "new user";
 	_name = new char[MAX_CHARACTERS];
-	//strcpy(_name, "new user"); ERROR: doesn't recognize strcpy.
+
+	myStrcpy(_name, temp_name);
+	cout << "\n" << _name; // for debugging
+
 	_numOfFriends = 0;
-	_birthday = Date(1, 1, 2000);
-	_friendList = new Friend[1];
+	cout << "\nnumber of friends: " << _numOfFriends << endl; // for debugging
+
+	_birthday.display(); // for debugging
+	//_birthday = Date(1, 1, 2000); // ERROR: we dont need this because Date goes through the c'tor.
+
 	_statuses = new Status[1];
 	_likedPages = new Page[1];
+
+	_friendsList = new User*[1]; // array of pointers so it wont go through c'tor =
 }
 
-User::User(char name[MAX_CHARACTERS], int _numOfFriends, Date birthday, Friend* friendList, Status* statuses, Page* likedPages)
+User::User(char* name, int numOfFriends, Date birthday, User** friendsList, Status* statuses, Page* likedPages)
 {
-	if (name) {
-		_name = new char[strlen(name) + 1];
-		//strcpy(_name, name); // TODO
-	}
+	_name = name;
+	cout << "name: ";
+	int len = strlen(_name); // for debugging
+	for (int i = 0; i < len; i++)
+		cout << _name[i];
 
-	_numOfFriends = 0;
+	_numOfFriends = numOfFriends;
+
+	cout << "\nnumber of friends: " << _numOfFriends << endl; // for debugging
+
 	_birthday = birthday;
-	_friendList = friendList ? friendList : new Friend[1];
-	_statuses = statuses ? statuses : new Status[1];
-	_likedPages = likedPages ? likedPages : new Page[1];
+
+	cout << "birthday is: "; // for debugging
+	_birthday.display(); // for debugging
+
+	_friendsList = friendsList;
+	_statuses = statuses;
+	_likedPages = likedPages;
 }
+
+// trying a new c'tor:
+//User::User(char name[MAX_CHARACTERS], int _numOfFriends, Date birthday, Friend* friendList, Status* statuses, Page* likedPages)
+//{
+//	if (name) {
+//		_name = new char[strlen(name) + 1];
+//		//strcpy(_name, name); // TODO
+//	}
+//
+//	_numOfFriends = 0;
+//	_birthday = birthday;
+//	_friendList = friendList ? friendList : new Friend[1];
+//	_statuses = statuses ? statuses : new Status[1];
+//	_likedPages = likedPages ? likedPages : new Page[1];
+//}
 
 void User::setName(char* username)
 {
@@ -65,7 +97,9 @@ void User::addFriend(User* allUsers)
 
 	cout << "Enter friend's name: ";
 	cin.getline(friendsName, MAX_CHARACTERS);
-	cout << "you entered: " << friendsName;; // for debugging
+	// TODO: shrink the name back
+
+	cout << "you entered: " << friendsName; // for debugging
 
 	int numOfAllUsers = sizeof(*allUsers) / sizeof(User); // check
 
@@ -85,49 +119,48 @@ void User::addFriend(User* allUsers)
 	else
 	{
 		cout << "you found this friend!"; // for debugging
+
 		// reallocate the array of friends:
-		Friend* newFriendList = new Friend[index + 1];
-		newFriendList = _friendList;
+		User** newFriendList = new User * [_numOfFriends + 1]; // make a new bigger one
+		newFriendList = _friendsList; // point at the old one
+		delete[] _friendsList; // delete the old one
+		_friendsList = newFriendList; // point back at the original
+		// TODO : put it in a function
 
-		_friendList = new Friend[index];
-		_friendList = newFriendList;
-		delete[] newFriendList;
 
-		// add this new friend to the user's friend list:
-		_friendList[index]._name = new char[MAX_CHARACTERS];
-		_friendList[index]._name = allUsers[i]._name;
-		_friendList[index]._birthday = allUsers[i]._birthday;
-		_friendList[index]._statuses = allUsers[i]._statuses;
+		// add this new friend to the user's friends list:
+		// TODO: change "allUsers" array to type "User**"
+		// and then we can point at this sepceific person
+		//_friendsList[_numOfFriends + 1] = *allUsers[i];
+	
 
 
 		// for debugging:
 		cout << "you added: ";
-		cout << _friendList[index]._name << ", birthday: ";
-		_friendList[index]._birthday.display();
+		cout << _friendsList[index]->_name << ", birthday: ";
+		_friendsList[index]->_birthday.display();
 		cout << "\nlist of statuses:\n";
-		int numOfStatuses = sizeof(_friendList[index]._statuses) / sizeof(Status);
+		int numOfStatuses = sizeof(_friendsList[index]->_statuses) / sizeof(Status);
 		for (int j = 0; j < numOfStatuses; j++)
 		{
-			cout << _friendList[index]._statuses[j].text << endl;
+			cout << _friendsList[index]->_statuses[j].text << endl;
 		}
 
-		// TODO: add myself to his friend list
-		// allocate place for new friends
-		Friend* newFriendList = new Friend[allUsers[i]._numOfFriends + 1];
-		newFriendList = allUsers[i]._friendList;
-		delete[] (allUsers[i]._friendList);
-		allUsers[i]._friendList = newFriendList;
+		// add myself to his friend list:
+		// 1. make room
+		int hisNumOfFriends = allUsers[i]._numOfFriends;
+		User** newFriendListTemp = new User * [hisNumOfFriends];
+		newFriendListTemp = allUsers[i]._friendsList;
+		delete[](allUsers[i]._friendsList);
+		allUsers[i]._friendsList = newFriendListTemp; // TODO: a function of this (same as above)
 
-		// copy the information about me to the friend list
-		allUsers[i]._friendList[_numOfFriends]._name = _name;
-		allUsers[i]._friendList[_numOfFriends]._birthday = _birthday;
-		allUsers[i]._friendList[_numOfFriends]._friendsList = _friendList;
-		allUsers[i]._friendList[_numOfFriends]._numOfFriends = _numOfFriends;
-		allUsers[i]._friendList[_numOfFriends]._statuses = _statuses;
+
+		// 3. point at myself // TODO
+		//allUsers[i]._friendsList[hisNumOfFriends] = 
 
 		
 		_numOfFriends++; // updates the number of my friends
-		allUsers[i]._numOfFriends++; // updates number of his friends.
+		(allUsers[i]._numOfFriends)++; // updates number of his friends.
 	}
 
 }
@@ -163,4 +196,15 @@ void User::displayAllStatuses()
 void User::displayAllFriends()
 {
 	cout << "hello friends\n";
+}
+
+void User::myStrcpy(char* dest, char* source)
+{
+	int len = strlen(source);
+	for (int i = 0; i < len; i++)
+	{
+		dest[i] = source[i];
+	}
+
+	dest[len] = '\0';
 }
