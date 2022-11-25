@@ -3,31 +3,6 @@ using namespace std;
 
 #include "User.h"
 
-User::User()
-{
-	// here maybe we dont need default value
-	char temp_name[9] = "new user";
-	_name = new char[MAX_CHARACTERS];
-	myStrcpy(_name, temp_name);
-
-	_numOfFriends = 0;
-	_maxNumOfFriends = 2;
-
-	_statuses = new Status*[_maxNumOfStatuses];
-	_numOfStatuses = 0;
-	_maxNumOfStatuses = 2;
-	_likedPages = new Page[1];
-	_friendsList = new User*[_maxNumOfFriends]; // array of pointers so it wont go through c'tor
-
-
-	// for debugging:
-	cout << "\n" << _name;
-	cout << "\nnumber of friends: " << _numOfFriends << endl; // for debugging
-	cout << "\nmax number of friends: " << _maxNumOfFriends << endl; // for debugging
-	_birthday.display(); // for debugging
-
-}
-
 User::User(char* name, Date birthday, User** friendsList, Status** statuses, Page* likedPages)
 {
 	_name = name;
@@ -63,7 +38,7 @@ void User::createStatus()
 	if (_numOfStatuses == _maxNumOfStatuses) // TODO: in a function
 	{
 		_maxNumOfStatuses *= 2;
-		Status** newStatuses = new Status*[_maxNumOfStatuses];
+		Status** newStatuses = new Status * [_maxNumOfStatuses];
 		for (int i = 0; i < _numOfStatuses; i++)
 			newStatuses[i] = _statuses[i];
 
