@@ -21,7 +21,6 @@ void Operation::initiateData(User* users, int usersSize, Page* pages, int pagesS
 	_allUsers = new User[usersSize];
 	_allPages = new Page[pagesSize];
 
-
 	_allUsers = users;
 	_allPages = pages;
 }

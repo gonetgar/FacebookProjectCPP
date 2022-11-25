@@ -14,6 +14,9 @@ public:
 	Operation();
 	Operation(User* allUsers, Page* allPages);
 	void initiateData(User* users, int usersSize, Page* pages, int pagesSize);
+
+
+
 	User* getAllUsers(); // returns all users 
 	void displayMenu();
 	void getCurrentMember();

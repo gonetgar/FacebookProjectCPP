@@ -28,19 +28,12 @@ User::User()
 
 }
 
-User::User(char* name, int numOfFriends, int maxNumOfFriends, int numOfStatuses, int maxNumOfStatuses, Date birthday, User** friendsList, Status** statuses, Page* likedPages)
+User::User(char* name, Date birthday, User** friendsList, Status** statuses, Page* likedPages)
 {
 	_name = name;
-	_numOfFriends = numOfFriends;
-	_maxNumOfFriends = maxNumOfFriends;
-
 	_birthday = birthday;
 	_friendsList = friendsList;
-
 	_statuses = statuses;
-	_numOfStatuses = numOfStatuses;
-	_maxNumOfStatuses = maxNumOfStatuses;
-
 	_likedPages = likedPages;
 
 	// for debugging:
@@ -48,8 +41,6 @@ User::User(char* name, int numOfFriends, int maxNumOfFriends, int numOfStatuses,
 	cout << "number of friends: " << _numOfFriends << endl;
 	cout << "birthday is: ";
 	_birthday.display();
-
-
 }
 
 void User::setName(char* username)

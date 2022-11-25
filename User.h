@@ -13,21 +13,22 @@ class User
 {
 public:
 	char* _name;// = new char[MAX_CHARACTERS]; // name of the user
-	int _numOfFriends; // logical size
-	int _maxNumOfFriends; // physical size
+	int _numOfFriends = 0; // logical size
+	int _maxNumOfFriends = 1; // physical size
 	//Friend* _friendList;
 	User** _friendsList; // trying without Class "Friend". array of pointers to Users (so that it wont go through c'tor)
 
 private:
 	Date _birthday;
 	Status** _statuses; // array of statuses
-	int _numOfStatuses;
-	int _maxNumOfStatuses;
+	int _numOfStatuses = 0;
+	int _maxNumOfStatuses = 1;
 	Page* _likedPages; // array of liked pages
 
 public:
-	User();
-	User(char* name, int numOfFriends, int maxNumOfFriends, int numOfStatuses, int maxNumOfStatuses, Date birthday, User** friendsList, Status** statuses, Page* likedPages);
+	User() = delete;
+	User(char* name, Date birthday, User** friendsList, Status** statuses, Page* likedPages);
+	User(const User&) = delete; // copy c'tor - we delete cause we dont want to duplicate user
 	void createStatus();
 	void setName(char* username);
 
