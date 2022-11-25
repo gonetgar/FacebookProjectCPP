@@ -5,12 +5,11 @@
 #include <chrono>
 #include <ctime>  
 #include <string.h>
-#define _CRT_SECURE_NO_WARNINGS
 const int MAX_CHARACTERS = 256;
 #include "Date.h"
-#define _CRT_SECURE_NO_WARNINGS
 
 // only relevant for Status class
+// but can be moved to class Date
 class Clock
 {
 public:
@@ -26,7 +25,6 @@ public:
 	Clock(int hours, int minutes, int seconds) = delete; // we dont want users to insert time on their own
 };
 
-
 class Status
 {
 public:
@@ -37,7 +35,9 @@ public:
 	Status();
 	Status(char* text, Date date, Clock time);
 
-	void createStatus(); // maybe it will be in here and inside the user/page we'll add it to his list of statuses.
+	Status* createStatus(); // maybe it will be in here and inside the user/page we'll add it to his list of statuses.
+
+	// d'tor
 };
 
 #endif // __STATUS_H

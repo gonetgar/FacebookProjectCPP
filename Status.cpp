@@ -1,9 +1,8 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
+#include <iomanip>
 using namespace std;
-#define _CRT_SECURE_NO_WARNINGS
 #include "Status.h"
-#define _CRT_SECURE_NO_WARNINGS
 
 int stringToNumber(char* str, int start, int end)
 {
@@ -53,7 +52,7 @@ Status::Status()
 {
 	_text = new char[MAX_CHARACTERS];
 	_date = Date(1, 1, 2022);
-	//_time = ; // TODO " insert current date automatically
+	_time = Clock();
 }
 
 Status::Status(char* text, Date date, Clock time)
@@ -63,7 +62,8 @@ Status::Status(char* text, Date date, Clock time)
 	_time = time;
 }
 
-void Status::createStatus()
+// returns Status* ?
+Status* Status::createStatus()
 {
 	Status* newStatus;
 	newStatus = new Status[MAX_CHARACTERS];
@@ -71,13 +71,18 @@ void Status::createStatus()
 	cout << "Please insert your status: ";
 	cin.getline(newStatus->_text, MAX_CHARACTERS);	//TODO shrink
 
-	// for debugging:
+	//// for debugging: ////
 
 	cout << "\nyou entered: ";
 	cout << newStatus->_text;
 	cout << "\non date: ";
-	cout << newStatus->_time._day << "." << newStatus->_time._month << "." << newStatus->_time._year << endl;
+	cout << setw(2) << setfill('0') << newStatus->_time._day << ".";
+	cout << setw(2) << setfill('0') << newStatus->_time._month << ".";
+	cout << setw(2) << setfill('0') << newStatus->_time._year;
 	cout << "\non time: ";
-	cout << newStatus->_time._hours << ":" << newStatus->_time._minutes << ":" << newStatus->_time._seconds << endl;
-	//std::cout << "current date time: " << currentDateTime(&_time) << std::endl;
+	cout << setw(2) << setfill('0') << newStatus->_time._hours << ":";
+	cout << setw(2) << setfill('0') << newStatus->_time._minutes << ":";
+	cout << setw(2) << setfill('0') << newStatus->_time._seconds;
+
+	return newStatus;
 }

@@ -2,7 +2,6 @@
 using namespace std;
 #include "Functions.h"
 
-
 int displayMenu()
 {
 	int choice;
@@ -31,6 +30,7 @@ void doesUserExist(char* name, User** allUsers)
 {
 
 }
+
 //void myStrcpy(char* dest, char* source)
 //{
 //	int len = strlen(source);

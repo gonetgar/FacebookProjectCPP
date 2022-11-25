@@ -45,32 +45,35 @@ char* getName(char* username)
 
 void User::createStatus()
 {
-	Status* newStatus;
-	newStatus = new Status[MAX_CHARACTERS];
 
-	cout << "Please insert your status: ";
-	cin.getline(newStatus->_text, MAX_CHARACTERS);	//TODO shrink
 
-	// TODO: insert current time and date (automatically).
-	// 	maybe we need to do this in the c'tor
 
-	// insert to statuses array of the user.
-	if (_numOfStatuses == _maxNumOfStatuses) // TODO: in a function
-	{
-		_maxNumOfStatuses *= 2;
-		Status** newStatuses = new Status * [_maxNumOfStatuses];
-		for (int i = 0; i < _numOfStatuses; i++)
-			newStatuses[i] = _statuses[i];
 
-		delete[] _statuses; // ERROR doesnt delete the array for some reason
-		_statuses = newStatuses;
-	}
-	_statuses[_numOfStatuses] = newStatus;
-	_numOfStatuses++;
+	/// old version: 
 
-	// for debugging:
-	cout << newStatus->_text;
-	newStatus->_date.display();
+	//Status* newStatus;
+	//newStatus = new Status[MAX_CHARACTERS];
+
+	//cout << "Please insert your status: ";
+	//cin.getline(newStatus->_text, MAX_CHARACTERS);	//TODO shrink
+
+	//// insert to statuses array of the user.
+	//if (_numOfStatuses == _maxNumOfStatuses) // TODO: in a function
+	//{
+	//	_maxNumOfStatuses *= 2;
+	//	Status** newStatuses = new Status * [_maxNumOfStatuses];
+	//	for (int i = 0; i < _numOfStatuses; i++)
+	//		newStatuses[i] = _statuses[i];
+
+	//	delete[] _statuses; // ERROR doesnt delete the array for some reason
+	//	_statuses = newStatuses;
+	//}
+	//_statuses[_numOfStatuses] = newStatus;
+	//_numOfStatuses++;
+
+	//// for debugging:
+	//cout << newStatus->_text;
+	//newStatus->_date.display();
 }
 
 //// 1. searches this person in the system

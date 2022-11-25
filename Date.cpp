@@ -24,10 +24,7 @@ Date::Date(int mn, int dy, int yr)
 
 void Date::display()
 {
-    char name[13][256] = { "nothing", "January", "February", "March", "April",
-             "May", "June", "July", "August", "September", "October",
-             "November", "December" };
-
+    char name[13][256] = { "nothing", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
     cout << name[month] << ' ' << day << ", " << year;
 }
 
