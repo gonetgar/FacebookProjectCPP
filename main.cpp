@@ -18,10 +18,10 @@ int main()
 	int userChoice = 0;
 
 	// ################################ initiate data ################################ 
-	for (int i = 1; i < 4; i++)
+	for (int i = 0; i < 3; i++)
 	{
 		cout << "user #" << i << ":\n";
-		User user("gon", Date(i, i, 2020));
+		User user("gon", Date(i + 1, i + 1, 2020));
 		Page page("page test");
 		initUsers[i] = &user;
 		initPages[i] = &page;
@@ -31,6 +31,10 @@ int main()
 	system.initiateData(initUsers, initPages);
 	//system.displayAllEntities(); // TODO: print names and not addresses
 	system.getCurrentMember();
+
+	bool flag = doesUserExist("gon", initUsers);
+	cout << "flag: " << flag << endl;
+
 
 	// ################################ Menu ################################ 
 	userChoice = displayMenu();
@@ -45,10 +49,11 @@ int main()
 
 
 
-	/////// ori try 18:55 ////
 
 	//Status stat;
 	//stat.createStatus();
+
+	// ####### ori try 19:00 #######
 
 	return 0;
 }

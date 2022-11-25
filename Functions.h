@@ -8,7 +8,7 @@
 #include "Status.h"
 
 int displayMenu();
-void doesUserExist(char* name, User** allUsers);
+bool doesUserExist(const char* name, User** allUsers);
 
 
 //void myStrcpy(char* dest, char* source);
