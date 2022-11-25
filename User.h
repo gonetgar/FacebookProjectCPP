@@ -6,32 +6,33 @@
 #include "Friend.h"
 #include "Date.h"
 #include "Status.h"
-#include "Page.h"
+
+class Page;
 // do not call operation!
 
 class User
 {
-public:
-	char* _name;// = new char[MAX_CHARACTERS]; // name of the user
+	char* _name; // :-)
+	Date _birthday;
+
 	int _numOfFriends = 0; // logical size
 	int _maxNumOfFriends = 1; // physical size
-	//Friend* _friendList;
-	User** _friendsList; // trying without Class "Friend". array of pointers to Users (so that it wont go through c'tor)
-
-private:
-	Date _birthday;
-	Status** _statuses; // array of statuses
 	int _numOfStatuses = 0;
 	int _maxNumOfStatuses = 1;
-	Page* _likedPages; // array of liked pages
+	int _numOfPages = 0;
+	int _maxNumOfPages = 1;
+
+
+	User** _friendsList; // trying without Class "Friend". array of pointers to Users (so that it wont go through c'tor)
+	Status** _statuses; // array of statuses
+	Page** _likedPages; // array of liked pages
 
 public:
-	User() = delete;
-	User(char* name, Date birthday, User** friendsList, Status** statuses, Page* likedPages);
+	User() = delete; // we don't want to create a new user without a name
+	User(const char* name, Date birthday);
 	User(const User&) = delete; // copy c'tor - we delete cause we dont want to duplicate user
 	void createStatus();
 	void setName(char* username);
-
 
 	void addFriend(User* allUsers);
 	void cancelFriendship(char* friendToDelete);

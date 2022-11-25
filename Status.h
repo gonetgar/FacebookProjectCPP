@@ -1,6 +1,7 @@
 #ifndef __STATUS_H
 #define __STATUS_H
 
+#include <ctime>
 const int MAX_CHARACTERS = 256;
 
 #include "Date.h"

@@ -18,5 +18,7 @@ Status::Status(char* text, Date date)
 
 void Status::createStatus()
 {
+	time_t current_time;
+
 
 }
