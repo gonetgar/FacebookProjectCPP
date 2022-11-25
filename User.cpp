@@ -3,11 +3,16 @@ using namespace std;
 
 #include "User.h"
 
-User::User() {
+User::User()
+{
 	_name = new char[256];
 	_name = _strdup("ori the king");
 
 	_birthday = Date(1, 1, 2020);
+
+	_statuses = new Status * [_maxNumOfStatuses];
+	_likedPages = new Page * [1];
+	_friendsList = new User * [_maxNumOfFriends];
 }
 
 User::User(const char* name, Date birthday)
@@ -32,34 +37,42 @@ void User::setName(char* username)
 	_name = username;
 }
 
+char* getName(char* username)
+{
+	return username;
+}
+
 void User::createStatus()
 {
-	Status* newStatus;
-	newStatus = new Status[MAX_CHARACTERS];
 
-	cout << "Please insert your status: ";
-	cin.getline(newStatus->_text, MAX_CHARACTERS);	//TODO shrink?
 
-	// TODO: insert current time and date (automatically).
-	// 	maybe we need to do this in the c'tor
 
-	// insert to statuses array of the user.
-	if (_numOfStatuses == _maxNumOfStatuses) // TODO: in a function
-	{
-		_maxNumOfStatuses *= 2;
-		Status** newStatuses = new Status * [_maxNumOfStatuses];
-		for (int i = 0; i < _numOfStatuses; i++)
-			newStatuses[i] = _statuses[i];
 
-		delete[] _statuses; // ERROR doesnt delete the array for some reason
-		_statuses = newStatuses;
-	}
-	_statuses[_numOfStatuses] = newStatus;
-	_numOfStatuses++;
+	/// old version: 
 
-	// for debugging:
-	cout << newStatus->_text;
-	newStatus->_date.display();
+	//Status* newStatus;
+	//newStatus = new Status[MAX_CHARACTERS];
+
+	//cout << "Please insert your status: ";
+	//cin.getline(newStatus->_text, MAX_CHARACTERS);	//TODO shrink
+
+	//// insert to statuses array of the user.
+	//if (_numOfStatuses == _maxNumOfStatuses) // TODO: in a function
+	//{
+	//	_maxNumOfStatuses *= 2;
+	//	Status** newStatuses = new Status * [_maxNumOfStatuses];
+	//	for (int i = 0; i < _numOfStatuses; i++)
+	//		newStatuses[i] = _statuses[i];
+
+	//	delete[] _statuses; // ERROR doesnt delete the array for some reason
+	//	_statuses = newStatuses;
+	//}
+	//_statuses[_numOfStatuses] = newStatus;
+	//_numOfStatuses++;
+
+	//// for debugging:
+	//cout << newStatus->_text;
+	//newStatus->_date.display();
 }
 
 //// 1. searches this person in the system
@@ -184,14 +197,3 @@ void User::displayAllFriends()
 {
 	cout << "hello friends\n";
 }
-
-//void User::myStrcpy(char* dest, char* source)
-//{
-//	int len = strlen(source);
-//	for (int i = 0; i < len; i++)
-//	{
-//		dest[i] = source[i];
-//	}
-//
-//	dest[len] = '\0';
-//}

@@ -23,7 +23,7 @@ class User
 	int _maxNumOfPages = 1;
 
 
-	User** _friendsList; // trying without Class "Friend". array of pointers to Users (so that it wont go through c'tor)
+	User** _friendsList; // array of friends
 	Status** _statuses; // array of statuses
 	Page** _likedPages; // array of liked pages
 
@@ -31,19 +31,18 @@ public:
 	User(); // we don't want to create a new user without a name
 	User(const char* name, Date birthday);
 	User(const User&) = delete; // copy c'tor - we delete cause we dont want to duplicate user
-	void createStatus();
+	
 	void setName(char* username);
+	char* getName(char* username);
 
+	void createStatus();
 	void addFriend(User** allUsers);
 	void cancelFriendship(char* friendToDelete);
 	void likePage();
 	void dislikePage();
-
 	void displayRecentStatusesOfaFriend(char* friendToDisplay); // 10 most recent statuses of all his friends
 	void displayAllStatuses();
 	void displayAllFriends();
-
-	//void myStrcpy(char* dest, const char* source);
 };
 
 #endif // __USER_H

@@ -7,6 +7,7 @@ using namespace std;
 #include "Friend.h"
 #include "Page.h"
 #include "Date.h"
+#include "Functions.h"
 
 int main()
 {
@@ -15,12 +16,16 @@ int main()
 	Page** initPages = new Page * [3];
 	User** test;
 
+	//displayMenu();
+
 	for (int i = 1; i < 4; i++)
 	{
+		cout << "user #" << i << ":\n";
 		User user("gon", Date(i, i, 2020));
 		Page page("page test");
 		initUsers[i] = &user;
 		initPages[i] = &page;
+		cout << endl;
 	}
 
 	system.initiateData(initUsers, initPages);
@@ -28,9 +33,13 @@ int main()
 	cout << "display: " << endl;
 
 	system.displayAllEntities();
-
+	cout << endl;
 	// system.displayMenu();
 
+	/////// gon try 14:55 ////
+	Status stat;
+
+	stat.createStatus();
 
 	return 0;
 }
