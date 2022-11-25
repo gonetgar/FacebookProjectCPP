@@ -33,6 +33,7 @@ public:
 	User(const User&) = delete; // copy c'tor - we delete cause we dont want to duplicate user
 	void createStatus();
 	void setName(char* username);
+	char* getName(char* username);
 
 	void addFriend(User* allUsers);
 	void cancelFriendship(char* friendToDelete);

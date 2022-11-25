@@ -16,9 +16,20 @@ Status::Status(char* text, Date date)
 	_date = date;
 }
 
+const std::string currentDateTime()
+{
+	time_t now = time(0);
+	struct tm tstruct;
+	char buf[80];
+	tstruct = *localtime(&now);
+	strftime(buf, sizeof(buf), "%d-%m-%Y : %X", &tstruct);
+
+	return buf;
+}
+
 void Status::createStatus()
 {
-	time_t current_time;
+	std::cout << "current date time: " << currentDateTime() << std::endl;
 
 
 }

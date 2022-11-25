@@ -26,6 +26,11 @@ void User::setName(char* username)
 	_name = username;
 }
 
+char* getName(char* username)
+{
+	return username;
+}
+
 void User::createStatus()
 {
 	Status* newStatus;

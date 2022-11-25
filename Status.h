@@ -1,10 +1,14 @@
 #ifndef __STATUS_H
 #define __STATUS_H
 
-#include <ctime>
+#define _CRT_SECURE_NO_WARNINGS
+#include <chrono>
+#include <ctime>  
+#include <string.h>
+#define _CRT_SECURE_NO_WARNINGS
 const int MAX_CHARACTERS = 256;
-
 #include "Date.h"
+#define _CRT_SECURE_NO_WARNINGS
 
 class Status
 {

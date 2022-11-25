@@ -10,18 +10,6 @@ using namespace std;
 
 int main()
 {
-
-	cout << "this is the main";
-
-	User u1;
-
-	u1.createStatus();
-	u1.createStatus();
-
-	u1.displayAllStatuses();
-
-
-
 	//Operation operation;
 	//User* initiateUsers = new User[3];
 	//Page* initiatePages = new Page[2];
