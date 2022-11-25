@@ -15,9 +15,9 @@ int main()
 	User** initUsers = new User * [3];
 	Page** initPages = new Page * [3];
 	User** test;
+	int userChoice = 0;
 
-	//displayMenu();
-
+	// ################################ initiate data ################################ 
 	for (int i = 1; i < 4; i++)
 	{
 		cout << "user #" << i << ":\n";
@@ -29,14 +29,22 @@ int main()
 	}
 
 	system.initiateData(initUsers, initPages);
-
-	cout << "display: " << endl;
-
 	system.displayAllEntities();
-	cout << endl;
-	// system.displayMenu();
 
-	/////// gon try 14:55 ////
+
+	// ################################ Menu ################################ 
+	userChoice = displayMenu();
+
+	while (userChoice < 1 || userChoice > 12)
+	{
+		cout << "Invalid Input, try again.";
+		userChoice = displayMenu();
+		system.handleMenu(userChoice);
+	}
+
+
+
+	/////// ori try 18:55 ////
 	Status stat;
 
 	stat.createStatus();

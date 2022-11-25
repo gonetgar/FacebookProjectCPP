@@ -19,7 +19,7 @@ public:
 	Operation();
 	User** getAllUsers(); // returns a ptr to all users 
 	void initiateData(User** users, Page** pages);
-	void displayMenu();
+	void handleMenu(int userChoice);
 	void getCurrentMember();
 	/*void addUserToOperation(User* user);
 	void addPageToOperation(Page* page);*/

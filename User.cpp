@@ -37,10 +37,10 @@ void User::setName(char* username)
 	_name = username;
 }
 
-char* getName(char* username)
-{
-	return username;
-}
+//char* getName()
+//{
+//	return _name;
+//}
 
 void User::createStatus()
 {
