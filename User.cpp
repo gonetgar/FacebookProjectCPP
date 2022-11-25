@@ -3,14 +3,17 @@ using namespace std;
 
 #include "User.h"
 
-User::User(char* name, Date birthday, User** friendsList, Status** statuses, Page* likedPages)
+User::User(const char* name, Date birthday)
 {
-	_name = name;
+	_name = new char[256];
+	strcpy(_name, name);
 	_birthday = birthday;
-	_friendsList = friendsList;
-	_statuses = statuses;
-	_likedPages = likedPages;
 
+	_statuses = new Status * [_maxNumOfStatuses];
+	_likedPages = new Page*[1];
+	_friendsList = new User * [_maxNumOfFriends]; // array of pointers so it wont go through c'tor
+
+	///////////////////////////////////////////////////////////////////////////////////////////
 	// for debugging:
 	cout << "name: " << _name << endl;
 	cout << "number of friends: " << _numOfFriends << endl;
