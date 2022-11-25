@@ -31,8 +31,6 @@ User::User(char name[MAX_CHARACTERS], int _numOfFriends, Date birthday, Friend* 
 void User::setName(char* username)
 {
 	_name = username;
-
-	cout << "new name for user is: " << _name;
 }
 
 Status User::createStatus()
