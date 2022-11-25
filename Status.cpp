@@ -1,22 +1,23 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 using namespace std;
-
+#define _CRT_SECURE_NO_WARNINGS
 #include "Status.h"
+#define _CRT_SECURE_NO_WARNINGS
 
-
-Status::Status()
+int stringToNumber(char* str, int start, int end)
 {
-	_text = new char[MAX_CHARACTERS];
-	_date = Date(1, 1, 2022); // TODO " insert current date automatically
+	int res = 0;
+	for (int i = start ; i <= end ; i++)
+	{
+		res *= 10;
+		res += (str[i] - '0');
+	}
+
+	return res;
 }
 
-Status::Status(char* text, Date date)
-{
-	_text = text;
-	_date = date;
-}
-
-const std::string currentDateTime()
+const std::string currentDateTime(Clock* clock)
 {
 	time_t now = time(0);
 	struct tm tstruct;
@@ -24,12 +25,59 @@ const std::string currentDateTime()
 	tstruct = *localtime(&now);
 	strftime(buf, sizeof(buf), "%d-%m-%Y : %X", &tstruct);
 
+	clock->_day = stringToNumber(buf, 0, 1);
+	clock->_month = stringToNumber(buf, 3, 4);
+	clock->_year = stringToNumber(buf, 6, 9);
+	clock->_hours = tstruct.tm_hour;
+	clock->_minutes = tstruct.tm_min;
+	clock->_seconds = tstruct.tm_sec;
+
 	return buf;
+}
+
+Clock::Clock()
+{
+	_hours = 0;
+	_minutes = 0;
+	_seconds = 0;
+	_day = 0;
+	_month = 0;
+	_year = 0;
+
+	currentDateTime(this);
+}
+
+////////////////////////////////////
+
+Status::Status()
+{
+	_text = new char[MAX_CHARACTERS];
+	_date = Date(1, 1, 2022);
+	//_time = ; // TODO " insert current date automatically
+}
+
+Status::Status(char* text, Date date, Clock time)
+{
+	_text = text;
+	_date = date;
+	_time = time;
 }
 
 void Status::createStatus()
 {
-	std::cout << "current date time: " << currentDateTime() << std::endl;
+	Status* newStatus;
+	newStatus = new Status[MAX_CHARACTERS];
 
+	cout << "Please insert your status: ";
+	cin.getline(newStatus->_text, MAX_CHARACTERS);	//TODO shrink
 
+	// for debugging:
+
+	cout << "\nyou entered: ";
+	cout << newStatus->_text;
+	cout << "\non date: ";
+	cout << newStatus->_time._day << "." << newStatus->_time._month << "." << newStatus->_time._year << endl;
+	cout << "\non time: ";
+	cout << newStatus->_time._hours << ":" << newStatus->_time._minutes << ":" << newStatus->_time._seconds << endl;
+	//std::cout << "current date time: " << currentDateTime(&_time) << std::endl;
 }

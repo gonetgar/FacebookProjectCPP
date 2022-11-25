@@ -28,7 +28,7 @@ void Date::display()
              "May", "June", "July", "August", "September", "October",
              "November", "December" };
 
-    cout << '\n' << name[month] << ' ' << day << "," << year << '\n';
+    cout << name[month] << ' ' << day << ", " << year;
 }
 
 Date::~Date()

@@ -141,6 +141,7 @@
   <ItemGroup>
     <ClCompile Include="Date.cpp" />
     <ClCompile Include="Friend.cpp" />
+    <ClCompile Include="Functions.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Operation.cpp" />
     <ClCompile Include="Page.cpp" />
@@ -150,6 +151,7 @@
   <ItemGroup>
     <ClInclude Include="Date.h" />
     <ClInclude Include="Friend.h" />
+    <ClInclude Include="Functions.h" />
     <ClInclude Include="Operation.h" />
     <ClInclude Include="Page.h" />
     <ClInclude Include="Status.h" />

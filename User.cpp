@@ -3,11 +3,16 @@ using namespace std;
 
 #include "User.h"
 
-User::User() {
+User::User()
+{
 	_name = new char[256];
 	_name = _strdup("ori the king");
 
 	_birthday = Date(1, 1, 2020);
+
+	_statuses = new Status * [_maxNumOfStatuses];
+	_likedPages = new Page * [1];
+	_friendsList = new User * [_maxNumOfFriends];
 }
 
 User::User(const char* name, Date birthday)
@@ -44,7 +49,7 @@ void User::createStatus()
 	newStatus = new Status[MAX_CHARACTERS];
 
 	cout << "Please insert your status: ";
-	cin.getline(newStatus->_text, MAX_CHARACTERS);	//TODO shrink?
+	cin.getline(newStatus->_text, MAX_CHARACTERS);	//TODO shrink
 
 	// TODO: insert current time and date (automatically).
 	// 	maybe we need to do this in the c'tor
@@ -190,14 +195,3 @@ void User::displayAllFriends()
 {
 	cout << "hello friends\n";
 }
-
-//void User::myStrcpy(char* dest, char* source)
-//{
-//	int len = strlen(source);
-//	for (int i = 0; i < len; i++)
-//	{
-//		dest[i] = source[i];
-//	}
-//
-//	dest[len] = '\0';
-//}
