@@ -3,9 +3,11 @@ using namespace std;
 
 #include "Page.h"
 
-Page::Page()
+Page::Page(const char* name)
 {
-	// TODO: initiate data
+	_name = name;
+	_fansList = new User * [1];
+	_fansList = new User * [1];
 }
 
 void Page::createStatus()

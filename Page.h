@@ -1,17 +1,22 @@
 #ifndef __PAGE_H
 #define __PAGE_H
 
-#include "Status.h"
-#include "Friend.h"
+class Status;
+class User;
 
 class Page
 {
-	char _name[100];
-	Friend** _fansList;
-	Status* _statuses;
+	char _name[256];
+	User** _fansList;
+	Status** _statuses;
+
+	int numOfFans = 0;
+	int maxFans = 0;
 
 public:
-	Page();
+	Page() = delete; // we don't want to create a new page without a page name
+	Page(const char* name);
+	Page(const Page* page) = delete; //  Prevent duplicate
 	void createStatus();
 	void displayAllStatuses();
 	void displayAllFans();
