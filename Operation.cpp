@@ -39,10 +39,10 @@ void Operation::displayAllEntities()
 {
 	cout << "ALL ENTITIES: " << endl;
 
-	for (int i = 0; i < 5; i++)
+	for (int i = 0; i < 3; i++)
 		cout << *(_allUsers + i) << ", ";
 
-	for (int i = 0; i < 5; i++)
+	for (int i = 0; i < 3; i++)
 		cout << *(_allPages + i) << ", ";
 	cout << endl;
 }
@@ -56,9 +56,8 @@ void Operation::getCurrentMember()
 	cin >> username;
 
 	_currentUser.setName(username);
-	cout << _currentUser.getName();
+	cout << _currentUser.getName() << "," << endl;
 }
-
 
 
 void Operation::handleMenu(int userChoice)

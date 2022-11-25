@@ -29,8 +29,8 @@ int main()
 	}
 
 	system.initiateData(initUsers, initPages);
-	system.displayAllEntities();
-
+	//system.displayAllEntities(); // TODO: print names and not addresses
+	system.getCurrentMember();
 
 	// ################################ Menu ################################ 
 	userChoice = displayMenu();
