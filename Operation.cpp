@@ -6,17 +6,17 @@ using namespace std;
 
 Operation::Operation()
 {
-	User* allUsers = new User[1];
-	Page* allPages = new Page[1];
+	User** allUsers = new User * [1];
+	Page** allPages = new Page * [1];
 }
 
-Operation::Operation(User* allUsers = new User[1], Page* allPages = new Page[1])
+Operation::Operation(User** allUsers, Page** allPages)
 {
-	_allUsers = allUsers;
-	_allPages = allPages;
+	User** allUsers = new User * [1];
+	Page** allPages = new Page * [1];
 }
 
-void Operation::initiateData(User* users, int usersSize, Page* pages, int pagesSize)
+void Operation::initiateData(User** users, int usersSize, Page** pages, int pagesSize)
 {
 	_allUsers = new User[usersSize];
 	_allPages = new Page[pagesSize];
@@ -87,7 +87,6 @@ void Operation::displayMenu()
 	int userChoice = 0;
 
 	cout << "1 -הוספת חבר   \n 2 - הוספת דף אוהדים \n 3 - הוספת סטטוס .\n 4 - הצגת כל הסטטוסים  \n 5 - הצגת 10 הסטטוסים העדכניים ביותר של חבריו של חבר מסויים \n 6 - קישור חברות בין שני חברים \n 7 - ביטול חברות בין שני חברים \n 8 - הוספת אוהד לדף \n 9 - הסרת אוהד מדף \n 10 - הצגת כל הישויות הרשומות למערכת \n 11 - הצגת כל החברים של חבר מסויים / האוהדים של דף מסויים \n 12 - יציאה";
-	cout << "1 -הוספת חבר   \n 2 - הוספת דף אוהדים \n 3 - הוספת סטטוס לחבר / דף אוהדים.בשלב זה סטטוס הוא רק טקסט \n 4 - הצגת כל הסטטוסים של חבר / דף אוהדים.בשלב זה סטטוס הוא רק טקסט \n 5 - הצגת 10 הסטטוסים העדכניים ביותר של חבריו של חבר מסויים \n 6 - קישור חברות בין שני חברים \n 7 - ביטול חברות בין שני חברים \n 8 - הוספת אוהד לדף \n 9 - הסרת אוהד מדף \n 10 - הצגת כל הישויות הרשומות למערכת \n 11 - הצגת כל החברים של חבר מסויים / האוהדים של דף מסויים \n 12 - יציאה";
 	cin >> userChoice;
 
 	// validation
@@ -149,12 +148,12 @@ void Operation::displayMenu()
 	}
 }
 
-bool Operation::isValidUserName(char* userName, User* allUsers)
+bool Operation::isValidUserName(char* userName)
 {
 	return true; // only for complier
 }
 
-bool Operation::isValidPageName(char* pageName, Page* allPages)
+bool Operation::isValidPageName(char* pageName)
 {
 	return true; // only for complier
 }

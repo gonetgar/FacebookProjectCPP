@@ -9,7 +9,7 @@ using namespace std;
 #include "Date.h"
 
 int main()
-{	/// gon try
+{
 
 	cout << "this is the main";
 
