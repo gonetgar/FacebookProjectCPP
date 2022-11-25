@@ -36,7 +36,7 @@ int main()
 	cout << endl;
 	// system.displayMenu();
 
-	/////// gon try ////
+	/////// gon try 14:55 ////
 	Status stat;
 
 	stat.createStatus();
