@@ -8,18 +8,14 @@ class Page;
 
 Operation::Operation()
 {
-	User** allUsers = new User * [1];
-	Page** allPages = new Page * [1];
+
 }
 
 
-void Operation::initiateData(User** users, int usersSize, Page** pages, int pagesSize)
+void Operation::initiateData(User** initUsers, Page** initPages)
 {
-	_allUsers = new User * [usersSize];
-	_allPages = new Page * [pagesSize];
-
-	_allUsers = users;
-	_allPages = pages;
+	_allUsers = initUsers;
+	_allPages = initPages;
 }
 
 
@@ -40,31 +36,32 @@ User** Operation::getAllUsers()
 
 void Operation::displayAllEntities()
 {
-	cout << "\n";
-	cout << _allUsers[0]._name << endl;
-	cout << _allUsers[1]._name << endl;
-	cout << _allUsers[2]._name << endl;
+	for (int i = 0; i < 5; i++)
+		cout << *(_allUsers + i) << ", ";
 
-	// TODO: find and fix arrays length 
-	int users_length = sizeof(_allUsers) / sizeof(_allUsers[0]);
-	cout << "length: " << users_length << endl;
-	int pages_length = sizeof(_allPages) / sizeof(_allPages[0]);
+	for (int i = 0; i < 5; i++)
+		cout << *(_allPages + i) << ", ";
 
-	if (users_length != 0) {
-		for (int i = 0; i < users_length; i++)
-		{
-			cout << "user " << i << " " << _allUsers[i]._name << endl;
-		}
-	}
-	else cout << "no users" << endl;
+	//// TODO: find and fix arrays length 
+	//int users_length = sizeof(_allUsers) / sizeof(_allUsers[0]);
+	//cout << "length: " << users_length << endl;
+	//int pages_length = sizeof(_allPages) / sizeof(_allPages[0]);
 
-	if (pages_length != 0) {
-		for (int i = 0; i < pages_length; i++)
-		{
-			cout << "page " << i << " " << _allUsers[i]._name << endl;
-		}
-	}
-	else cout << "no pages" << endl;
+	//if (users_length != 0) {
+	//	for (int i = 0; i < users_length; i++)
+	//	{
+	//		cout << "user " << i << " " << _allUsers[i]._name << endl;
+	//	}
+	//}
+	//else cout << "no users" << endl;
+
+	//if (pages_length != 0) {
+	//	for (int i = 0; i < pages_length; i++)
+	//	{
+	//		cout << "page " << i << " " << _allUsers[i]._name << endl;
+	//	}
+	//}
+	//else cout << "no pages" << endl;
 }
 
 void Operation::getCurrentMember()
@@ -74,7 +71,7 @@ void Operation::getCurrentMember()
 	cout << "Hello, please enter your name for varification: ";
 	cin >> username;
 
-	_currentUser.setName(username);
+	//*(_currentUser).setName(username);
 }
 
 

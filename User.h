@@ -28,13 +28,13 @@ class User
 	Page** _likedPages; // array of liked pages
 
 public:
-	User() = delete; // we don't want to create a new user without a name
+	User(); // we don't want to create a new user without a name
 	User(const char* name, Date birthday);
 	User(const User&) = delete; // copy c'tor - we delete cause we dont want to duplicate user
 	void createStatus();
 	void setName(char* username);
 
-	void addFriend(User* allUsers);
+	void addFriend(User** allUsers);
 	void cancelFriendship(char* friendToDelete);
 	void likePage();
 	void dislikePage();
@@ -43,7 +43,7 @@ public:
 	void displayAllStatuses();
 	void displayAllFriends();
 
-	void myStrcpy(char* dest, char* source);
+	//void myStrcpy(char* dest, const char* source);
 };
 
 #endif // __USER_H

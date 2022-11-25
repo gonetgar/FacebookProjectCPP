@@ -3,14 +3,21 @@ using namespace std;
 
 #include "User.h"
 
+User::User() {
+	_name = new char[256];
+	_name = _strdup("ori the king");
+
+	_birthday = Date(1, 1, 2020);
+}
+
 User::User(const char* name, Date birthday)
 {
 	_name = new char[256];
-	strcpy(_name, name);
+	_name = _strdup(name);
 	_birthday = birthday;
 
 	_statuses = new Status * [_maxNumOfStatuses];
-	_likedPages = new Page*[1];
+	_likedPages = new Page * [1];
 	_friendsList = new User * [_maxNumOfFriends]; // array of pointers so it wont go through c'tor
 
 	///////////////////////////////////////////////////////////////////////////////////////////
@@ -59,9 +66,9 @@ void User::createStatus()
 //// 1. searches this person in the system
 //// 2. if found -> add it to my friend list
 //// 3. add myself to his friend list. :-)
-void User::addFriend(User* allUsers)
+void User::addFriend(User** allUsers)
 {
-
+	return;
 }
 //{
 //	char* friendsName = new char[MAX_CHARACTERS];
@@ -179,13 +186,13 @@ void User::displayAllFriends()
 	cout << "hello friends\n";
 }
 
-void User::myStrcpy(char* dest, char* source)
-{
-	int len = strlen(source);
-	for (int i = 0; i < len; i++)
-	{
-		dest[i] = source[i];
-	}
-
-	dest[len] = '\0';
-}
+//void User::myStrcpy(char* dest, char* source)
+//{
+//	int len = strlen(source);
+//	for (int i = 0; i < len; i++)
+//	{
+//		dest[i] = source[i];
+//	}
+//
+//	dest[len] = '\0';
+//}

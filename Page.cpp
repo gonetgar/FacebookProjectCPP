@@ -5,7 +5,9 @@ using namespace std;
 
 Page::Page(const char* name)
 {
-	_name = name;
+	_name = new char[256];
+	_name = _strdup(name);
+
 	_fansList = new User * [1];
 	_fansList = new User * [1];
 }
@@ -24,3 +26,4 @@ void Page::displayAllFans()
 {
 	cout << "displayAllFans" << endl;
 }
+

@@ -8,7 +8,7 @@ class Operation
 {
 	User** _allUsers;
 	Page** _allPages;
-	User* _currentUser;
+	User _currentUser;
 
 	int numOfUsers = 0;
 	int maxUsers = 1;
@@ -18,11 +18,11 @@ class Operation
 public:
 	Operation();
 	User** getAllUsers(); // returns a ptr to all users 
-	void initiateData(User* users, int usersSize, Page* pages, int pagesSize);
+	void initiateData(User** users, Page** pages);
 	void displayMenu();
 	void getCurrentMember();
-	void addUserToOperation(User* user);
-	void addPageToOperation(Page* page);
+	/*void addUserToOperation(User* user);
+	void addPageToOperation(Page* page);*/
 	void displayAllEntities();
 	bool isValidUserName(char* userName); // sort & binary serach?
 	bool isValidPageName(char* pageName);
