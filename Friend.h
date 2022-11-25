@@ -5,7 +5,7 @@
 #include "Date.h"
 // do not call user!
 
-const int MAX_CHARACTERS = 256;
+//const int MAX_CHARACTERS = 256;
 
 class Friend
 {

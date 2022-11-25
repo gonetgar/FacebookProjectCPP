@@ -9,14 +9,18 @@ using namespace std;
 #include "Date.h"
 
 int main()
-{
-	/// gon try
+{	/// gon try
 
 	cout << "this is the main";
 
 	User u1;
 
 	u1.createStatus();
+	u1.createStatus();
+
+	u1.displayAllStatuses();
+
+
 
 	//Operation operation;
 	//User* initiateUsers = new User[3];
