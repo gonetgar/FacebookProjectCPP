@@ -17,9 +17,8 @@ class Operation
 
 public:
 	Operation();
-	Operation(User** allUsers, Page** allPages);
+	User** getAllUsers(); // returns a ptr to all users 
 	void initiateData(User* users, int usersSize, Page* pages, int pagesSize);
-	User** getAllUsers(); // returns all users 
 	void displayMenu();
 	void getCurrentMember();
 	void addUserToOperation(User* user);

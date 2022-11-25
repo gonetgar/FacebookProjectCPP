@@ -3,6 +3,8 @@
 using namespace std;
 
 #include "Operation.h"
+class User;
+class Page;
 
 Operation::Operation()
 {
@@ -10,24 +12,18 @@ Operation::Operation()
 	Page** allPages = new Page * [1];
 }
 
-Operation::Operation(User** allUsers, Page** allPages)
-{
-	User** allUsers = new User * [1];
-	Page** allPages = new Page * [1];
-}
 
 void Operation::initiateData(User** users, int usersSize, Page** pages, int pagesSize)
 {
-	_allUsers = new User[usersSize];
-	_allPages = new Page[pagesSize];
-
+	_allUsers = new User * [usersSize];
+	_allPages = new Page * [pagesSize];
 
 	_allUsers = users;
 	_allPages = pages;
 }
 
 
-User* Operation::getAllUsers()
+User** Operation::getAllUsers()
 {
 	return _allUsers;
 }
