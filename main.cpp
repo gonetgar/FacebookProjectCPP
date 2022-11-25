@@ -34,10 +34,11 @@ int main()
 
 	// ################################ Menu ################################ 
 	userChoice = displayMenu();
+	system.handleMenu(userChoice);
 
-	while (userChoice < 1 || userChoice > 12)
+	while (userChoice < 0 || userChoice > 13)
 	{
-		cout << "Invalid Input, try again.";
+		cout << "Invalid Input, try again." << endl;
 		userChoice = displayMenu();
 		system.handleMenu(userChoice);
 	}
@@ -45,9 +46,9 @@ int main()
 
 
 	/////// ori try 18:55 ////
-	Status stat;
 
-	stat.createStatus();
+	//Status stat;
+	//stat.createStatus();
 
 	return 0;
 }

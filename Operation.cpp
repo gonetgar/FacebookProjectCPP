@@ -47,6 +47,7 @@ void Operation::displayAllEntities()
 	cout << endl;
 }
 
+
 void Operation::getCurrentMember()
 {
 	char* username = new char[256];
