@@ -6,7 +6,7 @@ class User;
 
 class Page
 {
-	char _name[256];
+	char* _name;
 	User** _fansList;
 	Status** _statuses;
 

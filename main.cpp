@@ -10,42 +10,26 @@ using namespace std;
 
 int main()
 {
-	//Operation operation;
-	//User* initiateUsers = new User[3];
-	//Page* initiatePages = new Page[2];
+	Operation system;
+	User** initUsers = new User * [3];
+	Page** initPages = new Page * [3];
+	User** test;
 
-	//User ori;
-	//char username[256] = "ori nurieli";
-	//ori.setName(username);
+	for (int i = 1; i < 4; i++)
+	{
+		User user("gon", Date(i, i, 2020));
+		Page page("page test");
+		initUsers[i] = &user;
+		initPages[i] = &page;
+	}
 
-	//User gon;
-	//char username2[256] = "gon etgar";
-	//gon.setName(username2);
+	system.initiateData(initUsers, initPages);
 
-	//User gon2;
-	//char username3[256] = "gon etgar2";
-	//gon2.setName(username3);
+	cout << "display: " << endl;
 
+	system.displayAllEntities();
 
-	//Page oripage;
-	//Page gonpage;
-
-	//initiateUsers[0] = ori;
-	//initiateUsers[1] = gon;
-	//initiateUsers[2] = gon2;
-
-	//initiatePages[0] = oripage;
-	//initiatePages[1] = gonpage;
-
-
-	//operation.initiateData(initiateUsers, 3, initiatePages, 2);
-
-	//operation.displayAllEntities();
-
-
-	//cout << "\n\ngon try:\n";
-
-	//ori.addFriend(operation.getAllUsers());
+	// system.displayMenu();
 
 
 	return 0;
