@@ -53,7 +53,6 @@ int main()
 	//Status stat;
 	//stat.createStatus();
 
-	// ####### ori try 19:00 #######
 
 	return 0;
 }
