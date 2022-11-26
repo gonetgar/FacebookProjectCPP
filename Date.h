@@ -4,6 +4,8 @@
 
 #include <ctime>
 
+#include "Clock.h"
+
 class Date
 {
 public:
