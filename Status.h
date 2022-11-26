@@ -13,7 +13,6 @@ class Status
 {
 public:
 	char* _text;
-	//Date _date;
 	Clock _time;
 
 	Status();
@@ -21,7 +20,7 @@ public:
 
 	Status* createStatus(); // maybe it will be in here and inside the user/page we'll add it to his list of statuses.
 
-	// d'tor
+	~Status();
 };
 
 #endif // __STATUS_H

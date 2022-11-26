@@ -63,3 +63,18 @@ bool doesUserExist(const char* name, User** allUsers)
 //}
 
 
+void initFriendsLists(User*** allUsers, int numOfAllUsers)
+{
+	//// keren and steve jobs:
+	//(*allUsers)[0]->addFriendToFriendList(*allUsers, *allUsers[0], *allUsers[1]);
+	//(*allUsers)[1]->addFriendToFriendList(*allUsers, *allUsers[1], *allUsers[0]);
+
+	//// keren and ori:
+	//(*allUsers)[0]->addFriendToFriendList(*allUsers, *allUsers[0], *allUsers[3]);
+	//(*allUsers)[3]->addFriendToFriendList(*allUsers, *allUsers[3], *allUsers[0]);
+
+	//// gon and ori:
+	//(*allUsers)[4]->addFriendToFriendList(*allUsers, *allUsers[4], *allUsers[3]);
+	//(*allUsers)[3]->addFriendToFriendList(*allUsers, *allUsers[3], *allUsers[4]);
+}
+

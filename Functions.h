@@ -10,6 +10,7 @@ class User;
 
 int displayMenu();
 bool doesUserExist(const char* name, User** allUsers);
+void initFriendsLists(User*** allUsers, int numOfAllUsers);
 
 
 //void myStrcpy(char* dest, char* source);

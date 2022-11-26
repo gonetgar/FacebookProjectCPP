@@ -8,15 +8,12 @@ User::User()
 	_name = new char[256];
 	_name = _strdup("ori the king");
 
-	//_birthday = Date(1, 1, 2020);
 	_birthday = Clock(1, 1, 2000);
-
 	_statuses = new Status * [_maxNumOfStatuses];
-	_likedPages = new Page * [1];
+	_likedPages = new Page * [_maxNumOfPages];
 	_friendsList = new User * [_maxNumOfFriends];
 }
 
-//User::User(const char* name, Date birthday)
 User::User(const char* name, Clock birthday)
 {
 	_name = new char[256];
@@ -24,16 +21,17 @@ User::User(const char* name, Clock birthday)
 	_birthday = birthday;
 
 	_statuses = new Status * [_maxNumOfStatuses];
-	_likedPages = new Page * [1];
+	_likedPages = new Page * [_maxNumOfPages];
 	_friendsList = new User * [_maxNumOfFriends];
 
 	// for debugging:
+	cout << "------- User Constructor --------\n";
 	cout << "name: " << _name << endl;
 	cout << "number of friends: " << _numOfFriends << endl;
 	cout << "birthday is: ";
-	cout << this->_birthday._day << "." << this->_birthday._month << "." << this->_birthday._year;
-	//_birthday.display();
+	cout << this->_birthday._day << "." << this->_birthday._month << "." << this->_birthday._year << endl;
 }
+
 
 void User::setName(char* username)
 {
@@ -42,9 +40,6 @@ void User::setName(char* username)
 
 void User::createStatus()
 {
-	Status* newStatus;
-	newStatus = new Status[MAX_CHARACTERS];
-
 	if (_maxNumOfStatuses == _numOfStatuses)
 	{
 		_maxNumOfStatuses *= 2;
@@ -56,7 +51,7 @@ void User::createStatus()
 		_statuses = newStatuses;
 	}
 
-	newStatus = this->_statuses[_numOfStatuses]->createStatus();
+	Status* newStatus = this->_statuses[_numOfStatuses]->createStatus();
 	_numOfStatuses++;
 
 	// for debugging:
@@ -80,7 +75,8 @@ void User::addFriend(User** allUsers)
 	/// 1. search this user in the array: // TODO: change it to binary search
 	bool found = false;
 	int i;
-	for (i = 0; i < numOfAllUsers && !found; i++)
+	//for (i = 0; i < numOfAllUsers && !found; i++)
+	for (i = 0; i < 3 && !found; i++) // TODO change it back to numOfAllUsers
 	{
 		if (strcmp(allUsers[i]->_name, friendsName) == 0)
 			found = true;
@@ -194,4 +190,28 @@ void User::reallocFriendList(User** friendsList, int logSize, int phySize)
 	}
 	delete[] currectUser->_friendsList;
 	currectUser->_friendsList = newFriendsList;*/
+}
+
+User::~User()
+{
+	delete[] _name;
+
+	for (int i = 0; i < _numOfStatuses; i++)
+	{
+		delete[] _statuses[i];
+	}
+	delete[] _statuses;
+
+	for (int i = 0; i < _numOfPages; i++)
+	{
+		delete[] _likedPages[i];
+	}
+	delete[] _likedPages;
+
+	for (int i = 0; i < _numOfFriends; i++)
+	{
+		delete[] _friendsList[i];
+	}
+	delete[] _friendsList;
+
 }

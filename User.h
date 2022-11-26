@@ -18,8 +18,8 @@ private:
 	//Date _birthday;
 	Clock _birthday;
 
-	int _numOfFriends = 0; // logical size
-	int _maxNumOfFriends = 1; // physical size
+	int _numOfFriends = 0;
+	int _maxNumOfFriends = 1;
 	int _numOfStatuses = 0;
 	int _maxNumOfStatuses = 1;
 	int _numOfPages = 0;
@@ -31,18 +31,16 @@ private:
 
 public:
 	User(); // we don't want to create a new user without a name
-	//User(const char* name, Date birthday);
 	User(const char* name, Clock birthday);
 	User(const User&) = delete; // copy c'tor - we delete cause we dont want to duplicate user
 
 	void setName(char* username);
 	const char* getName() const { return _name; };
-
 	void createStatus();
-
 	void addFriend(User** allUsers);
 	void addFriendToFriendList(User** allUsers, User* currectUser, User* friendToAdd);
 	void cancelFriendship(char* friendToDelete);
+
 	void likePage();
 	void dislikePage();
 	void displayRecentStatusesOfaFriend(char* friendToDisplay); // 10 most recent statuses of all his friends
@@ -50,6 +48,8 @@ public:
 	void displayAllFriends();
 
 	void reallocFriendList(User** friendsList, int logSize, int phySize);
+
+	~User();
 };
 
 #endif // __USER_H

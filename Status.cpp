@@ -16,14 +16,14 @@ Status::Status(char* text, Clock time)
 	_time = time;
 }
 
-// returns Status* ?
+// change it!! onlt for user
 Status* Status::createStatus()
 {
 	Status* newStatus;
 	newStatus = new Status[MAX_CHARACTERS];
 
 	cout << "Please insert your status: ";
-	cin.getline(newStatus->_text, MAX_CHARACTERS);	//TODO shrink
+	cin.getline(newStatus->_text, MAX_CHARACTERS);	//TODO shrink?
 
 	//// for debugging: ////
 
@@ -39,4 +39,9 @@ Status* Status::createStatus()
 	cout << setw(2) << setfill('0') << newStatus->_time._seconds;
 
 	return newStatus;
+}
+
+Status::~Status()
+{
+	delete[] _text;
 }
