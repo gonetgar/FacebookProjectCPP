@@ -48,6 +48,8 @@ public:
 	void displayRecentStatusesOfaFriend(char* friendToDisplay); // 10 most recent statuses of all his friends
 	void displayAllStatuses();
 	void displayAllFriends();
+
+	void reallocFriendList(User** friendsList, int logSize, int phySize);
 };
 
 #endif // __USER_H

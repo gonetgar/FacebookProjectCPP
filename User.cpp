@@ -74,11 +74,10 @@ void User::addFriend(User** allUsers)
 	// for debugging
 	cout << "you entered: " << friendsName;
 
-	/// 1. search this user in the array: // TODO: change it to binary search
-
 	int numOfAllUsers = sizeof(*allUsers) / sizeof(User);
 	// numOfAllUsers = getNumOfAllUsers;  // TODO take the phy size from AllUsers
 
+	/// 1. search this user in the array: // TODO: change it to binary search
 	bool found = false;
 	int i;
 	for (i = 0; i < numOfAllUsers && !found; i++)
@@ -110,19 +109,13 @@ void User::addFriend(User** allUsers)
 // this function adds a friend to the user's friend list, and updates number of friends
 void User::addFriendToFriendList(User** allUsers, User* currectUser, User* friendToAdd)
 {
-	// 2. check for room in the array:
 	if (currectUser->_numOfFriends == currectUser->_maxNumOfFriends)
 	{
-		// reallocate more place
-		currectUser->_numOfFriends *= 2;
-		User** newFriendsList = new User * [currectUser->_numOfFriends];
-		for (int i = 0; i < currectUser->_numOfFriends; i++)
-		{
-			newFriendsList[i] = currectUser->_friendsList[i];
-		}
-		delete[] currectUser->_friendsList;
-		currectUser->_friendsList = newFriendsList;
-	} // TODO : put it in a function
+		currectUser->_maxNumOfFriends *= 2;
+		reallocFriendList(currectUser->_friendsList, currectUser->_numOfFriends, currectUser->_maxNumOfFriends);
+	}
+
+	// TODO: sort array of friends by name
 
 	//add this friend to my friends list :
 	currectUser->_friendsList[_numOfFriends] = friendToAdd; // point at this friend
@@ -179,4 +172,26 @@ void User::displayAllFriends()
 		_friendsList[i]->_birthday.displayDate();
 		cout << endl;
 	}
+}
+
+// adds more space in array "friendsList"
+void User::reallocFriendList(User** friendsList, int logSize, int phySize)
+{
+	User** newFriendsList = new User * [phySize];
+
+	for (int i = 0; i < logSize; i++)
+	{
+		newFriendsList[i] = friendsList[i];
+	}
+	delete[] friendsList;
+	friendsList = newFriendsList;
+
+	/*currectUser->_numOfFriends *= 2;
+	User** newFriendsList = new User * [currectUser->_numOfFriends];
+	for (int i = 0; i < currectUser->_numOfFriends; i++)
+	{
+		newFriendsList[i] = currectUser->_friendsList[i];
+	}
+	delete[] currectUser->_friendsList;
+	currectUser->_friendsList = newFriendsList;*/
 }

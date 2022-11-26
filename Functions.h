@@ -4,8 +4,9 @@
 #include "Date.h"
 #include "Operation.h"
 #include "Page.h"
-#include "User.h"
 #include "Status.h"
+
+class User;
 
 int displayMenu();
 bool doesUserExist(const char* name, User** allUsers);

@@ -63,4 +63,3 @@ bool doesUserExist(const char* name, User** allUsers)
 //}
 
 
-
