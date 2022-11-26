@@ -45,8 +45,14 @@ char* getName(char* username)
 
 void User::createStatus()
 {
+	Status* newStatus;
 
-
+	if (_maxNumOfStatuses == _numOfStatuses)
+	{
+		// realloc...
+	}
+	newStatus = this->_statuses[_numOfStatuses]->createStatus();
+	_numOfStatuses++;
 
 
 	/// old version: 
