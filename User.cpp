@@ -25,11 +25,11 @@ User::User(const char* name, Clock birthday)
 	_friendsList = new User * [_maxNumOfFriends];
 
 	// for debugging:
-	cout << "------- User Constructor --------\n";
-	cout << "name: " << _name << endl;
+	//cout << "------- User Constructor --------\n";
+	/*cout << "name: " << _name << endl;
 	cout << "number of friends: " << _numOfFriends << endl;
 	cout << "birthday is: ";
-	cout << this->_birthday._day << "." << this->_birthday._month << "." << this->_birthday._year << endl;
+	cout << this->_birthday._day << "." << this->_birthday._month << "." << this->_birthday._year << endl;*/
 }
 
 
@@ -61,45 +61,40 @@ void User::createStatus()
 // searches the name in the system and if found, adds it to the user's friend list
 void User::addFriend(User** allUsers)
 {
-	char* friendsName = new char[MAX_CHARACTERS];
+	char friendsName[MAX_CHARACTERS];
 
 	cout << "Enter friend's name: ";
-	cin.getline(friendsName, MAX_CHARACTERS);
+	cin.ignore(); // IMPORTANT for reading input @gon!!
+	cin.getline(friendsName, MAX_CHARACTERS); // ERROR doesnt take input
 
-	// for debugging
-	cout << "you entered: " << friendsName;
-
-	int numOfAllUsers = sizeof(*allUsers) / sizeof(User);
-	// numOfAllUsers = getNumOfAllUsers;  // TODO take the phy size from AllUsers
+	int numOfAllUsers = sizeof(*allUsers);
 
 	/// 1. search this user in the array: // TODO: change it to binary search
 	bool found = false;
 	int i;
-	//for (i = 0; i < numOfAllUsers && !found; i++)
-	for (i = 0; i < 3 && !found; i++) // TODO change it back to numOfAllUsers
+	for (i = 0; i < numOfAllUsers && !found; i++) // TODO change it back to numOfAllUsers
 	{
 		if (strcmp(allUsers[i]->_name, friendsName) == 0)
 			found = true;
 	}
 
 	if (found == false)
-	{
 		cout << "User not found!\n";
-	}
+
 	else
 	{
-		cout << "you found this friend!"; // for debugging
+		cout << "you found the friend!" << endl; // for debugging
 		addFriendToFriendList(allUsers, this, allUsers[i]); // add him to my friends list
 		addFriendToFriendList(allUsers, allUsers[i], this); // add myself to his friends list
 
 		//// for debugging:
 		cout << "you added: ";
-		cout << "name: " << _friendsList[_numOfFriends]->_name;
+		cout << "name: " << _friendsList[0]->_name; // error, i changed _numOfFriendsro 0 for debug
 		cout << ", birthday: ";
-		_friendsList[_numOfFriends]->_birthday.displayDate();
+		_friendsList[0]->_birthday.displayDate();
 	}
 
-	delete[] friendsName;
+	// delete[] friendsName; // ERROR throw you of the program
 }
 
 // this function adds a friend to the user's friend list, and updates number of friends

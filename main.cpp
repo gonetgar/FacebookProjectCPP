@@ -11,25 +11,13 @@ using namespace std;
 
 int main()
 {
+	int userChoice = 0;
+
 	Operation system;
 	User** initUsers = new User * [5];
 	Page** initPages = new Page * [3];
-	User** test;
-	int userChoice = 0;
 
 	// ################################ initiate data ################################ 
-	//for (int i = 0; i < 3; i++)
-	//{
-	//	cout << "user #" << i << ":\n";
-	//	//User user("gon", Date(i + 1, i + 1, 2020));
-	//	User user("gon", Clock(i + 1, i + 1, 2020));
-	//	Page page("page test");
-	//	initUsers[i] = &user;
-	//	initPages[i] = &page;
-	//	cout << endl;
-	//}
-
-	/// @@@@@@@@@ gon try @@@@@@@@@
 	User user1("Keren Kalif", Clock(15, 4, 1980));
 	initUsers[0] = &user1;
 	User user2("Steve Jobs", Clock(1, 3, 1960));
@@ -41,6 +29,7 @@ int main()
 	User user5("Gon Etgar", Clock(21, 10, 1996));
 	initUsers[4] = &user5;
 
+
 	Page page1("Maccabi Haifa");
 	initPages[0] = &page1;
 	Page page2("Harry Potter");
@@ -48,41 +37,26 @@ int main()
 	Page page3("Pink Floyd");
 	initPages[2] = &page3;
 
-	initFriendsLists(&initUsers, 5);
-
+	//initFriendsLists(&initUsers, 5);
 
 	system.initiateData(initUsers, initPages);
-	
 
-	/// @@@@@@@@@ gon finish @@@@@@@@@
-	system.displayAllEntities(); // TODO: print names and not addresses
+	cout << endl;
 	system.getCurrentMember();
-
-	bool flag = doesUserExist("gon", initUsers);
-	cout << "flag: " << flag << endl;
 
 
 	//// ################################ Menu ################################ 
 	userChoice = displayMenu();
 	system.handleMenu(userChoice);
 
-	while (userChoice < 0 || userChoice > 13)
+	while (userChoice > 0 || userChoice < 13)
 	{
-		cout << "Invalid Input, try again." << endl;
 		userChoice = displayMenu();
 		system.handleMenu(userChoice);
 	}
 
 
-	// ####### ori try 19:00 #######
-
-	//Status stat;
-	//stat.createStatus();
-
-
-	// gon try 10:00 //
-
-
+	cout << "end of main()." << endl;
 
 	return 0;
 }

@@ -6,14 +6,16 @@
 
 class Operation
 {
+private:
 	User** _allUsers;
 	Page** _allPages;
 	User _currentUser;
 
-	int numOfUsers = 0;
-	int maxUsers = 1;
-	int numOfPages = 0;
-	int maxPages = 1;
+	// numbers according to init data
+	int _numOfUsers = 5;
+	int _maxUsers = 8;
+	int _numOfPages = 3;
+	int _maxPages = 4;
 
 public:
 	Operation();
@@ -21,8 +23,10 @@ public:
 	void initiateData(User** users, Page** pages);
 	void handleMenu(int userChoice);
 	void getCurrentMember();
-	/*void addUserToOperation(User* user);
-	void addPageToOperation(Page* page);*/
+	const int getNumOfUsers() const { return _numOfUsers; };
+	void addUserToOperation(User* user);
+	const int getNumOfPages() const { return _numOfPages; };
+	void addPageToOperation(Page* page);
 	void displayAllEntities();
 	bool isValidUserName(char* userName); // sort & binary serach?
 	bool isValidPageName(char* pageName);

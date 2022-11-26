@@ -9,7 +9,8 @@
 class User;
 
 int displayMenu();
-bool doesUserExist(const char* name, User** allUsers);
+bool doesUserExist(const char* name, Operation* system);
+void addUserToSystem(Operation* system);
 void initFriendsLists(User*** allUsers, int numOfAllUsers);
 
 

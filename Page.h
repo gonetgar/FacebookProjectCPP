@@ -17,6 +17,7 @@ public:
 	Page() = delete; // we don't want to create a new page without a page name
 	Page(const char* name);
 	Page(const Page* page) = delete; //  Prevent duplicate
+	const char* getName() const { return _name; };
 	void createStatus();
 	void displayAllStatuses();
 	void displayAllFans();

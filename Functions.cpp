@@ -26,42 +26,44 @@ int displayMenu()
 	return choice;
 }
 
-bool doesUserExist(const char* name, User** allUsers)
+bool doesUserExist(const char* name, Operation* system)
 {
 	// for now we do O(n)
-	//int length = sizeof(allUsers) / sizeof(allUsers[0]);
-	//cout << "length: " << length << endl;
+	User** allUsers = system->getAllUsers();
 
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < system->getNumOfUsers(); i++)
 	{
-		cout << allUsers[i]->getName() << endl;
-		if (allUsers[i]->getName() == name) // ERROR: name is int type :o
+		if (strcmp(allUsers[i]->getName(), name) == 0)
 			return true;
 	}
 
 	return false;
-
-
-	// TODO: sort and binary seacrch
-	/*for (int j = 0; j < n; j++)
-		while (*allUsers[*allUsers[j] - 1] != *allUsers[j])
-			std::swap(allUsers[*allUsers[j] - 1], allUsers[j]);
-
-	for (int i = 0; i < 5; i++)
-		cout << *(allUsers + i) << ", ";*/
 }
 
-//void myStrcpy(char* dest, char* source)
-//{
-//	int len = strlen(source);
-//	for (int i = 0; i < len; i++)
-//	{
-//		dest[i] = source[i];
-//	}
-//
-//	dest[len] = '\0';
-//}
+void addUserToSystem(Operation* system)
+{
+	char* username = new char[256];
+	Clock birthday(1, 1, 2020);
 
+	cout << "Please enter your username: " << endl;
+	cin.ignore();
+	cin.getline(username, 256);
+
+	// validate username
+	if (doesUserExist(username, system)) {
+		cout << "username is already taken" << endl;
+		addUserToSystem(system);
+	}
+
+	// get day, month and year of birth from user
+	// birthday.getBirthdayInput(); // todo: create in Clock.cpp
+
+	User userToAdd(username, birthday);
+
+	system->addUserToOperation(&userToAdd);
+	// Error: here userToAdd dies so he is not saved to _allUsers
+	// maybe try making User* instead 
+}
 
 void initFriendsLists(User*** allUsers, int numOfAllUsers)
 {
