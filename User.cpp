@@ -1,6 +1,5 @@
 #include <iostream>
 using namespace std;
-const int MAX_CHARACTERS = 256;
 
 #include "User.h"
 
@@ -64,86 +63,71 @@ void User::createStatus()
 	cout << "number of statuses: " << _numOfStatuses;
 }
 
-//// 1. searches this person in the system
-//// 2. if found -> add it to my friend list
-//// 3. add myself to his friend list. :-)
+// searches the name in the system and if found, adds it to the user's friend list
 void User::addFriend(User** allUsers)
 {
+	char* friendsName = new char[MAX_CHARACTERS];
 
+	cout << "Enter friend's name: ";
+	cin.getline(friendsName, MAX_CHARACTERS);
+
+	// for debugging
+	cout << "you entered: " << friendsName;
+
+	/// 1. search this user in the array: // TODO: change it to binary search
+
+	int numOfAllUsers = sizeof(*allUsers) / sizeof(User);
+	// numOfAllUsers = getNumOfAllUsers;  // TODO take the phy size from AllUsers
+
+	bool found = false;
+	int i;
+	for (i = 0; i < numOfAllUsers && !found; i++)
+	{
+		if (strcmp(allUsers[i]->_name, friendsName) == 0)
+			found = true;
+	}
+
+	if (found == false)
+	{
+		cout << "User not found!\n";
+	}
+	else
+	{
+		cout << "you found this friend!"; // for debugging
+		addFriendToFriendList(allUsers, this, allUsers[i]); // add him to my friends list
+		addFriendToFriendList(allUsers, allUsers[i], this); // add myself to his friends list
+
+		//// for debugging:
+		cout << "you added: ";
+		cout << "name: " << _friendsList[_numOfFriends]->_name;
+		cout << ", birthday: ";
+		_friendsList[_numOfFriends]->_birthday.displayDate();
+	}
+
+	delete[] friendsName;
 }
-//{
-//	char* friendsName = new char[MAX_CHARACTERS];
-//	int index = _numOfFriends;
-//
-//	cout << "Enter friend's name: ";
-//	cin.getline(friendsName, MAX_CHARACTERS);
-//	// TODO: shrink the name back
-//
-//	cout << "you entered: " << friendsName; // for debugging
-//
-//	int numOfAllUsers = sizeof(*allUsers) / sizeof(User); // check
-//
-//	//search this user in the array: // TODO: change it to binary search
-//	bool found = false;
-//	int i;
-//	for (i = 0; i < numOfAllUsers && !found; i++)
-//	{
-//		if (strcmp(allUsers[i]._name, friendsName) == 0)
-//			found = true;
-//	}
-//
-//	if (found == false)
-//	{
-//		cout << "User not found!\n";
-//	}
-//	else
-//	{
-//		cout << "you found this friend!"; // for debugging
-//
-//		// reallocate the array of friends:
-//		User** newFriendList = new User * [_numOfFriends + 1]; // make a new bigger one
-//		newFriendList = _friendsList; // point at the old one
-//		delete[] _friendsList; // delete the old one
-//		_friendsList = newFriendList; // point back at the original
-//		// TODO : put it in a function
-//
-//
-//		// add this new friend to the user's friends list:
-//		// TODO: change "allUsers" array to type "User**"
-//		// and then we can point at this sepceific person
-//		//_friendsList[_numOfFriends + 1] = *allUsers[i];
-//	
-//
-//
-//		// for debugging:
-//		cout << "you added: ";
-//		cout << _friendsList[index]->_name << ", birthday: ";
-//		_friendsList[index]->_birthday.display();
-//		cout << "\nlist of statuses:\n";
-//		int numOfStatuses = sizeof(_friendsList[index]->_statuses) / sizeof(Status);
-//		for (int j = 0; j < numOfStatuses; j++)
-//		{
-//			cout << _friendsList[index]->_statuses[j]->_text << endl;
-//		}
-//
-//		// add myself to his friend list:
-//		// 1. make room
-//		int hisNumOfFriends = allUsers[i]._numOfFriends;
-//		User** newFriendListTemp = new User * [hisNumOfFriends];
-//		newFriendListTemp = allUsers[i]._friendsList;
-//		delete[](allUsers[i]._friendsList);
-//		allUsers[i]._friendsList = newFriendListTemp; // TODO: a function of this (same as above)
-//
-//
-//		// 3. point at myself // TODO
-//		//allUsers[i]._friendsList[hisNumOfFriends] = 
-//
-//		
-//		_numOfFriends++; // updates the number of my friends
-//		(allUsers[i]._numOfFriends)++; // updates number of his friends.
-//	}
-//
-//}
+
+// this function adds a friend to the user's friend list, and updates number of friends
+void User::addFriendToFriendList(User** allUsers, User* currectUser, User* friendToAdd)
+{
+	// 2. check for room in the array:
+	if (currectUser->_numOfFriends == currectUser->_maxNumOfFriends)
+	{
+		// reallocate more place
+		currectUser->_numOfFriends *= 2;
+		User** newFriendsList = new User * [currectUser->_numOfFriends];
+		for (int i = 0; i < currectUser->_numOfFriends; i++)
+		{
+			newFriendsList[i] = currectUser->_friendsList[i];
+		}
+		delete[] currectUser->_friendsList;
+		currectUser->_friendsList = newFriendsList;
+	} // TODO : put it in a function
+
+	//add this friend to my friends list :
+	currectUser->_friendsList[_numOfFriends] = friendToAdd; // point at this friend
+	currectUser->_numOfFriends++; // update number of friends
+}
 
 void User::cancelFriendship(char* friendToDelete)
 {

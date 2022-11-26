@@ -39,7 +39,9 @@ public:
 	const char* getName() const { return _name; };
 
 	void createStatus();
+
 	void addFriend(User** allUsers);
+	void addFriendToFriendList(User** allUsers, User* currectUser, User* friendToAdd);
 	void cancelFriendship(char* friendToDelete);
 	void likePage();
 	void dislikePage();
