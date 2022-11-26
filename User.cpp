@@ -25,7 +25,6 @@ User::User(const char* name, Date birthday)
 	_likedPages = new Page * [1];
 	_friendsList = new User * [_maxNumOfFriends]; // array of pointers so it wont go through c'tor
 
-	///////////////////////////////////////////////////////////////////////////////////////////
 	// for debugging:
 	cout << "name: " << _name << endl;
 	cout << "number of friends: " << _numOfFriends << endl;
@@ -38,10 +37,10 @@ void User::setName(char* username)
 	_name = username;
 }
 
-char* getName(char* username)
-{
-	return username;
-}
+//char* getName()
+//{
+//	return _name;
+//}
 
 void User::createStatus()
 {

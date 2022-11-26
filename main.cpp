@@ -15,13 +15,13 @@ int main()
 	User** initUsers = new User * [3];
 	Page** initPages = new Page * [3];
 	User** test;
+	int userChoice = 0;
 
-	//displayMenu();
-
-	for (int i = 1; i < 4; i++)
+	// ################################ initiate data ################################ 
+	for (int i = 0; i < 3; i++)
 	{
 		cout << "user #" << i << ":\n";
-		User user("gon", Date(i, i, 2020));
+		User user("gon", Date(i + 1, i + 1, 2020));
 		Page page("page test");
 		initUsers[i] = &user;
 		initPages[i] = &page;
@@ -29,17 +29,31 @@ int main()
 	}
 
 	system.initiateData(initUsers, initPages);
+	//system.displayAllEntities(); // TODO: print names and not addresses
+	system.getCurrentMember();
 
-	cout << "display: " << endl;
+	bool flag = doesUserExist("gon", initUsers);
+	cout << "flag: " << flag << endl;
 
-	system.displayAllEntities();
-	cout << endl;
-	// system.displayMenu();
 
-	/////// gon try 14:55 ////
-	Status stat;
+	// ################################ Menu ################################ 
+	userChoice = displayMenu();
+	system.handleMenu(userChoice);
 
-	stat.createStatus();
+	while (userChoice < 0 || userChoice > 13)
+	{
+		cout << "Invalid Input, try again." << endl;
+		userChoice = displayMenu();
+		system.handleMenu(userChoice);
+	}
+
+
+
+
+	//Status stat;
+	//stat.createStatus();
+
+	// ####### ori try 19:00 #######
 
 	return 0;
 }

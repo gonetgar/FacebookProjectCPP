@@ -8,7 +8,8 @@ class Page;
 
 Operation::Operation()
 {
-
+	_allUsers = nullptr;
+	_allPages = nullptr;
 }
 
 
@@ -36,33 +37,16 @@ User** Operation::getAllUsers()
 
 void Operation::displayAllEntities()
 {
-	for (int i = 0; i < 5; i++)
+	cout << "ALL ENTITIES: " << endl;
+
+	for (int i = 0; i < 3; i++)
 		cout << *(_allUsers + i) << ", ";
 
-	for (int i = 0; i < 5; i++)
+	for (int i = 0; i < 3; i++)
 		cout << *(_allPages + i) << ", ";
-
-	//// TODO: find and fix arrays length 
-	//int users_length = sizeof(_allUsers) / sizeof(_allUsers[0]);
-	//cout << "length: " << users_length << endl;
-	//int pages_length = sizeof(_allPages) / sizeof(_allPages[0]);
-
-	//if (users_length != 0) {
-	//	for (int i = 0; i < users_length; i++)
-	//	{
-	//		cout << "user " << i << " " << _allUsers[i]._name << endl;
-	//	}
-	//}
-	//else cout << "no users" << endl;
-
-	//if (pages_length != 0) {
-	//	for (int i = 0; i < pages_length; i++)
-	//	{
-	//		cout << "page " << i << " " << _allUsers[i]._name << endl;
-	//	}
-	//}
-	//else cout << "no pages" << endl;
+	cout << endl;
 }
+
 
 void Operation::getCurrentMember()
 {
@@ -71,28 +55,17 @@ void Operation::getCurrentMember()
 	cout << "Hello, please enter your name for varification: ";
 	cin >> username;
 
-	//*(_currentUser).setName(username);
+	_currentUser.setName(username);
+	cout << _currentUser.getName() << "," << endl;
 }
 
 
-
-void Operation::displayMenu()
+void Operation::handleMenu(int userChoice)
 {
-	int userChoice = 0;
-
-	cout << "1 -הוספת חבר   \n 2 - הוספת דף אוהדים \n 3 - הוספת סטטוס .\n 4 - הצגת כל הסטטוסים  \n 5 - הצגת 10 הסטטוסים העדכניים ביותר של חבריו של חבר מסויים \n 6 - קישור חברות בין שני חברים \n 7 - ביטול חברות בין שני חברים \n 8 - הוספת אוהד לדף \n 9 - הסרת אוהד מדף \n 10 - הצגת כל הישויות הרשומות למערכת \n 11 - הצגת כל החברים של חבר מסויים / האוהדים של דף מסויים \n 12 - יציאה";
-	cin >> userChoice;
-
-	// validation
-	if (userChoice < 1 || userChoice > 12)
-	{
-		cout << "Invalid Input, try again.";
-		displayMenu();
-	}
-
 	switch (userChoice)
 	{
 	case 1:
+		cout << "add a freind";
 		_currentUser.addFriend(_allUsers);
 		break;
 	case 2:

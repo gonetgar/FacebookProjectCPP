@@ -12,7 +12,8 @@ class Page;
 
 class User
 {
-	char* _name; // :-)
+private:
+	char* _name;
 	Date _birthday;
 
 	int _numOfFriends = 0; // logical size
@@ -22,18 +23,17 @@ class User
 	int _numOfPages = 0;
 	int _maxNumOfPages = 1;
 
-
-	User** _friendsList; // array of friends
-	Status** _statuses; // array of statuses
-	Page** _likedPages; // array of liked pages
+	User** _friendsList;
+	Status** _statuses;
+	Page** _likedPages;
 
 public:
 	User(); // we don't want to create a new user without a name
 	User(const char* name, Date birthday);
 	User(const User&) = delete; // copy c'tor - we delete cause we dont want to duplicate user
-	
+
 	void setName(char* username);
-	char* getName(char* username);
+	const char* getName() const { return _name; };
 
 	void createStatus();
 	void addFriend(User** allUsers);
