@@ -6,6 +6,7 @@
 #include "Friend.h"
 #include "Date.h"
 #include "Status.h"
+#include "Clock.h"
 
 class Page;
 // do not call operation!
@@ -14,7 +15,8 @@ class User
 {
 private:
 	char* _name;
-	Date _birthday;
+	//Date _birthday;
+	Clock _birthday;
 
 	int _numOfFriends = 0; // logical size
 	int _maxNumOfFriends = 1; // physical size
@@ -29,7 +31,8 @@ private:
 
 public:
 	User(); // we don't want to create a new user without a name
-	User(const char* name, Date birthday);
+	//User(const char* name, Date birthday);
+	User(const char* name, Clock birthday);
 	User(const User&) = delete; // copy c'tor - we delete cause we dont want to duplicate user
 
 	void setName(char* username);

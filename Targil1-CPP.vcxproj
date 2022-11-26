@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Clock.cpp" />
     <ClCompile Include="Date.cpp" />
     <ClCompile Include="Friend.cpp" />
     <ClCompile Include="Functions.cpp" />
@@ -149,6 +150,7 @@
     <ClCompile Include="User.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Clock.h" />
     <ClInclude Include="Date.h" />
     <ClInclude Include="Friend.h" />
     <ClInclude Include="Functions.h" />

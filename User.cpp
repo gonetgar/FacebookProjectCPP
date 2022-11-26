@@ -1,5 +1,6 @@
 #include <iostream>
 using namespace std;
+const int MAX_CHARACTERS = 256;
 
 #include "User.h"
 
@@ -8,14 +9,16 @@ User::User()
 	_name = new char[256];
 	_name = _strdup("ori the king");
 
-	_birthday = Date(1, 1, 2020);
+	//_birthday = Date(1, 1, 2020);
+	_birthday = Clock(1, 1, 2000);
 
 	_statuses = new Status * [_maxNumOfStatuses];
 	_likedPages = new Page * [1];
 	_friendsList = new User * [_maxNumOfFriends];
 }
 
-User::User(const char* name, Date birthday)
+//User::User(const char* name, Date birthday)
+User::User(const char* name, Clock birthday)
 {
 	_name = new char[256];
 	_name = _strdup(name);
@@ -23,13 +26,14 @@ User::User(const char* name, Date birthday)
 
 	_statuses = new Status * [_maxNumOfStatuses];
 	_likedPages = new Page * [1];
-	_friendsList = new User * [_maxNumOfFriends]; // array of pointers so it wont go through c'tor
+	_friendsList = new User * [_maxNumOfFriends];
 
 	// for debugging:
 	cout << "name: " << _name << endl;
 	cout << "number of friends: " << _numOfFriends << endl;
 	cout << "birthday is: ";
-	_birthday.display();
+	cout << this->_birthday._day << "." << this->_birthday._month << "." << this->_birthday._year;
+	//_birthday.display();
 }
 
 void User::setName(char* username)
@@ -37,48 +41,27 @@ void User::setName(char* username)
 	_name = username;
 }
 
-//char* getName()
-//{
-//	return _name;
-//}
-
 void User::createStatus()
 {
 	Status* newStatus;
+	newStatus = new Status[MAX_CHARACTERS];
 
 	if (_maxNumOfStatuses == _numOfStatuses)
 	{
-		// realloc...
+		_maxNumOfStatuses *= 2;
+		Status** newStatuses = new Status * [_maxNumOfStatuses];
+		for (int i = 0; i < _numOfStatuses; i++)
+			newStatuses[i] = _statuses[i];
+
+		delete[] _statuses; // ERROR doesnt delete the array for some reason
+		_statuses = newStatuses;
 	}
+
 	newStatus = this->_statuses[_numOfStatuses]->createStatus();
 	_numOfStatuses++;
 
-
-	/// old version: 
-
-	//Status* newStatus;
-	//newStatus = new Status[MAX_CHARACTERS];
-
-	//cout << "Please insert your status: ";
-	//cin.getline(newStatus->_text, MAX_CHARACTERS);	//TODO shrink
-
-	//// insert to statuses array of the user.
-	//if (_numOfStatuses == _maxNumOfStatuses) // TODO: in a function
-	//{
-	//	_maxNumOfStatuses *= 2;
-	//	Status** newStatuses = new Status * [_maxNumOfStatuses];
-	//	for (int i = 0; i < _numOfStatuses; i++)
-	//		newStatuses[i] = _statuses[i];
-
-	//	delete[] _statuses; // ERROR doesnt delete the array for some reason
-	//	_statuses = newStatuses;
-	//}
-	//_statuses[_numOfStatuses] = newStatus;
-	//_numOfStatuses++;
-
-	//// for debugging:
-	//cout << newStatus->_text;
-	//newStatus->_date.display();
+	// for debugging:
+	cout << "number of statuses: " << _numOfStatuses;
 }
 
 //// 1. searches this person in the system
@@ -86,7 +69,7 @@ void User::createStatus()
 //// 3. add myself to his friend list. :-)
 void User::addFriend(User** allUsers)
 {
-	return;
+
 }
 //{
 //	char* friendsName = new char[MAX_CHARACTERS];
@@ -191,8 +174,9 @@ void User::displayAllStatuses()
 
 	for (int i = 0; i < _numOfStatuses; i++)
 	{
-		cout << "Date: ";
-		_statuses[i]->_date.display();
+		cout << "Date and time: ";
+		_statuses[i]->_time.displayDate();
+		_statuses[i]->_time.displayTime();
 
 		cout << "Text: ";
 		cout << _statuses[i]->_text << endl;
@@ -201,5 +185,14 @@ void User::displayAllStatuses()
 
 void User::displayAllFriends()
 {
-	cout << "hello friends\n";
+	cout << "This is all your friends:\n";
+
+	for (int i = 0; i < _numOfFriends; i++)
+	{
+		cout << "friend #" << i + 1 << ":\n";
+		cout << "name: " << _friendsList[i]->getName() << endl;
+		cout << "birthday: ";
+		_friendsList[i]->_birthday.displayDate();
+		cout << endl;
+	}
 }

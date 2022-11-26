@@ -21,7 +21,8 @@ int main()
 	for (int i = 0; i < 3; i++)
 	{
 		cout << "user #" << i << ":\n";
-		User user("gon", Date(i + 1, i + 1, 2020));
+		//User user("gon", Date(i + 1, i + 1, 2020));
+		User user("gon", Clock(i + 1, i + 1, 2020));
 		Page page("page test");
 		initUsers[i] = &user;
 		initPages[i] = &page;
@@ -29,14 +30,15 @@ int main()
 	}
 
 	system.initiateData(initUsers, initPages);
-	//system.displayAllEntities(); // TODO: print names and not addresses
+	system.displayAllEntities(); // TODO: print names and not addresses
+	 //ori - i put it all in green
 	system.getCurrentMember();
 
 	bool flag = doesUserExist("gon", initUsers);
 	cout << "flag: " << flag << endl;
 
 
-	// ################################ Menu ################################ 
+	//// ################################ Menu ################################ 
 	userChoice = displayMenu();
 	system.handleMenu(userChoice);
 
@@ -48,12 +50,15 @@ int main()
 	}
 
 
-
+	// ####### ori try 19:00 #######
 
 	//Status stat;
 	//stat.createStatus();
 
-	// ####### ori try 19:00 #######
+
+	// gon try 10:00 //
+
+
 
 	return 0;
 }
