@@ -62,9 +62,9 @@ void addUserToSystem(Operation* system)
 	// get day, month and year of birth from user
 	// birthday.getBirthdayInput(); // todo: create in Clock.cpp
 
-	User userToAdd(username, birthday);
+	User* userToAdd = new User(username, birthday);
 
-	system->addUserToOperation(&userToAdd);
+	system->addUserToOperation(userToAdd);
 	// Error: here userToAdd dies so he is not saved to _allUsers
 	// maybe try making User* instead 
 }
