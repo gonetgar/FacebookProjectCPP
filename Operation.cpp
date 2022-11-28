@@ -21,10 +21,10 @@ void Operation::initiateData(User** initUsers, Page** initPages)
 }
 
 
-User** Operation::getAllUsers()
-{
-	return _allUsers;
-}
+//User** Operation::getAllUsers()
+//{
+//	return _allUsers;
+//}
 
 void Operation::addUserToOperation(User* userToAdd)
 {
@@ -48,9 +48,25 @@ void Operation::addUserToOperation(User* userToAdd)
 
 }
 
-void Operation::addPageToOperation(Page* page)
+void Operation::addPageToOperation(Page* pageToAdd)
 {
-	// same as addUserToOperation()
+	int i = 0;
+
+	if (_maxPages == _numOfPages)
+	{
+		_maxPages *= 2;
+		Page** newPages = new Page * [_maxPages];
+		for (i = 0; i < _numOfPages; i++)
+			newPages[i] = _allPages[i];
+
+		delete[] _allPages;
+		_allPages = newPages;
+	}
+
+	_allPages[_numOfPages] = pageToAdd;
+	_numOfPages++;
+
+	cout << "Congrats! Your page: " << pageToAdd->getName() << " is Live on Facebook." << endl << endl;
 }
 
 void Operation::displayAllEntities()
@@ -93,7 +109,7 @@ void Operation::handleMenu(int userChoice)
 			addUserToSystem(this); // this == system
 			break;
 		case 2:
-			_currentUser.likePage();
+			addPageToSystem(this);
 			break;
 		case 3:
 			_currentUser.createStatus();

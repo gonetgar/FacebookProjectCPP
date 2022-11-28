@@ -43,6 +43,20 @@ bool doesUserExist(const char* name, Operation* system)
 	return false;
 }
 
+bool doesPageExist(const char* name, Operation* system)
+{
+	// for now we do O(n)
+	Page** allPages = system->getAllPages();
+
+	for (int i = 0; i < system->getNumOfPages(); i++)
+	{
+		if (strcmp(allPages[i]->getName(), name) == 0)
+			return true;
+	}
+
+	return false;
+}
+
 void addUserToSystem(Operation* system)
 {
 	char* username = new char[256];
@@ -59,12 +73,33 @@ void addUserToSystem(Operation* system)
 		return;
 	}
 
+	// GON add code here:
 	// get day, month and year of birth from user
 	// birthday.getBirthdayInput(); // todo: create in Clock.cpp
 
 	User* userToAdd = new User(username, birthday);
 
 	system->addUserToOperation(userToAdd);
+}
+
+void addPageToSystem(Operation* system)
+{
+	char* pageName = new char[256];
+
+	cout << "Please enter page name: " << endl;
+	cin.ignore();
+	cin.getline(pageName, 256);
+
+	// validate username
+	if (doesPageExist(pageName, system)) {
+		cout << "page name is already taken" << endl;
+		addPageToSystem(system);
+		return;
+	}
+
+	Page* pageToAdd = new Page(pageName);
+
+	system->addPageToOperation(pageToAdd);
 }
 
 void initFriendsLists(User*** allUsers, int numOfAllUsers)
