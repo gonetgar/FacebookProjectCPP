@@ -23,7 +23,10 @@ int displayMenu()
 
 	cin >> choice;
 
-	return choice;
+	if (choice > 0 && choice << 13)
+		return choice;
+	else
+		return 12;
 }
 
 bool doesUserExist(const char* name, Operation* system)
@@ -53,6 +56,7 @@ void addUserToSystem(Operation* system)
 	if (doesUserExist(username, system)) {
 		cout << "username is already taken" << endl;
 		addUserToSystem(system);
+		return;
 	}
 
 	// get day, month and year of birth from user

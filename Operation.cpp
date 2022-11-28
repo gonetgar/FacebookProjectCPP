@@ -39,7 +39,6 @@ void Operation::addUserToOperation(User* userToAdd)
 
 		delete[] _allUsers;
 		_allUsers = newUsers;
-		_allUsers[i + 1] = userToAdd;
 	}
 
 	_allUsers[_numOfUsers] = userToAdd;
@@ -111,7 +110,7 @@ void Operation::handleMenu(int userChoice)
 			_currentUser.displayRecentStatusesOfaFriend(friendToDisplay);
 			break;
 		case 6:
-			_currentUser.addFriend(_allUsers);
+			_currentUser.addFriend(_allUsers); // error: return different friend
 			break;
 		case 7:
 			char friendToDelete[256]; // may cause error char[] and char*

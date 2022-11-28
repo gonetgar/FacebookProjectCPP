@@ -40,8 +40,6 @@ int main()
 	//initFriendsLists(&initUsers, 5);
 
 	system.initiateData(initUsers, initPages);
-
-	cout << endl;
 	system.getCurrentMember();
 
 
