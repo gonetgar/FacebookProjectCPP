@@ -65,8 +65,6 @@ void addUserToSystem(Operation* system)
 	User* userToAdd = new User(username, birthday);
 
 	system->addUserToOperation(userToAdd);
-	// Error: here userToAdd dies so he is not saved to _allUsers
-	// maybe try making User* instead 
 }
 
 void initFriendsLists(User*** allUsers, int numOfAllUsers)
