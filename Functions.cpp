@@ -18,7 +18,7 @@ int displayMenu()
 	cout << "8. Like a page\n";
 	cout << "9. Unlike a page\n";
 	cout << "10. Display all entities of Facebook\n";
-	cout << "11. Display all friends\n";
+	cout << "11. Display all friends of a friend or page\n";
 	cout << "12. Exit\n";
 
 	cin >> choice;

@@ -92,7 +92,8 @@ void Operation::getCurrentMember()
 	char* username = new char[256];
 
 	cout << "Hello, please enter your name for varification: ";
-	cin >> username;
+	cin.ignore();
+	cin.getLine(username, 256);
 	cout << endl;
 
 	_currentUser.setName(username);
