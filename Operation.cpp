@@ -96,7 +96,14 @@ void Operation::getCurrentMember()
 	cin.getline(username, 256);
 	cout << endl;
 
+	Clock birthDate = birthDate.getBirthdayInput();
+	birthDate.displayDate();
+
 	_currentUser.setName(username);
+	_currentUser.setBirthday(birthDate);
+
+	addUserToOperation(&_currentUser);
+
 	cout << _currentUser.getName() << "," << endl;
 }
 

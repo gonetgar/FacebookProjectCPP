@@ -33,7 +33,7 @@ int displayMenu()
 int doesUserExist(const char* name, Operation* system)
 {
 	int index;
-	// for now we do O(n)
+	// for now we do O(n) // TODO -> change to binary search
 	User** allUsers = system->getAllUsers();
 
 	for (index = 0; index < system->getNumOfUsers(); index++)
@@ -45,24 +45,25 @@ int doesUserExist(const char* name, Operation* system)
 	return -1;
 }
 
-bool doesPageExist(const char* name, Operation* system)
+// returns the page's index in the allPages array, or -1 if is not found
+int doesPageExist(const char* name, Operation* system)
 {
-	// for now we do O(n)
+	int index;
+	// for now we do O(n) // TODO -> change to binary search
 	Page** allPages = system->getAllPages();
 
-	for (int i = 0; i < system->getNumOfPages(); i++)
+	for (index = 0; index < system->getNumOfPages(); index++)
 	{
-		if (strcmp(allPages[i]->getName(), name) == 0)
-			return true;
+		if (strcmp(allPages[index]->getName(), name) == 0)
+			return index;
 	}
 
-	return false;
+	return -1;
 }
 
 void getUserInput(Operation* system)
 {
 	char* username = new char[256];
-	Clock birthday(1, 1, 2020);
 
 	cout << "Please enter your username: " << endl;
 	cin.ignore();
@@ -75,11 +76,7 @@ void getUserInput(Operation* system)
 		return;
 	}
 
-	// GON add code here:
-
-
-	// get day, month and year of birth from user
-	// birthday.getBirthdayInput(); // todo: create in Clock.cpp
+	Clock birthday = birthday.getBirthdayInput();
 
 	User* userToAdd = new User(username, birthday);
 
@@ -95,7 +92,7 @@ void addPageToSystem(Operation* system)
 	cin.getline(pageName, 256);
 
 	// validate username
-	if (doesPageExist(pageName, system)) {
+	if (doesPageExist(pageName, system) >= 0) {
 		cout << "page name is already taken" << endl;
 		addPageToSystem(system);
 		return;
@@ -108,6 +105,7 @@ void addPageToSystem(Operation* system)
 
 void initFriendsLists(User*** allUsers, int numOfAllUsers)
 {
+	cout << "hello :-)";
 	//// keren and steve jobs:
 	//(*allUsers)[0]->addFriendToFriendList(*allUsers, *allUsers[0], *allUsers[1]);
 	//(*allUsers)[1]->addFriendToFriendList(*allUsers, *allUsers[1], *allUsers[0]);

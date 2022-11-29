@@ -20,6 +20,7 @@ public:
 	Clock(int day, int month, int year); // to enter date manually (like in birthday)
 	void displayDate(); 
 	void displayTime();
+	Clock getBirthdayInput();
 };
 
 #endif // __CLOCK_H

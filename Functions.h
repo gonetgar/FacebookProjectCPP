@@ -10,8 +10,7 @@ class User;
 
 int displayMenu();
 int doesUserExist(const char* name, Operation* system);
-bool doesPageExist(const char* name, Operation* system); // todo: return index instead of bool
-
+int doesPageExist(const char* name, Operation* system);
 void getUserInput(Operation* system);
 void addPageToSystem(Operation* system);
 void getUserOrPageInput(int userChoice, Operation* system);
