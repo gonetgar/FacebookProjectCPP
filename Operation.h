@@ -25,7 +25,8 @@ public:
 	User** getAllUsers() { return _allUsers; };
 	Page** getAllPages() { return _allPages; };
 	void getCurrentMember();
-	const int getNumOfPages() const { return _numOfPages; }; // TODO ori please add "get current member" returns name of current member
+	const char* getCurrentMemberName() const { return _currentUser.getName(); };
+	const int getNumOfPages() const { return _numOfPages; };
 	const int getNumOfUsers() const { return _numOfUsers; };
 
 	void addUserToOperation(User* user);

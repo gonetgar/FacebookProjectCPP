@@ -23,7 +23,7 @@ void Page::displayAllStatuses()
 {
 	cout << _name << " Statuses: " << endl;
 	for (int i = 0; i < _numOfStatuses; i++)
-		cout << _statuses[i]->getName() << ", " << endl;
+		cout << _statuses[i]->_text << ", " << endl;
 }
 
 void Page::displayAllFans()

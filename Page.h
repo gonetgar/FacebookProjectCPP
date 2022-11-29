@@ -1,8 +1,11 @@
 #ifndef __PAGE_H
 #define __PAGE_H
 
-class User;
-class Status;
+//class User;
+//class Status;
+#include "Status.h"
+#include "User.h"
+
 
 class Page
 {
