@@ -41,7 +41,7 @@ public:
 	void createStatus();
 	void addFriend(User** allUsers, Operation* system);
 	void addFriendToFriendList(User** allUsers, User* currectUser, User* friendToAdd);
-	void cancelFriendship(char* friendToDelete);
+	void cancelFriendship(Operation* system);
 
 	void likePage();
 	void dislikePage();

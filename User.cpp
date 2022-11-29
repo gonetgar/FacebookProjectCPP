@@ -68,6 +68,8 @@ void User::addFriend(User** allUsers, Operation* system)
 {
 	char friendsName[MAX_CHARACTERS];
 
+	// ERROR ERROR ERROR // TODO
+
 	cout << "Enter friend's name: ";
 	cin.ignore();
 	cin.getline(friendsName, MAX_CHARACTERS);
@@ -113,12 +115,39 @@ void User::addFriendToFriendList(User** allUsers, User* currectUser, User* frien
 
 
 
-void User::cancelFriendship(char* friendToDelete)
+void User::cancelFriendship(Operation* system)
 {
-	cout << "bye bye :(\n";
-	cout << "Please enter friend's name you want to cancel: ";
+	char* friendToDelete = new char[MAX_CHARACTERS];
+	cout << "Please enter friend's name you want to remove: ";
+	cin.ignore();
+	cin.getline(friendToDelete, MAX_CHARACTERS);
 
+	int index;
+	bool found = false;
 	// search this friend in the friend list:
+	for (index = 0; index < _numOfFriends && !found ; index++)
+	{
+		if (strcmp(_friendsList[index]->getName(), friendToDelete) == 0)
+			found = true;
+	}
+
+	if (found)
+	{
+		// swap between the deleted friend and the last one on the array
+		_friendsList[index] = _friendsList[_numOfFriends - 1]; // point at the last friend in the array
+		_friendsList[_numOfFriends - 1] = nullptr; // point the last one on null
+		_numOfFriends--;
+	}
+	else
+		cout << "Friend was not found!\n";
+
+
+	// debugging:
+	cout << "\nUpdated list of friends is:\n";
+	for (int i = 0; i < _numOfFriends; i++)
+	{
+		cout << "Friend #" << i << ": " << _friendsList[i]->getName() << endl;
+	}
 }
 
 void User::likePage()
