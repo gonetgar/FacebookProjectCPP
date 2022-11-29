@@ -39,7 +39,6 @@ void Operation::addUserToOperation(User* userToAdd)
 
 		delete[] _allUsers;
 		_allUsers = newUsers;
-		_allUsers[i + 1] = userToAdd;
 	}
 
 	_allUsers[_numOfUsers] = userToAdd;
