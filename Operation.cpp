@@ -76,11 +76,11 @@ void Operation::displayAllEntities()
 	cout << "Current User: " << endl;
 	cout << _currentUser.getName() << endl;
 
-	cout << "Users: " << endl;
+	cout << endl << "Users: " << endl;
 	for (int i = 0; i < _numOfUsers; i++)
 		cout << _allUsers[i]->getName() << ", " << endl;
 
-	cout << "Pages: " << endl;
+	cout << endl << "Pages: " << endl;
 	for (int i = 0; i < _numOfPages; i++)
 		cout << _allPages[i]->getName() << ", " << endl;
 
@@ -122,8 +122,8 @@ void Operation::handleMenu(int userChoice)
 		case 3:
 			getUserOrPageInput(3, this);
 			break;
-			getUserOrPageInput(4, this);
 		case 4:
+			getUserOrPageInput(4, this);
 			break;
 		case 5:
 			char friendToDisplay[256];
@@ -150,7 +150,7 @@ void Operation::handleMenu(int userChoice)
 			displayAllEntities();
 			break;
 		case 11:
-			// TODO: check inside function if create for user or page
+			getUserOrPageInput(11, this);
 			break;
 		case 12:
 			cout << "GoodBye";

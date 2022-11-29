@@ -33,10 +33,10 @@ public:
 	User(const char* name, Clock birthday);
 	User(const User&) = delete; // copy c'tor - we delete cause we dont want to duplicate user
 
-	void setName(char* username);
 	const char* getName() const { return _name; };
+	void setName(char* username);
 	void setBirthday(Clock birthday) { _birthday = birthday; }
-	const Clock getBirthday() const { return _birthday;  }
+	const Clock getBirthday() const { return _birthday; }
 
 	void createStatus();
 	void addFriend(User** allUsers, Operation* system);

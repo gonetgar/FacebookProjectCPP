@@ -151,6 +151,9 @@ void getUserOrPageInput(int userChoice, Operation* system)
 			case 4:
 				allUsers[friendIndex]->displayAllStatuses();
 				break;
+			case 11:
+				allUsers[friendIndex]->displayAllFriends();
+				break;
 			default:
 				break;
 			}
@@ -173,6 +176,9 @@ void getUserOrPageInput(int userChoice, Operation* system)
 				break;
 			case 4:
 				allPages[pageIndex]->displayAllStatuses();
+				break;
+			case 11:
+				allPages[pageIndex]->displayAllFans();
 				break;
 			default:
 				break;

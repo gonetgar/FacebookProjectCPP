@@ -1,24 +1,33 @@
 #ifndef __PAGE_H
 #define __PAGE_H
 
-class Status;
 class User;
+class Status;
 
 class Page
 {
+private:
 	char* _name;
 	User** _fansList;
 	Status** _statuses;
 
-	int numOfFans = 0;
-	int maxFans = 0;
+	int _numOfFans = 0;
+	int _maxFans = 1;
+	int _numOfStatuses = 0;
+	int _maxStatuses = 1;
 
 public:
 	Page() = delete; // we don't want to create a new page without a page name
 	Page(const char* name);
 	Page(const Page* page) = delete; //  Prevent duplicate
+
 	const char* getName() const { return _name; };
+	const int getNumOfFans() const { return _numOfFans; };
+
+	char* setName(char* name) { _name = name; };
+
 	void createStatus();
+
 	void displayAllStatuses();
 	void displayAllFans();
 };

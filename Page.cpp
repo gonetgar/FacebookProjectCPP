@@ -2,6 +2,8 @@
 using namespace std;
 
 #include "Page.h"
+class User;
+class Status;
 
 Page::Page(const char* name)
 {
@@ -9,7 +11,7 @@ Page::Page(const char* name)
 	_name = _strdup(name);
 
 	_fansList = new User * [1];
-	_fansList = new User * [1];
+	_statuses = new Status * [1];
 }
 
 void Page::createStatus()
@@ -19,11 +21,15 @@ void Page::createStatus()
 
 void Page::displayAllStatuses()
 {
-	cout << "displayAllStatuses" << endl;
+	cout << _name << " Statuses: " << endl;
+	for (int i = 0; i < _numOfStatuses; i++)
+		cout << _statuses[i]->getName() << ", " << endl;
 }
 
 void Page::displayAllFans()
 {
-	cout << "displayAllFans" << endl;
+	cout << _name << " Fans: " << endl;
+	for (int i = 0; i < _numOfFans; i++)
+		cout << _fansList[i]->getName() << ", " << endl;
 }
 

@@ -134,12 +134,16 @@ void User::dislikePage()
 
 void User::displayRecentStatusesOfaFriend(char* friendToDisplay) // 10 most recent statuses of all his friends
 {
+	// find friend using index = doesFriendExist()
+	// loop friendToDisplay[index].friendsList
+	// sort
+	// display first 10 statuses
 	cout << ":)\n";
 }
 
 void User::displayAllStatuses()
 {
-	cout << "all statuses\n";
+	cout << _name << " statuses:\n";
 
 	for (int i = 0; i < _numOfStatuses; i++)
 	{
@@ -154,7 +158,7 @@ void User::displayAllStatuses()
 
 void User::displayAllFriends()
 {
-	cout << "This is all your friends:\n";
+	cout << _name << " friends:\n";
 
 	for (int i = 0; i < _numOfFriends; i++)
 	{
