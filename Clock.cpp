@@ -77,12 +77,12 @@ Clock Clock::getBirthdayInput()
 {
 	int d, m, y;
 
-	cout << "Please enter date of birth: ";
+	cout << "Please enter date of birth:\n";
 	cout << "Day: ";
 	cin >> d;
 	cout << "Month: ";
 	cin >> m;
-	cout << "Year:";
+	cout << "Year: ";
 	cin >> y;
 
 	Clock res(d, m, y);
