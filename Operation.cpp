@@ -91,12 +91,17 @@ void Operation::getCurrentMember()
 {
 	char* username = new char[256];
 
-	cout << "Hello, please enter your name for varification: ";
-	cin.ignore();
-	cin.getLine(username, 256);
+	cout << "Hello, please enter your name for varification: "; // TODO - Ori please ask for date of birth ;-)
+	cin.getline(username, 256);
 	cout << endl;
 
+	// TODO: ori add the current user to allUsers array
+
 	_currentUser.setName(username);
+
+	addUserToOperation(&_currentUser);
+
+
 	cout << _currentUser.getName() << "," << endl;
 }
 

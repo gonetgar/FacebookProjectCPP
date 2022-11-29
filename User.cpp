@@ -68,10 +68,9 @@ void User::addFriend(User** allUsers, Operation* system)
 	cin.ignore();
 	cin.getline(friendsName, MAX_CHARACTERS);
 
-	int i = 1; // TO DO return from does user exist his index
+	// searches friend in the system
 	int friendIndex = doesUserExist(friendsName, system);
 
-	// TODO get the return value frmo does user exist
 	if (friendIndex >= 0) // returns the friend's index
 	{
 		cout << "you found the friend!" << endl; // for debugging
@@ -79,15 +78,13 @@ void User::addFriend(User** allUsers, Operation* system)
 		addFriendToFriendList(allUsers, allUsers[friendIndex], this); // add myself to his friends list
 
 		//// for debugging:
-		cout << "you added: ";
+		cout << "you added:\n";
 		cout << "Name: " << _friendsList[friendIndex]->_name; // error, i changed _numOfFriendsro 0 for debug
 		cout << ", Birthday: ";
 		_friendsList[friendIndex]->_birthday.displayDate();
 	}
 	else
 		cout << "User not found!\n";
-
-	delete friendsName;
 }
 
 // this function adds a friend to the user's friend list, and updates number of friends
@@ -96,7 +93,18 @@ void User::addFriendToFriendList(User** allUsers, User* currectUser, User* frien
 	if (currectUser->_numOfFriends == currectUser->_maxNumOfFriends)
 	{
 		currectUser->_maxNumOfFriends *= 2;
-		reallocFriendList(currectUser->_friendsList, currectUser->_numOfFriends, currectUser->_maxNumOfFriends);
+
+		User** newFriendsList = new User * [currectUser->_maxNumOfFriends];
+
+		for (int i = 0; i < currectUser->_maxNumOfFriends; i++)
+		{
+			newFriendsList[i] = currectUser->_friendsList[i];
+		}
+		delete[] currectUser->_friendsList;
+		currectUser->_friendsList = newFriendsList;
+		//	TODO : in a function
+
+		//reallocFriendList(currectUser->_friendsList, currectUser->_numOfFriends, currectUser->_maxNumOfFriends);
 	}
 
 	// TODO: sort array of friends by name
