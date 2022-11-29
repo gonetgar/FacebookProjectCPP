@@ -3,13 +3,12 @@
 #define _CRT_SECURE_NO_WARNINGS
 
 #include <string.h>
-#include "Friend.h"
 #include "Date.h"
 #include "Status.h"
 #include "Clock.h"
 
 class Page;
-// do not call operation!
+class Operation;
 
 class User
 {
@@ -37,7 +36,7 @@ public:
 	void setName(char* username);
 	const char* getName() const { return _name; };
 	void createStatus();
-	void addFriend(User** allUsers);
+	void addFriend(User** allUsers, Operation* system);
 	void addFriendToFriendList(User** allUsers, User* currectUser, User* friendToAdd);
 	void cancelFriendship(char* friendToDelete);
 
