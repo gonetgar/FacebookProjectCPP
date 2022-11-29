@@ -10,10 +10,11 @@ class User;
 
 int displayMenu();
 bool doesUserExist(const char* name, Operation* system);
+bool doesPageExist(const char* name, Operation* system);
 void addUserToSystem(Operation* system);
+void addPageToSystem(Operation* system);
 void initFriendsLists(User*** allUsers, int numOfAllUsers);
 
 
-//void myStrcpy(char* dest, char* source);
 
 #endif // __FUNCTIONS_H

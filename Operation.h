@@ -19,15 +19,19 @@ private:
 
 public:
 	Operation();
-	User** getAllUsers(); // returns a ptr to all users 
 	void initiateData(User** users, Page** pages);
 	void handleMenu(int userChoice);
+
+	User** getAllUsers() { return _allUsers; };
+	Page** getAllPages() { return _allPages; };
 	void getCurrentMember();
-	const int getNumOfUsers() const { return _numOfUsers; };
-	void addUserToOperation(User* user);
 	const int getNumOfPages() const { return _numOfPages; };
+	const int getNumOfUsers() const { return _numOfUsers; };
+
+	void addUserToOperation(User* user);
 	void addPageToOperation(Page* page);
 	void displayAllEntities();
+
 	bool isValidUserName(char* userName); // sort & binary serach?
 	bool isValidPageName(char* pageName);
 	//	~Operation(); // TODO: free all memory here

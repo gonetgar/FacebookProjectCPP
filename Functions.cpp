@@ -23,7 +23,10 @@ int displayMenu()
 
 	cin >> choice;
 
-	return choice;
+	if (choice > 0 && choice << 13)
+		return choice;
+	else
+		return 12;
 }
 
 bool doesUserExist(const char* name, Operation* system)
@@ -34,6 +37,20 @@ bool doesUserExist(const char* name, Operation* system)
 	for (int i = 0; i < system->getNumOfUsers(); i++)
 	{
 		if (strcmp(allUsers[i]->getName(), name) == 0)
+			return true;
+	}
+
+	return false;
+}
+
+bool doesPageExist(const char* name, Operation* system)
+{
+	// for now we do O(n)
+	Page** allPages = system->getAllPages();
+
+	for (int i = 0; i < system->getNumOfPages(); i++)
+	{
+		if (strcmp(allPages[i]->getName(), name) == 0)
 			return true;
 	}
 
@@ -53,16 +70,36 @@ void addUserToSystem(Operation* system)
 	if (doesUserExist(username, system)) {
 		cout << "username is already taken" << endl;
 		addUserToSystem(system);
+		return;
 	}
 
+	// GON add code here:
 	// get day, month and year of birth from user
 	// birthday.getBirthdayInput(); // todo: create in Clock.cpp
 
-	User userToAdd(username, birthday);
+	User* userToAdd = new User(username, birthday);
 
-	system->addUserToOperation(&userToAdd);
-	// Error: here userToAdd dies so he is not saved to _allUsers
-	// maybe try making User* instead 
+	system->addUserToOperation(userToAdd);
+}
+
+void addPageToSystem(Operation* system)
+{
+	char* pageName = new char[256];
+
+	cout << "Please enter page name: " << endl;
+	cin.ignore();
+	cin.getline(pageName, 256);
+
+	// validate username
+	if (doesPageExist(pageName, system)) {
+		cout << "page name is already taken" << endl;
+		addPageToSystem(system);
+		return;
+	}
+
+	Page* pageToAdd = new Page(pageName);
+
+	system->addPageToOperation(pageToAdd);
 }
 
 void initFriendsLists(User*** allUsers, int numOfAllUsers)
