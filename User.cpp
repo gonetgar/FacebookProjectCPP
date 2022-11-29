@@ -73,15 +73,8 @@ void User::addFriend(User** allUsers, Operation* system)
 
 	if (friendIndex >= 0) // returns the friend's index
 	{
-		cout << "you found the friend!" << endl; // for debugging
 		addFriendToFriendList(allUsers, this, allUsers[friendIndex]); // add him to my friends list
 		addFriendToFriendList(allUsers, allUsers[friendIndex], this); // add myself to his friends list
-
-		//// for debugging:
-		cout << "you added:\n";
-		cout << "Name: " << _friendsList[friendIndex]->_name; // error, i changed _numOfFriendsro 0 for debug
-		cout << ", Birthday: ";
-		_friendsList[friendIndex]->_birthday.displayDate();
 	}
 	else
 		cout << "User not found!\n";
@@ -96,7 +89,7 @@ void User::addFriendToFriendList(User** allUsers, User* currectUser, User* frien
 
 		User** newFriendsList = new User * [currectUser->_maxNumOfFriends];
 
-		for (int i = 0; i < currectUser->_maxNumOfFriends; i++)
+		for (int i = 0; i < currectUser->_numOfFriends; i++)
 		{
 			newFriendsList[i] = currectUser->_friendsList[i];
 		}
@@ -113,6 +106,8 @@ void User::addFriendToFriendList(User** allUsers, User* currectUser, User* frien
 	currectUser->_friendsList[_numOfFriends] = friendToAdd; // point at this friend
 	currectUser->_numOfFriends++; // update number of friends
 }
+
+
 
 void User::cancelFriendship(char* friendToDelete)
 {
