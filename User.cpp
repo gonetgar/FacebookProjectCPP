@@ -64,26 +64,89 @@ void User::createStatus()
 }
 
 // searches the name in the system and if found, adds it to the user's friend list
+
+// TODO GON:
+// first ask for the user name, and then ask for the friend he wants to add.
+// we dont need current user!!!
 void User::addFriend(User** allUsers, Operation* system)
 {
-	char friendsName[MAX_CHARACTERS];
+	int userIndex, friendIndex;
+	char* username = new char[MAX_CHARACTERS];
+	char* friendsName = new char[MAX_CHARACTERS];
 
-	// ERROR ERROR ERROR // TODO
+	// searches username in the system: (until we find it) ??? TODO ??
 
-	cout << "Enter friend's name: ";
-	cin.ignore();
+	cout << "Please enter your username: ";
+	//cin.ignore();
+	cin.ignore(numeric_limits<streamsize>::max(), '\n');
+	cin.getline(username, MAX_CHARACTERS);
+	userIndex = doesUserExist(username, system);
+	cout << endl;
+
+	if (userIndex < 0)
+		cout << "User was not found!\n";
+
+	cout << "Please enter friend's name: ";
+	//cin.ignore();
 	cin.getline(friendsName, MAX_CHARACTERS);
+	cout << "friends name: " << friendsName << endl;
+	friendIndex = doesUserExist(friendsName, system);
+	cout << "friend index: " << friendIndex << endl;
+	cout << endl;
 
-	// searches friend in the system
-	int friendIndex = doesUserExist(friendsName, system);
+	if (friendIndex < 0)
+		cout << "Friend was not found!\n";
 
-	if (friendIndex >= 0) // returns the friend's index
-	{
-		addFriendToFriendList(allUsers, this, allUsers[friendIndex]); // add him to my friends list
-		addFriendToFriendList(allUsers, allUsers[friendIndex], this); // add myself to his friends list
-	}
-	else
-		cout << "User not found!\n";
+
+	//do
+	//{
+	//	cout << "Please enter your username: ";
+	//	//cin.ignore();
+	//	cin.ignore(numeric_limits<streamsize>::max(), '\n');
+	//	cin.getline(username, MAX_CHARACTERS);
+	//	userIndex = doesUserExist(username, system);
+	//	cout << endl;
+
+	//	if (userIndex < 0)
+	//		cout << "User was not found! Try again.\n";
+
+	//} while (userIndex < 0);
+
+
+	// searches friend in the system: (until we find it) ??? TODO ??
+	//do
+	//{
+	//	cout << "Please enter friend's name: ";
+	//	//cin.ignore();
+	//	cin.ignore(numeric_limits<streamsize>::max(), '\n');
+	//	cin.getline(friendsName, MAX_CHARACTERS);
+	//	friendIndex = doesUserExist(friendsName, system);
+	//	cout << endl;
+
+	//	if (friendIndex < 0)
+	//		cout << "Friend was not found! Try again.\n";
+
+	//} while (friendIndex < 0);
+
+	// here we found the friend in the system
+	// his index is "friendIndex"
+
+
+
+	// ############## old version: #####################3
+
+	//if (friendIndex >= 0) // returns the friend's index
+	//{
+	//	addFriendToFriendList(allUsers, this, allUsers[friendIndex]); // add him to my friends list
+	//	addFriendToFriendList(allUsers, allUsers[friendIndex], this); // add myself to his friends list
+	//}
+	//else
+	//	cout << "User not found!\n";
+
+
+	// TODO how to delete?
+	//delete friendsName;
+	//delete username;
 }
 
 // this function adds a friend to the user's friend list, and updates number of friends
@@ -91,7 +154,11 @@ void User::addFriendToFriendList(User** allUsers, User* currectUser, User* frien
 {
 	if (currectUser->_numOfFriends == currectUser->_maxNumOfFriends)
 	{
+		cout << "enters to if\n"; // debugging
 		currectUser->_maxNumOfFriends *= 2;
+
+		cout << "num max friends: " << _maxNumOfFriends << endl; // debugging
+
 
 		User** newFriendsList = new User * [currectUser->_maxNumOfFriends];
 
@@ -101,6 +168,15 @@ void User::addFriendToFriendList(User** allUsers, User* currectUser, User* frien
 		}
 		delete[] currectUser->_friendsList;
 		currectUser->_friendsList = newFriendsList;
+
+		// debugging:
+		cout << "print the new friend list:\n";
+		for (int i = 0; i < _numOfFriends; i++)
+		{
+			cout << _friendsList[i]->getName() << endl;
+		}
+		cout << "\n\n";
+
 		//	TODO : in a function
 
 		//reallocFriendList(currectUser->_friendsList, currectUser->_numOfFriends, currectUser->_maxNumOfFriends);
@@ -111,11 +187,19 @@ void User::addFriendToFriendList(User** allUsers, User* currectUser, User* frien
 	//add this friend to my friends list :
 	currectUser->_friendsList[_numOfFriends] = friendToAdd; // point at this friend
 	currectUser->_numOfFriends++; // update number of friends
+
+	// debugging:
+	cout << "print " << currectUser->_name << "'s list of friends:\n";
+	for (int i = 0; i < _numOfFriends; i++)
+	{
+		cout << _friendsList[i]->getName() << endl;
+	}
+	cout << "\n\n";
 }
 
 
 
-void User::cancelFriendship(Operation* system)
+void User::cancelFriendship()
 {
 	char* friendToDelete = new char[MAX_CHARACTERS];
 	cout << "Please enter friend's name you want to remove: ";

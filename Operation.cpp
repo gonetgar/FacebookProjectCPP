@@ -135,10 +135,10 @@ void Operation::handleMenu(int userChoice)
 			_currentUser.addFriend(_allUsers, this); // error: return different friend
 			break;
 		case 7:
-			char friendToDelete[256]; // may cause error char[] and char*
-			cout << "Your Friend's Name: \n";
-			cin >> friendToDisplay;
-			_currentUser.cancelFriendship(friendToDelete);
+			//char friendToDelete[256]; // may cause error char[] and char*
+			//cout << "Your Friend's Name: \n";
+			//cin >> friendToDisplay; /// ORI you can delete it! :-)
+			_currentUser.cancelFriendship(); // ORI i changed the call to function
 			break;
 		case 8:
 			_currentUser.likePage();
