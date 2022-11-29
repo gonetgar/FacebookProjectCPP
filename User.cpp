@@ -52,11 +52,15 @@ void User::createStatus()
 		_statuses = newStatuses;
 	}
 
-	Status* newStatus = this->_statuses[_numOfStatuses]->createStatus();
+	Status* newStatus = new Status();
+	newStatus->getStatusInfo(newStatus);
+	_statuses[_numOfStatuses] = newStatus;
 	_numOfStatuses++;
-
+	
+	cout << "_numOfStatuses: " << _numOfStatuses << endl;
 	// for debugging:
-	cout << "number of statuses: " << _numOfStatuses;
+	cout << "number of statuses: " << _numOfStatuses << endl;
+	cout << "text: " << _statuses[_numOfStatuses-1]->_text << endl; // todo: getStatusText()
 }
 
 // searches the name in the system and if found, adds it to the user's friend list
@@ -145,9 +149,12 @@ void User::displayAllStatuses()
 		cout << "Date and time: ";
 		_statuses[i]->_time.displayDate();
 		_statuses[i]->_time.displayTime();
+		cout << endl;
 
 		cout << "Text: ";
 		cout << _statuses[i]->_text << endl;
+		cout << endl;
+
 	}
 }
 

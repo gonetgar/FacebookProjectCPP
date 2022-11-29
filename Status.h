@@ -12,13 +12,13 @@ const int MAX_CHARACTERS = 256;
 class Status
 {
 public:
-	char* _text;
+	char* _text; // change to private
 	Clock _time;
 
 	Status();
 	Status(char* text, Clock time);
 
-	Status* createStatus(); // maybe it will be in here and inside the user/page we'll add it to his list of statuses.
+	void getStatusInfo(Status* newStatus); // maybe it will be in here and inside the user/page we'll add it to his list of statuses.
 
 	~Status();
 };

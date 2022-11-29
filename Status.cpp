@@ -16,13 +16,13 @@ Status::Status(char* text, Clock time)
 	_time = time;
 }
 
-// change it!! onlt for user
-Status* Status::createStatus()
+
+void Status::getStatusInfo(Status* newStatus)
 {
-	Status* newStatus;
-	newStatus = new Status[MAX_CHARACTERS];
+	//Status* newStatus = new Status();
 
 	cout << "Please insert your status: ";
+	cin.ignore();
 	cin.getline(newStatus->_text, MAX_CHARACTERS);	//TODO shrink?
 
 	//// for debugging: ////
@@ -32,13 +32,11 @@ Status* Status::createStatus()
 	cout << "\non date: ";
 	cout << setw(2) << setfill('0') << newStatus->_time._day << ".";
 	cout << setw(2) << setfill('0') << newStatus->_time._month << ".";
-	cout << setw(2) << setfill('0') << newStatus->_time._year;
+	cout << setw(2) << setfill('0') << newStatus->_time._year << endl;
 	cout << "\non time: ";
 	cout << setw(2) << setfill('0') << newStatus->_time._hours << ":";
 	cout << setw(2) << setfill('0') << newStatus->_time._minutes << ":";
-	cout << setw(2) << setfill('0') << newStatus->_time._seconds;
-
-	return newStatus;
+	cout << setw(2) << setfill('0') << newStatus->_time._seconds << endl;
 }
 
 Status::~Status()
