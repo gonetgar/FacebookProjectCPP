@@ -43,7 +43,7 @@ public:
 	void addFriendToFriendList(User** allUsers, User* currectUser, User* friendToAdd);
 	void cancelFriendship();
 
-	void likePage();
+	void likePage(Page* newPage);
 	void dislikePage();
 	void displayRecentStatusesOfaFriend(char* friendToDisplay); // 10 most recent statuses of all his friends
 	void displayAllStatuses();

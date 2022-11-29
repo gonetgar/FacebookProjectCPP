@@ -6,7 +6,6 @@ int displayMenu()
 {
 	int choice;
 
-	cout << "Welcome To Facebook :)" << endl;
 	cout << "Please choose an action:\n";
 	cout << "1. Add new user\n";
 	cout << "2. Add new page\n";

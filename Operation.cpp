@@ -110,6 +110,10 @@ void Operation::getCurrentMember()
 
 void Operation::handleMenu(int userChoice)
 {
+	Page** allPages = getAllPages();
+	char pageName[256];
+	int index = 0;
+
 	if (userChoice > 0 && userChoice < 13) {
 		switch (userChoice)
 		{
@@ -141,7 +145,15 @@ void Operation::handleMenu(int userChoice)
 			_currentUser.cancelFriendship(); // ORI i changed the call to function
 			break;
 		case 8:
-			_currentUser.likePage();
+			// turn this to a fucntion getPageDetails()
+
+			cout << "Enter page name to like: \n";
+			cin.ignore();
+			cin.getline(pageName, 256);
+
+			index = doesPageExist(pageName, this);
+
+			_currentUser.likePage(allPages[index]);
 			break;
 		case 9:
 			_currentUser.dislikePage();
