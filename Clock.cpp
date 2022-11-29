@@ -72,3 +72,21 @@ void Clock::displayTime()
 {
 	cout << _hours << ":" << _minutes << ":" << _seconds << endl;
 }
+
+Clock Clock::getBirthdayInput()
+{
+	int d, m, y;
+
+	cout << "Please enter date of birth: ";
+	cout << "Day: ";
+	cin >> d;
+	cout << "Month: ";
+	cin >> m;
+	cout << "Year:";
+	cin >> y;
+
+	Clock res(d, m, y);
+
+	return res;
+}
+

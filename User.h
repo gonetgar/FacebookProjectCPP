@@ -29,12 +29,15 @@ private:
 	Page** _likedPages;
 
 public:
-	User(); // we don't want to create a new user without a name
+	User(); // TODO: add delete. we don't want to create a new user without a name
 	User(const char* name, Clock birthday);
 	User(const User&) = delete; // copy c'tor - we delete cause we dont want to duplicate user
 
 	void setName(char* username);
 	const char* getName() const { return _name; };
+	void setBirthday(Clock birthday) { _birthday = birthday; }
+	const Clock getBirthday() const { return _birthday;  }
+
 	void createStatus();
 	void addFriend(User** allUsers, Operation* system);
 	void addFriendToFriendList(User** allUsers, User* currectUser, User* friendToAdd);

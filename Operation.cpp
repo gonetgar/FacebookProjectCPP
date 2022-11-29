@@ -41,6 +41,8 @@ void Operation::addUserToOperation(User* userToAdd)
 		_allUsers = newUsers;
 	}
 
+	cout << "num of users: " << _numOfUsers << endl;
+
 	_allUsers[_numOfUsers] = userToAdd;
 	_numOfUsers++;
 
@@ -95,12 +97,13 @@ void Operation::getCurrentMember()
 	cin.getline(username, 256);
 	cout << endl;
 
-	// TODO: ori add the current user to allUsers array
+	Clock birthDate = birthDate.getBirthdayInput();
+	birthDate.displayDate();
 
 	_currentUser.setName(username);
+	_currentUser.setBirthday(birthDate);
 
 	addUserToOperation(&_currentUser);
-
 
 	cout << _currentUser.getName() << "," << endl;
 }

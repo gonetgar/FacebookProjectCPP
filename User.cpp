@@ -9,7 +9,7 @@ User::User()
 	_name = new char[256];
 	_name = _strdup("ori the king");
 
-	_birthday = Clock(1, 1, 2000);
+	_birthday = Clock(2, 2, 2000);
 	_statuses = new Status * [_maxNumOfStatuses];
 	_likedPages = new Page * [_maxNumOfPages];
 	_friendsList = new User * [_maxNumOfFriends];
