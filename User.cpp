@@ -2,6 +2,7 @@
 using namespace std;
 
 #include "User.h"
+#include "Functions.h"
 
 User::User()
 {
@@ -59,42 +60,34 @@ void User::createStatus()
 }
 
 // searches the name in the system and if found, adds it to the user's friend list
-void User::addFriend(User** allUsers)
+void User::addFriend(User** allUsers, Operation* system)
 {
 	char friendsName[MAX_CHARACTERS];
 
 	cout << "Enter friend's name: ";
-	cin.ignore(); // IMPORTANT for reading input @gon!!
-	cin.getline(friendsName, MAX_CHARACTERS); // ERROR doesnt take input
+	cin.ignore();
+	cin.getline(friendsName, MAX_CHARACTERS);
 
-	int numOfAllUsers = sizeof(*allUsers);
+	int i = 1; // TO DO return from does user exist his index
+	int friendIndex = doesUserExist(friendsName, system);
 
-	/// 1. search this user in the array: // TODO: change it to binary search
-	bool found = false;
-	int i;
-	for (i = 0; i < numOfAllUsers && !found; i++) // TODO change it back to numOfAllUsers
-	{
-		if (strcmp(allUsers[i]->_name, friendsName) == 0)
-			found = true;
-	}
-
-	if (found == false)
-		cout << "User not found!\n";
-
-	else
+	// TODO get the return value frmo does user exist
+	if (friendIndex >= 0) // returns the friend's index
 	{
 		cout << "you found the friend!" << endl; // for debugging
-		addFriendToFriendList(allUsers, this, allUsers[i]); // add him to my friends list
-		addFriendToFriendList(allUsers, allUsers[i], this); // add myself to his friends list
+		addFriendToFriendList(allUsers, this, allUsers[friendIndex]); // add him to my friends list
+		addFriendToFriendList(allUsers, allUsers[friendIndex], this); // add myself to his friends list
 
 		//// for debugging:
 		cout << "you added: ";
-		cout << "name: " << _friendsList[0]->_name; // error, i changed _numOfFriendsro 0 for debug
-		cout << ", birthday: ";
-		_friendsList[0]->_birthday.displayDate();
+		cout << "Name: " << _friendsList[friendIndex]->_name; // error, i changed _numOfFriendsro 0 for debug
+		cout << ", Birthday: ";
+		_friendsList[friendIndex]->_birthday.displayDate();
 	}
+	else
+		cout << "User not found!\n";
 
-	// delete[] friendsName; // ERROR throw you of the program
+	delete friendsName;
 }
 
 // this function adds a friend to the user's friend list, and updates number of friends

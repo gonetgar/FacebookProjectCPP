@@ -29,18 +29,20 @@ int displayMenu()
 		return 12;
 }
 
-bool doesUserExist(const char* name, Operation* system)
+// returns the user's index in allUsers array, and -1 if not found.
+int doesUserExist(const char* name, Operation* system)
 {
+	int index;
 	// for now we do O(n)
 	User** allUsers = system->getAllUsers();
 
-	for (int i = 0; i < system->getNumOfUsers(); i++)
+	for (index = 0; index < system->getNumOfUsers(); index++)
 	{
-		if (strcmp(allUsers[i]->getName(), name) == 0)
-			return true;
+		if (strcmp(allUsers[index]->getName(), name) == 0)
+			return index;
 	}
 
-	return false;
+	return -1;
 }
 
 bool doesPageExist(const char* name, Operation* system)
@@ -57,7 +59,7 @@ bool doesPageExist(const char* name, Operation* system)
 	return false;
 }
 
-void addUserToSystem(Operation* system)
+void getUserInput(Operation* system)
 {
 	char* username = new char[256];
 	Clock birthday(1, 1, 2020);
@@ -67,13 +69,17 @@ void addUserToSystem(Operation* system)
 	cin.getline(username, 256);
 
 	// validate username
-	if (doesUserExist(username, system)) {
+	if (doesUserExist(username, system) >= 0) {
 		cout << "username is already taken" << endl;
-		addUserToSystem(system);
+		getUserInput(system);
 		return;
 	}
 
 	// GON add code here:
+	
+
+
+
 	// get day, month and year of birth from user
 	// birthday.getBirthdayInput(); // todo: create in Clock.cpp
 

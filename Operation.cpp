@@ -106,7 +106,7 @@ void Operation::handleMenu(int userChoice)
 		switch (userChoice)
 		{
 		case 1:
-			addUserToSystem(this); // this == system
+			getUserInput(this); // this == system
 			break;
 		case 2:
 			addPageToSystem(this);
@@ -126,7 +126,7 @@ void Operation::handleMenu(int userChoice)
 			_currentUser.displayRecentStatusesOfaFriend(friendToDisplay);
 			break;
 		case 6:
-			_currentUser.addFriend(_allUsers); // error: return different friend
+			_currentUser.addFriend(_allUsers, this); // error: return different friend
 			break;
 		case 7:
 			char friendToDelete[256]; // may cause error char[] and char*
