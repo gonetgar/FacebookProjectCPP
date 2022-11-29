@@ -28,13 +28,34 @@ void Page::displayAllStatuses()
 
 void Page::displayAllFans()
 {
-	cout << _name << " Fans: " << endl;
+	cout << _name << " Fans: ";
 
 	if (_numOfFans == 0)
 		cout << "none :(" << endl;
 	else {
 		for (int i = 0; i < _numOfFans; i++)
-			cout << _fansList[i]->getName() << ", " << endl;
+			cout << _fansList[i]->getName() << " , ";
 	}
+
+	cout << endl << endl;
 }
 
+void Page::addFan(User* newUser)
+{
+	if (_maxFans == _numOfFans) {
+		_maxFans *= 2;
+		User** newFans = new User * [_maxFans];
+		for (int i = 0; i < _numOfFans; i++)
+			newFans[i] = _fansList[i];
+
+		delete[] _fansList;
+		_fansList = newFans;
+	}
+
+	_fansList[_numOfFans] = newUser;
+	_numOfFans++;
+
+	newUser->likePage(this);
+
+	cout << newUser->getName() << " is now a fan of: " << this->getName();
+}

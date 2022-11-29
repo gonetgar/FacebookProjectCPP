@@ -28,6 +28,7 @@ public:
 	const int getNumOfFans() const { return _numOfFans; };
 
 	char* setName(char* name) { _name = name; };
+	void addFan(User* newUser);
 
 	void createStatus();
 
