@@ -41,6 +41,7 @@ void Operation::addUserToOperation(User* userToAdd)
 		_allUsers = newUsers;
 	}
 
+
 	_allUsers[_numOfUsers] = userToAdd;
 	_numOfUsers++;
 
@@ -92,8 +93,7 @@ void Operation::getCurrentMember()
 	char* username = new char[256];
 
 	cout << "Hello, please enter your name for varification: ";
-	cin.ignore();
-	cin.getLine(username, 256);
+	cin.getline(username, 256);
 	cout << endl;
 
 	_currentUser.setName(username);
@@ -113,12 +113,10 @@ void Operation::handleMenu(int userChoice)
 			addPageToSystem(this);
 			break;
 		case 3:
-			_currentUser.createStatus();
+			getUserOrPageInput(3, this);
 			break;
-			// TODO: check inside function if create for user or page
+			getUserOrPageInput(4, this);
 		case 4:
-			_currentUser.displayAllStatuses();
-			// TODO: check inside function if display user or page
 			break;
 		case 5:
 			char friendToDisplay[256];

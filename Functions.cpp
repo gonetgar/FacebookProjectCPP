@@ -76,8 +76,6 @@ void getUserInput(Operation* system)
 	}
 
 	// GON add code here:
-	
-
 
 
 	// get day, month and year of birth from user
@@ -121,5 +119,68 @@ void initFriendsLists(User*** allUsers, int numOfAllUsers)
 	//// gon and ori:
 	//(*allUsers)[4]->addFriendToFriendList(*allUsers, *allUsers[4], *allUsers[3]);
 	//(*allUsers)[3]->addFriendToFriendList(*allUsers, *allUsers[3], *allUsers[4]);
+}
+
+void getUserOrPageInput(int userChoice, Operation* system)
+{
+	// userChoice is according to handleMenu()
+
+	char* username = new char[256];
+	char* pageName = new char[256];
+
+	User** allUsers = system->getAllUsers();
+	Page** allPages = system->getAllPages();
+
+	bool isUserToDisplay = 0;
+
+	cout << "Choose: " << endl;
+	cout << "0 - Page" << endl << "1 - User" << endl;
+	cin >> isUserToDisplay;
+
+	if (isUserToDisplay) { // the choice was User
+		cout << "Please enter username: " << endl;
+		cin.ignore();
+		cin.getline(username, 256);
+
+		int friendIndex = doesUserExist(username, system);
+
+		if (friendIndex >= 0) {
+			switch (userChoice)
+			{
+			case 3:
+				allUsers[friendIndex]->createStatus();
+				break;
+			case 4:
+				allUsers[friendIndex]->displayAllStatuses();
+				break;
+			default:
+				break;
+			}
+		}
+		else cout << "user was not found" << endl;
+	}
+	else  // choice was Page
+	{
+		cout << "Please enter page name: " << endl;
+		cin.ignore();
+		cin.getline(pageName, 256);
+
+		int pageIndex = doesPageExist(pageName, system);
+
+		if (pageIndex >= 0) {
+			switch (userChoice)
+			{
+			case 3:
+				allPages[pageIndex]->createStatus();
+				break;
+			case 4:
+				allPages[pageIndex]->displayAllStatuses();
+				break;
+			default:
+				break;
+			}
+		}
+		else cout << "page was not found" << endl;
+	}
 }
 
