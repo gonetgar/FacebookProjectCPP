@@ -56,11 +56,11 @@ void User::createStatus()
 	newStatus->getStatusInfo(newStatus);
 	_statuses[_numOfStatuses] = newStatus;
 	_numOfStatuses++;
-	
+
 	cout << "_numOfStatuses: " << _numOfStatuses << endl;
 	// for debugging:
 	cout << "number of statuses: " << _numOfStatuses << endl;
-	cout << "text: " << _statuses[_numOfStatuses-1]->_text << endl; // todo: getStatusText()
+	cout << "text: " << _statuses[_numOfStatuses - 1]->_text << endl; // todo: getStatusText()
 }
 
 // searches the name in the system and if found, adds it to the user's friend list
@@ -121,7 +121,7 @@ void User::cancelFriendship(char* friendToDelete)
 	// search this friend in the friend list:
 }
 
-void User::likePage()
+void User::likePage(Page* newPage)
 {
 	cout << "like\n";
 }
@@ -160,15 +160,20 @@ void User::displayAllStatuses()
 
 void User::displayAllFriends()
 {
-	cout << _name << " friends:\n";
+	cout << _name << " friends:";
 
-	for (int i = 0; i < _numOfFriends; i++)
-	{
-		cout << "friend #" << i + 1 << ":\n";
-		cout << "name: " << _friendsList[i]->getName() << endl;
-		cout << "birthday: ";
-		_friendsList[i]->_birthday.displayDate();
+	if (_numOfFriends == 0)
+		cout << " none :(" << endl;
+	else {
 		cout << endl;
+		for (int i = 0; i < _numOfFriends; i++)
+		{
+			cout << "friend #" << i + 1 << ":\n";
+			cout << "name: " << _friendsList[i]->getName() << endl;
+			cout << "birthday: ";
+			_friendsList[i]->_birthday.displayDate();
+			cout << endl;
+		}
 	}
 }
 

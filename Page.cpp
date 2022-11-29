@@ -29,7 +29,12 @@ void Page::displayAllStatuses()
 void Page::displayAllFans()
 {
 	cout << _name << " Fans: " << endl;
-	for (int i = 0; i < _numOfFans; i++)
-		cout << _fansList[i]->getName() << ", " << endl;
+
+	if (_numOfFans == 0)
+		cout << "none :(" << endl;
+	else {
+		for (int i = 0; i < _numOfFans; i++)
+			cout << _fansList[i]->getName() << ", " << endl;
+	}
 }
 

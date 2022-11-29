@@ -44,6 +44,7 @@ int main()
 
 
 	//// ################################ Menu ################################ 
+	cout << "Welcome To Facebook :)" << endl;
 	userChoice = displayMenu();
 	system.handleMenu(userChoice);
 
