@@ -162,7 +162,7 @@ void User::dislikePage(Page* removePage) // todo: change to ref&
 			// decrement log size of array
 			_numOfPages--;
 			// call within page (this)
-			removePage.removeFan(this);
+			removePage->removeFan(this);
 		}
 	}
 

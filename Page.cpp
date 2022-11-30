@@ -59,3 +59,22 @@ void Page::addFan(User* newUser)
 
 	cout << newUser->getName() << " is now a fan of: " << this->getName();
 }
+
+void Page::removeFan(User* removeUser)
+{
+	for (int i = 0; i < _numOfFans; i++)
+	{
+		if (removeUser == _fansList[i]) // user is a fan
+		{
+			// Swap the page with last element
+			swap(_fansList[i], _fansList[_numOfFans - 1]);
+			// decrement log size of array
+			_numOfFans--;
+			// call within page (this)
+			removeUser->dislikePage(this);
+		}
+	}
+
+	cout << endl << removeUser->getName() << " is no more a fan of:  " << this->getName() << endl << endl;
+
+}

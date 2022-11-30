@@ -193,7 +193,7 @@ Page* getPageDetails(Operation* system)
 	char pageName[256];
 	int index = 0;
 
-	cout << "Enter page name to like: \n";
+	cout << "Enter page name: \n";
 	cin.ignore();
 	cin.getline(pageName, 256);
 

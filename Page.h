@@ -29,6 +29,7 @@ public:
 
 	char* setName(char* name) { _name = name; };
 	void addFan(User* newUser);
+	void removeFan(User* removeUser);
 
 	void createStatus();
 
