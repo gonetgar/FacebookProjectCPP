@@ -145,8 +145,8 @@ void Operation::handleMenu(int userChoice)
 			_currentUser.cancelFriendship(friendToDelete);
 			break;
 		case 8:
-			// turn this to a fucntion getPageDetails()
-
+			// todo: turn this to a fucntion getPageDetails()
+			// validation if name doesnt exist
 			cout << "Enter page name to like: \n";
 			cin.ignore();
 			cin.getline(pageName, 256);
