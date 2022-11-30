@@ -110,9 +110,7 @@ void Operation::getCurrentMember()
 
 void Operation::handleMenu(int userChoice)
 {
-	Page** allPages = getAllPages();
-	char pageName[256];
-	int index = 0;
+	Page* newPage;
 
 	if (userChoice > 0 && userChoice < 13) {
 		switch (userChoice)
@@ -145,15 +143,10 @@ void Operation::handleMenu(int userChoice)
 			_currentUser.cancelFriendship(friendToDelete);
 			break;
 		case 8:
-			// todo: turn this to a fucntion getPageDetails()
-			// validation if name doesnt exist
-			cout << "Enter page name to like: \n";
-			cin.ignore();
-			cin.getline(pageName, 256);
-
-			index = doesPageExist(pageName, this);
-
-			_currentUser.likePage(allPages[index]);
+			newPage = getPageDetails(this);
+			if (newPage)
+				_currentUser.likePage(newPage);
+			else cout << "no page found :(" << endl << endl;
 			break;
 		case 9:
 			_currentUser.dislikePage();

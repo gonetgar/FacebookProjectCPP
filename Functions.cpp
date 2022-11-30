@@ -187,3 +187,20 @@ void getUserOrPageInput(int userChoice, Operation* system)
 	}
 }
 
+Page* getPageDetails(Operation* system)
+{
+	Page** allPages = system->getAllPages();
+	char pageName[256];
+	int index = 0;
+
+	cout << "Enter page name to like: \n";
+	cin.ignore();
+	cin.getline(pageName, 256);
+
+	index = doesPageExist(pageName, system);
+
+	if (index >= 0)
+		return allPages[index];
+	else
+		return nullptr;
+}
