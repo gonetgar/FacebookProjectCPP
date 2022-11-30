@@ -48,7 +48,7 @@ void User::createStatus()
 		for (int i = 0; i < _numOfStatuses; i++)
 			newStatuses[i] = _statuses[i];
 
-		delete[] _statuses; // ERROR doesnt delete the array for some reason
+		// delete[] _statuses; // ERROR doesnt delete the array for some reason
 		_statuses = newStatuses;
 	}
 
@@ -57,10 +57,9 @@ void User::createStatus()
 	_statuses[_numOfStatuses] = newStatus;
 	_numOfStatuses++;
 
-	//cout << "_numOfStatuses: " << _numOfStatuses << endl;
-	// for debugging:
-	cout << "number of statuses: " << _numOfStatuses << endl;
-	cout << "text: " << _statuses[_numOfStatuses - 1]->_text << endl; // todo: getStatusText()
+	cout << "status created successfully" << endl << endl;
+
+	// todo: getStatusText()
 }
 
 // searches the name in the system and if found, adds it to the user's friend list
@@ -170,13 +169,41 @@ void User::dislikePage(Page* removePage) // todo: change to ref&
 
 }
 
-void User::displayRecentStatusesOfaFriend(char* friendToDisplay) // 10 most recent statuses of all his friends
+void User::displayRecentStatusesOfaFriend(char* friendToDisplay, Operation* system) // 10 most recent statuses of all his friends
 {
-	// TODO: gon
+	const int NUM_STATUSES_TO_DISPLAY = 10;
+	User** allUsers = system->getAllUsers();
+	User* userToDisplay;
+	Status** statuses;
+	int index = 0;
+	int numOfStatuses = 0;
+
 	// find friend using index = doesFriendExist()
-	// loop friendToDisplay[index].friendsList
-	// display first 10 statuses
-	cout << ":)\n";
+	index = doesUserExist(friendToDisplay, system);
+	userToDisplay = allUsers[index];
+	// loop friendToDisplay[index].statuses
+	numOfStatuses = userToDisplay->getNumOfStatuses();
+
+	if (numOfStatuses > 0)
+	{
+		statuses = userToDisplay->getAllStatuses();
+
+		cout << endl << userToDisplay->getName() << " Recent 10 statuses: " << endl << endl;
+		for (int i = 0; i < numOfStatuses || numOfStatuses == NUM_STATUSES_TO_DISPLAY; i++)
+		{
+			cout << "Status #" << i;
+			cout << endl << "------------------------" << endl;
+			cout << "Date and time: ";
+			statuses[i]->_time.displayDate();
+			statuses[i]->_time.displayTime();
+			cout << endl;
+
+			cout << "Text: " << statuses[i]->_text << endl;
+			cout << "------------------------" << endl;
+			cout << endl;
+		}
+	}
+	else cout << "No statuses to display." << endl << endl;
 }
 
 void User::displayAllStatuses()
@@ -195,7 +222,6 @@ void User::displayAllStatuses()
 			cout << "Text: " << _statuses[i]->_text << endl;
 			cout << "------------------------" << endl;
 			cout << endl;
-
 		}
 	}
 }

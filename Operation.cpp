@@ -132,7 +132,7 @@ void Operation::handleMenu(int userChoice)
 			cout << "Your Friend's Name: \n";
 			cin.ignore();
 			cin.getline(friendToDisplay, 256);
-			_currentUser.displayRecentStatusesOfaFriend(friendToDisplay);
+			_currentUser.displayRecentStatusesOfaFriend(friendToDisplay, this);
 			break;
 		case 6:
 			_currentUser.addFriend(_allUsers, this); // error: return different friend

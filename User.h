@@ -34,6 +34,9 @@ public:
 	User(const User&) = delete; // copy c'tor - we delete cause we dont want to duplicate user
 
 	const char* getName() const { return _name; };
+	const int getNumOfStatuses() const { return _numOfStatuses; };
+	Status** getAllStatuses() { return _statuses; };
+
 	void setName(char* username);
 	void setBirthday(Clock birthday) { _birthday = birthday; }
 	const Clock getBirthday() const { return _birthday; }
@@ -45,7 +48,7 @@ public:
 
 	void likePage(Page* newPage);
 	void dislikePage(Page* removePage);
-	void displayRecentStatusesOfaFriend(char* friendToDisplay); // 10 most recent statuses of all his friends
+	void displayRecentStatusesOfaFriend(char* friendToDisplay, Operation* system); // 10 most recent statuses of all his friends
 	void displayAllStatuses();
 	void displayAllFriends();
 
