@@ -57,7 +57,7 @@ void User::createStatus()
 	_statuses[_numOfStatuses] = newStatus;
 	_numOfStatuses++;
 
-	cout << "_numOfStatuses: " << _numOfStatuses << endl;
+	//cout << "_numOfStatuses: " << _numOfStatuses << endl;
 	// for debugging:
 	cout << "number of statuses: " << _numOfStatuses << endl;
 	cout << "text: " << _statuses[_numOfStatuses - 1]->_text << endl; // todo: getStatusText()
@@ -172,28 +172,31 @@ void User::dislikePage(Page* removePage) // todo: change to ref&
 
 void User::displayRecentStatusesOfaFriend(char* friendToDisplay) // 10 most recent statuses of all his friends
 {
+	// TODO: gon
 	// find friend using index = doesFriendExist()
 	// loop friendToDisplay[index].friendsList
-	// sort
 	// display first 10 statuses
 	cout << ":)\n";
 }
 
 void User::displayAllStatuses()
 {
-	cout << _name << " statuses:\n";
+	cout << _name << " statuses: ";
+	if (_numOfStatuses == 0) cout << "none" << endl;
+	else {
+		for (int i = 0; i < _numOfStatuses; i++)
+		{
+			cout << endl << "------------------------" << endl;
+			cout << "Date and time: ";
+			_statuses[i]->_time.displayDate();
+			_statuses[i]->_time.displayTime();
+			cout << endl;
 
-	for (int i = 0; i < _numOfStatuses; i++)
-	{
-		cout << "Date and time: ";
-		_statuses[i]->_time.displayDate();
-		_statuses[i]->_time.displayTime();
-		cout << endl;
+			cout << "Text: " << _statuses[i]->_text << endl;
+			cout << "------------------------" << endl;
+			cout << endl;
 
-		cout << "Text: ";
-		cout << _statuses[i]->_text << endl;
-		cout << endl;
-
+		}
 	}
 }
 

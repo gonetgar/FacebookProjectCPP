@@ -45,7 +45,7 @@ void Operation::addUserToOperation(User* userToAdd)
 	_allUsers[_numOfUsers] = userToAdd;
 	_numOfUsers++;
 
-	cout << "Hey, " << userToAdd->getName() << " Welcome to Facebook :) " << endl << endl;
+	cout << endl << "Hey, " << userToAdd->getName() << " Welcome to Facebook :) " << endl << endl;
 
 }
 
@@ -72,7 +72,7 @@ void Operation::addPageToOperation(Page* pageToAdd)
 
 void Operation::displayAllEntities()
 {
-	cout << endl << "ALL ENTITIES: " << endl;
+	cout << endl << "ALL ENTITIES: " << endl << endl;
 	cout << "Current User: " << endl;
 	cout << _currentUser.getName() << endl;
 
@@ -97,7 +97,6 @@ void Operation::getCurrentMember()
 	cout << endl;
 
 	Clock birthDate = birthDate.getBirthdayInput();
-	birthDate.displayDate();
 
 	_currentUser.setName(username);
 	_currentUser.setBirthday(birthDate);
@@ -112,6 +111,7 @@ void Operation::handleMenu(int userChoice)
 {
 	Page* newPage;
 	Page* removePage;
+	char friendToDisplay[256];
 
 	if (userChoice > 0 && userChoice < 13) {
 		switch (userChoice)
@@ -129,9 +129,9 @@ void Operation::handleMenu(int userChoice)
 			getUserOrPageInput(4, this);
 			break;
 		case 5:
-			char friendToDisplay[256];
 			cout << "Your Friend's Name: \n";
-			cin >> friendToDisplay;
+			cin.ignore();
+			cin.getline(friendToDisplay, 256);
 			_currentUser.displayRecentStatusesOfaFriend(friendToDisplay);
 			break;
 		case 6:
