@@ -37,7 +37,7 @@ void Operation::addUserToOperation(User* userToAdd)
 		for (i = 0; i < _numOfUsers; i++)
 			newUsers[i] = _allUsers[i];
 
-		delete[] _allUsers;
+		//delete[] _allUsers;
 		_allUsers = newUsers;
 	}
 
@@ -60,7 +60,7 @@ void Operation::addPageToOperation(Page* pageToAdd)
 		for (i = 0; i < _numOfPages; i++)
 			newPages[i] = _allPages[i];
 
-		delete[] _allPages;
+		//delete[] _allPages; // ERROR
 		_allPages = newPages;
 	}
 
