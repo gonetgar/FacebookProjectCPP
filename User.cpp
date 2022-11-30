@@ -121,7 +121,7 @@ void User::cancelFriendship(char* friendToDelete)
 	// search this friend in the friend list:
 }
 
-void User::likePage(Page* newPage)
+void User::likePage(Page* newPage) // todo: change to ref&
 {
 	bool isPageInLikedPages = false;
 
@@ -151,9 +151,23 @@ void User::likePage(Page* newPage)
 	}
 }
 
-void User::dislikePage()
+void User::dislikePage(Page* removePage) // todo: change to ref&
 {
-	cout << "unlike\n";
+	for (int i = 0; i < _numOfPages; i++)
+	{
+		if (removePage == _likedPages[i]) // page is in likedPages
+		{
+			// Swap the page with last element
+			swap(_likedPages[i], _likedPages[_numOfPages - 1]);
+			// decrement log size of array
+			_numOfPages--;
+			// call within page (this)
+			removePage.removeFan(this);
+		}
+	}
+
+	cout << endl << this->getName() << " disliked  " << removePage->getName() << endl << endl;
+
 }
 
 void User::displayRecentStatusesOfaFriend(char* friendToDisplay) // 10 most recent statuses of all his friends

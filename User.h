@@ -44,7 +44,7 @@ public:
 	void cancelFriendship(char* friendToDelete);
 
 	void likePage(Page* newPage);
-	void dislikePage();
+	void dislikePage(Page* removePage);
 	void displayRecentStatusesOfaFriend(char* friendToDisplay); // 10 most recent statuses of all his friends
 	void displayAllStatuses();
 	void displayAllFriends();

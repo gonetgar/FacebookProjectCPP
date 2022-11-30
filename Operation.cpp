@@ -111,6 +111,7 @@ void Operation::getCurrentMember()
 void Operation::handleMenu(int userChoice)
 {
 	Page* newPage;
+	Page* removePage;
 
 	if (userChoice > 0 && userChoice < 13) {
 		switch (userChoice)
@@ -149,7 +150,10 @@ void Operation::handleMenu(int userChoice)
 			else cout << "no page found :(" << endl << endl;
 			break;
 		case 9:
-			_currentUser.dislikePage();
+			removePage = getPageDetails(this);
+			if (removePage)
+				_currentUser.dislikePage(removePage);
+			else cout << "no page found :(" << endl << endl;
 			break;
 		case 10:
 			displayAllEntities();
