@@ -43,7 +43,7 @@ public:
 
 	void createStatus();
 	
-	void addFriend(User** allUsers, Operation* system);
+	void addFriend(Operation* system);
 	int askForName(Operation* system, int flag);
 	void reallocateFriendList(User*** allUsers, int user_index);
 	void addFriendToFriendList(User*** allUsers, int user_index, int friend_index);

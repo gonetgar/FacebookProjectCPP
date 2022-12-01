@@ -135,7 +135,7 @@ void Operation::handleMenu(int userChoice)
 			_currentUser.displayRecentStatusesOfaFriend(friendToDisplay, this);
 			break;
 		case 6:
-			_currentUser.addFriend(_allUsers, this); // error: return different friend
+			_currentUser.addFriend(this); // error: return different friend
 			break;
 		case 7:
 			//char friendToDelete[256]; // may cause error char[] and char*

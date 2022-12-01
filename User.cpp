@@ -57,8 +57,10 @@ void User::createStatus()
 }
 
 // this function connect 2 users to be friends
-void User::addFriend(User** allUsers, Operation* system)
+void User::addFriend(Operation* system)
 {
+	User** all_users = system->getAllUsers();
+
 	cin.ignore(numeric_limits<streamsize>::max(), '\n');
 	int userIndex = askForName(system, 0);
 	if(userIndex < 0)
@@ -68,26 +70,26 @@ void User::addFriend(User** allUsers, Operation* system)
 	if (friendIndex < 0)
 		return;
 
-	addFriendToFriendList(&allUsers, userIndex, friendIndex);
-	addFriendToFriendList(&allUsers, friendIndex, userIndex);
+	addFriendToFriendList(&all_users, userIndex, friendIndex);
+	addFriendToFriendList(&all_users, friendIndex, userIndex);
 
 	// ################################################ //
 	//debugging:
 	cout << "\n\n### debugging: ###\n";
-	cout << allUsers[userIndex]->_name << "'s friend list:\n";
-	for (int i = 0; i < allUsers[userIndex]->_numOfFriends; i++)
+	cout << all_users[userIndex]->_name << "'s friend list:\n";
+	for (int i = 0; i < all_users[userIndex]->_numOfFriends; i++)
 	{
 		cout << "friend #" << i + 1 << ": ";
-		cout << allUsers[userIndex]->_friendsList[i]->_name << endl;
+		cout << all_users[userIndex]->_friendsList[i]->_name << endl;
 	}
 	cout << endl;
 
 
-	cout << allUsers[friendIndex]->_name << "'s friend list:\n";
-	for (int i = 0; i < allUsers[friendIndex]->_numOfFriends; i++)
+	cout << all_users[friendIndex]->_name << "'s friend list:\n";
+	for (int i = 0; i < all_users[friendIndex]->_numOfFriends; i++)
 	{
 		cout << "friend #" << i + 1 << ": ";
-		cout << allUsers[friendIndex]->_friendsList[i]->_name << endl;
+		cout << all_users[friendIndex]->_friendsList[i]->_name << endl;
 	}
 	cout << endl << endl;
 }
