@@ -1,4 +1,4 @@
-#include <iostream>
+﻿#include <iostream>
 using namespace std;
 
 #include "User.h"
@@ -56,6 +56,42 @@ void User::createStatus()
 	cout << "text: " << _statuses[_numOfStatuses - 1]->_text << endl; // todo: getStatusText()
 }
 
+// this function connect 2 users to be friends
+void User::addFriend(User** allUsers, Operation* system)
+{
+	cin.ignore(numeric_limits<streamsize>::max(), '\n');
+	int userIndex = askForName(system, 0);
+	if(userIndex < 0)
+		return;
+
+	int friendIndex = askForName(system, 1);
+	if (friendIndex < 0)
+		return;
+
+	addFriendToFriendList(&allUsers, userIndex, friendIndex);
+	addFriendToFriendList(&allUsers, friendIndex, userIndex);
+
+	// ################################################ //
+	//debugging:
+	cout << "\n\n### debugging: ###\n";
+	cout << allUsers[userIndex]->_name << "'s friend list:\n";
+	for (int i = 0; i < allUsers[userIndex]->_numOfFriends; i++)
+	{
+		cout << "friend #" << i + 1 << ": ";
+		cout << allUsers[userIndex]->_friendsList[i]->_name << endl;
+	}
+	cout << endl;
+
+
+	cout << allUsers[friendIndex]->_name << "'s friend list:\n";
+	for (int i = 0; i < allUsers[friendIndex]->_numOfFriends; i++)
+	{
+		cout << "friend #" << i + 1 << ": ";
+		cout << allUsers[friendIndex]->_friendsList[i]->_name << endl;
+	}
+	cout << endl << endl;
+}
+
 // ask for name and search it on allUsers array, returns the user's index, or -1 if not found
 int User::askForName(Operation* system, int flag)
 {
@@ -82,194 +118,148 @@ void User::reallocateFriendList(User*** allUsers, int user_index)
 	for (int i = 0; i < (*allUsers)[user_index]->_numOfFriends; i++)
 		newFriendList[i] = (*allUsers)[user_index]->_friendsList[i];
 
-	delete[] (*allUsers)[user_index]->_friendsList;
+	delete[](*allUsers)[user_index]->_friendsList;
 	(*allUsers)[user_index]->_friendsList = newFriendList;
 }
 
-// this function connect 2 users to be friends
-void User::addFriend(User** allUsers, Operation* system)
-{
-	cin.ignore(numeric_limits<streamsize>::max(), '\n');
-	int userIndex = askForName(system, 0);
-	if(userIndex < 0)
-		return;
-
-	int friendIndex = askForName(system, 1);
-	if (friendIndex < 0)
-		return;
-
-	// realloc
-	int user_num_friends = allUsers[userIndex]->_numOfFriends;
-	int user_max_num_friends = allUsers[userIndex]->_maxNumOfFriends;
-	if (user_num_friends == user_max_num_friends)
-	{
-		reallocateFriendList(&allUsers, userIndex);
-
-		// debugging
-		cout << allUsers[userIndex]->_name << "'s:\n";
-		cout << "num of friends: " << allUsers[userIndex]->_numOfFriends;
-		cout << " max num of friends: " << allUsers[userIndex]->_maxNumOfFriends << endl;
-	}
-	// end of reaqlloc
-
-	// add friend to user's friend list:
-	allUsers[userIndex]->_friendsList[user_num_friends] = allUsers[friendIndex];
-	(allUsers[userIndex]->_numOfFriends)++;
-
-	//  debugging:
-	cout << allUsers[userIndex]->_name << "'s friend list:\n";
-	for (int i = 0; i < allUsers[userIndex]->_numOfFriends; i++)
-	{
-		cout << "friend #" << i + 1 << ": ";
-		cout << allUsers[userIndex]->_friendsList[i]->_name << endl;
-	}
-	cout << endl;
-
-	// ################################################# //
-
-	int friend_num_friends = allUsers[friendIndex]->_numOfFriends;
-	int friend_max_num_friends = allUsers[friendIndex]->_maxNumOfFriends;
-	// the other way around:
-	if (friend_num_friends == friend_max_num_friends)
-	{
-		reallocateFriendList(&allUsers, friendIndex);
-
-		// debugging
-		cout << allUsers[friendIndex]->_name << "'s:\n";
-		cout << "num of friends: " << allUsers[friendIndex]->_numOfFriends;
-		cout << " max num of friends: " << allUsers[friendIndex]->_maxNumOfFriends << endl;
-	}
-
-	allUsers[friendIndex]->_friendsList[friend_num_friends] = allUsers[userIndex];
-	(allUsers[friendIndex]->_numOfFriends)++;
-
-	//  debugging:
-	cout << allUsers[friendIndex]->_name << "'s friend list:\n";
-	for (int i = 0; i < allUsers[friendIndex]->_numOfFriends; i++)
-	{
-		cout << "friend #" << i + 1 << ": ";
-		cout << allUsers[friendIndex]->_friendsList[i]->_name << endl;
-	}
-	cout << endl;
-}
-
 // this function adds a friend to the user's friend list, and updates number of friends
-void User::addFriendToFriendList(User** allUsers, User* currectUser, User* friendToAdd)
+void User::addFriendToFriendList(User*** allUsers, int user_index, int friend_index)
 {
-	if (currectUser->_numOfFriends == currectUser->_maxNumOfFriends)
-	{
-		cout << "enters to if\n"; // debugging
-		currectUser->_maxNumOfFriends *= 2;
+	int user_num_friends = (*allUsers)[user_index]->_numOfFriends;
 
-		cout << "num max friends: " << _maxNumOfFriends << endl; // debugging
+	if (user_num_friends == (*allUsers)[user_index]->_maxNumOfFriends)
+		reallocateFriendList(allUsers, user_index);
 
-
-		User** newFriendsList = new User * [currectUser->_maxNumOfFriends];
-
-		for (int i = 0; i < currectUser->_numOfFriends; i++)
-		{
-			newFriendsList[i] = currectUser->_friendsList[i];
-		}
-		delete[] currectUser->_friendsList;
-		currectUser->_friendsList = newFriendsList;
-
-		// debugging:
-		cout << "print the new friend list:\n";
-		for (int i = 0; i < _numOfFriends; i++)
-		{
-			cout << _friendsList[i]->getName() << endl;
-		}
-		cout << "\n\n";
-
-		//	TODO : in a function
-
-		//reallocFriendList(currectUser->_friendsList, currectUser->_numOfFriends, currectUser->_maxNumOfFriends);
-	}
-
-	// TODO: sort array of friends by name
-
-	//add this friend to my friends list :
-	currectUser->_friendsList[_numOfFriends] = friendToAdd; // point at this friend
-	currectUser->_numOfFriends++; // update number of friends
-
-	// debugging:
-	cout << "print " << currectUser->_name << "'s list of friends:\n";
-	for (int i = 0; i < _numOfFriends; i++)
-	{
-		cout << _friendsList[i]->getName() << endl;
-	}
-	cout << "\n\n";
+	(*allUsers)[user_index]->_friendsList[user_num_friends] = (*allUsers)[friend_index];
+	((*allUsers)[user_index]->_numOfFriends)++;
 }
 
-
-
+// this function cancel friendship between 2 users
 void User::cancelFriendship(Operation* system)
 {
-	char* username = new char[MAX_CHARACTERS];
-	char* friendToDelete = new char[MAX_CHARACTERS];
-	int userIndex, friendIndex;
 	User** all_users = system->getAllUsers();
 
-	cout << "Please enter username: ";
-	cin.ignore();
-	cin.getline(username, MAX_CHARACTERS);
-	userIndex = doesUserExist(username, system);
+	cin.ignore(numeric_limits<streamsize>::max(), '\n');
+	int user_index = askForName(system, 0);
+	if (user_index < 0)
+		return;
 
-	if (userIndex < 0)
-	{
-		cout << "User was not found!\n";
-		return; // TODO gon
-	}
+	int friend_index = askForName(system, 1);
+	if (friend_index < 0)
+		return;
 
-	cout << "Please enter friend's name you want to remove: ";
-	cin.ignore();
-	cin.getline(friendToDelete, MAX_CHARACTERS);
-	friendIndex = doesUserExist(friendToDelete, system);
+	// debugging
+	cout << "username: " << all_users[user_index]->_name << endl;
+	cout << "friends name: " << all_users[friend_index]->_name << endl;
+	// so far so good
 
-	if (friendIndex < 0)
-	{
-		cout << "User was not found!\n";
-		return; // TODO gon
-	}
 
-	int iFriendToDelete;
+	// function taht searches friend on friendlist and returns  the friends index TODO
+	// for user:
+	int iFriendToDelete = 0;
 	bool found = false;
-	int user_num_of_friends = all_users[userIndex]->_numOfFriends;
-	int user_max_num_of_friends = all_users[userIndex]->_maxNumOfFriends;
+	int user_num_of_friends = all_users[user_index]->_numOfFriends;
+	int user_max_num_of_friends = all_users[user_index]->_maxNumOfFriends;
 
 	// search this friend in the friend list:
 	for (iFriendToDelete = 0; iFriendToDelete < user_num_of_friends && !found; iFriendToDelete++)
 	{
-		if (strcmp(all_users[userIndex]->_friendsList[iFriendToDelete]->_name, friendToDelete) == 0)
+		if (strcmp(all_users[user_index]->_friendsList[iFriendToDelete]->_name, all_users[friend_index]->_name) == 0)
 		{
 			found = true;
-			cout << "friend was found!!!!\n"; // debugging
+			cout << "friend was found on your friend list\n"; // debugging
 		}
 	}
-
-	if (found)
+	iFriendToDelete--;
+	if (!found)
 	{
-		// put the last on in his place:
-		all_users[userIndex]->_friendsList[iFriendToDelete] = all_users[userIndex]->_friendsList[user_num_of_friends - 1];
-		// point the last on null
-		all_users[userIndex]->_friendsList[user_num_of_friends - 1] = nullptr;
-		(all_users[userIndex]->_numOfFriends)--;
-		// TODO: sort
-	}
-	else
 		cout << "The friend was not found on your friend list!\n";
-
-	// debugging:
-	cout << "\nUpdated list of friends is:\n";
-	for (int i = 0; i < all_users[userIndex]->_numOfFriends; i++)
-	{
-		cout << "Friend #" << i << ": " << all_users[userIndex]->_friendsList[i]->getName() << endl;
+		return;
 	}
+
+
+	////// //// /// //. //////
+	// for friend:
+
+	int iUserToDelete = 0;
+	found = false;
+	int friend_num_of_friends = all_users[friend_index]->_numOfFriends;
+	int friend_max_num_of_friends = all_users[friend_index]->_maxNumOfFriends;
+
+	// search this friend in the friend list:
+	for (iUserToDelete = 0; iUserToDelete < friend_num_of_friends && !found; iUserToDelete++)
+	{
+		if (strcmp(all_users[friend_index]->_friendsList[iUserToDelete]->_name, all_users[user_index]->_name) == 0)
+		{
+			found = true;
+			cout << "user was found on Friend's friend list\n"; // debugging
+		}
+	}
+	iUserToDelete--;
+	if (!found) // TODO not important cause he is definetly in there
+	{
+		cout << "User was not found on your friend list!\n";
+		return;
+	}
+
+
+
+
+	//
+
 	
 
-	// TODO; check the free
-	//delete username;
-	//delete friendToDelete;
+	/// %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% //
+
+
+	// remove friend from user:
+	if ((all_users[user_index]->_numOfFriends == 1) || (iFriendToDelete == all_users[user_index]->_numOfFriends - 1))
+	{ //    friend is the only one on the array        or       friend is the last on the array
+		all_users[user_index]->_friendsList[iFriendToDelete] = nullptr;
+	}
+	else
+	{
+		all_users[user_index]->_friendsList[iFriendToDelete] = all_users[user_index]->_friendsList[user_num_of_friends - 1];
+		all_users[user_index]->_friendsList[user_num_of_friends - 1] = nullptr; // point the last on null
+	}
+	(all_users[user_index]->_numOfFriends)--;
+
+
+	/// %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% //
+
+	// remove user from friend:
+	if ((all_users[friend_index]->_numOfFriends == 1) || (iUserToDelete == all_users[friend_index]->_numOfFriends - 1))
+	{ //    friend is the only one on the array        or       friend is the last on the array
+		all_users[friend_index]->_friendsList[iUserToDelete] = nullptr;
+	}
+	else
+	{
+		all_users[friend_index]->_friendsList[iUserToDelete] = all_users[friend_index]->_friendsList[friend_num_of_friends - 1];
+		all_users[friend_index]->_friendsList[friend_num_of_friends - 1] = nullptr; // point the last on null
+	}
+	(all_users[friend_index]->_numOfFriends)--;
+
+
+
+
+	/// %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% //
+
+	// debugging:
+
+	user_num_of_friends = all_users[user_index]->_numOfFriends;
+	cout << "\n\n\n######## Updated list of friends: #########\n\n";
+
+	cout << "for user:\n";
+	for (int i = 0; i < all_users[user_index]->_numOfFriends; i++)
+	{
+		cout << "Friend #" << i + 1 << ": " << all_users[user_index]->_friendsList[i]->getName() << endl;
+	}
+	cout << "\n\nfor friend:\n";
+	for (int i = 0; i < all_users[friend_index]->_numOfFriends; i++)
+	{
+		cout << "Friend #" << i + 1 << ": " << all_users[friend_index]->_friendsList[i]->getName() << endl;
+	}
+	cout << "\n\n";
 }
 
 void User::likePage(Page* newPage) // todo: change to ref&

@@ -42,12 +42,13 @@ public:
 	const Clock getBirthday() const { return _birthday; }
 
 	void createStatus();
-
+	
 	void addFriend(User** allUsers, Operation* system);
 	int askForName(Operation* system, int flag);
 	void reallocateFriendList(User*** allUsers, int user_index);
+	void addFriendToFriendList(User*** allUsers, int user_index, int friend_index);
 
-	void addFriendToFriendList(User** allUsers, User* currectUser, User* friendToAdd);
+
 	void cancelFriendship(Operation* system);
 
 	void likePage(Page* newPage);
