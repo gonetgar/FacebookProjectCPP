@@ -45,6 +45,7 @@ public:
 
 	void addFriend(User** allUsers, Operation* system);
 	int askForName(Operation* system, int flag);
+	void reallocateFriendList(User*** allUsers, int user_index);
 
 	void addFriendToFriendList(User** allUsers, User* currectUser, User* friendToAdd);
 	void cancelFriendship(Operation* system);

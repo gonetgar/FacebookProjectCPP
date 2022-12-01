@@ -73,45 +73,46 @@ int User::askForName(Operation* system, int flag)
 	return userIndex;
 }
 
+// reallocate more place in the user's friendlist
+void User::reallocateFriendList(User*** allUsers, int user_index)
+{
+	(*allUsers)[user_index]->_maxNumOfFriends *= 2;
+	User** newFriendList = new User * [(*allUsers)[user_index]->_maxNumOfFriends];
+
+	for (int i = 0; i < (*allUsers)[user_index]->_numOfFriends; i++)
+		newFriendList[i] = (*allUsers)[user_index]->_friendsList[i];
+
+	delete[] (*allUsers)[user_index]->_friendsList;
+	(*allUsers)[user_index]->_friendsList = newFriendList;
+}
+
+// this function connect 2 users to be friends
 void User::addFriend(User** allUsers, Operation* system)
 {
-	int userIndex, friendIndex;
-	char* username = new char[MAX_CHARACTERS];
-	char* friendsName = new char[MAX_CHARACTERS];
-
 	cin.ignore(numeric_limits<streamsize>::max(), '\n');
-	userIndex = askForName(system, 0);
+	int userIndex = askForName(system, 0);
 	if(userIndex < 0)
 		return;
 
-	friendIndex = askForName(system, 1);
+	int friendIndex = askForName(system, 1);
 	if (friendIndex < 0)
 		return;
 
-	// add friend to user's friend list:
-	// TODO: put it in a function
+	// realloc
 	int user_num_friends = allUsers[userIndex]->_numOfFriends;
 	int user_max_num_friends = allUsers[userIndex]->_maxNumOfFriends;
 	if (user_num_friends == user_max_num_friends)
 	{
+		reallocateFriendList(&allUsers, userIndex);
+
 		// debugging
 		cout << allUsers[userIndex]->_name << "'s:\n";
 		cout << "num of friends: " << allUsers[userIndex]->_numOfFriends;
 		cout << " max num of friends: " << allUsers[userIndex]->_maxNumOfFriends << endl;
-		//
-
-		(allUsers[userIndex]->_maxNumOfFriends) *= 2;
-		User** newFriendList = new User * [allUsers[userIndex]->_maxNumOfFriends];
-
-		for (int i = 0; i < allUsers[userIndex]->_numOfFriends; i++)
-		{
-			newFriendList[i] = allUsers[userIndex]->_friendsList[i];
-		}
-
-		delete[] allUsers[userIndex]->_friendsList;
-		allUsers[userIndex]->_friendsList = newFriendList;
 	}
+	// end of reaqlloc
 
+	// add friend to user's friend list:
 	allUsers[userIndex]->_friendsList[user_num_friends] = allUsers[friendIndex];
 	(allUsers[userIndex]->_numOfFriends)++;
 
@@ -123,29 +124,20 @@ void User::addFriend(User** allUsers, Operation* system)
 		cout << allUsers[userIndex]->_friendsList[i]->_name << endl;
 	}
 	cout << endl;
-	//
+
+	// ################################################# //
 
 	int friend_num_friends = allUsers[friendIndex]->_numOfFriends;
 	int friend_max_num_friends = allUsers[friendIndex]->_maxNumOfFriends;
 	// the other way around:
 	if (friend_num_friends == friend_max_num_friends)
 	{
+		reallocateFriendList(&allUsers, friendIndex);
+
 		// debugging
 		cout << allUsers[friendIndex]->_name << "'s:\n";
 		cout << "num of friends: " << allUsers[friendIndex]->_numOfFriends;
 		cout << " max num of friends: " << allUsers[friendIndex]->_maxNumOfFriends << endl;
-		//
-
-		(allUsers[friendIndex]->_maxNumOfFriends) *= 2;
-		User** newFriendList = new User * [allUsers[friendIndex]->_maxNumOfFriends];
-
-		for (int i = 0; i < allUsers[friendIndex]->_numOfFriends; i++)
-		{
-			newFriendList[i] = allUsers[friendIndex]->_friendsList[i];
-		}
-
-		delete[] allUsers[friendIndex]->_friendsList;
-		allUsers[friendIndex]->_friendsList = newFriendList;
 	}
 
 	allUsers[friendIndex]->_friendsList[friend_num_friends] = allUsers[userIndex];
@@ -159,10 +151,6 @@ void User::addFriend(User** allUsers, Operation* system)
 		cout << allUsers[friendIndex]->_friendsList[i]->_name << endl;
 	}
 	cout << endl;
-
-	// TODO how to delete?
-	delete friendsName;
-	delete username;
 }
 
 // this function adds a friend to the user's friend list, and updates number of friends
