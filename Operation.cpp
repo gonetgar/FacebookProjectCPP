@@ -142,7 +142,7 @@ void Operation::handleMenu(int userChoice)
 			//char friendToDelete[256]; // may cause error char[] and char*
 			//cout << "Your Friend's Name: \n";
 			//cin >> friendToDisplay; /// ORI you can delete it! :-)
-			_currentUser.cancelFriendship(); // ORI i changed the call to function
+			_currentUser.cancelFriendship(this); // ORI i changed the call to function
 			break;
 		case 8:
 			// turn this to a fucntion getPageDetails()
