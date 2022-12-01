@@ -22,12 +22,11 @@ void Status::getStatusInfo(Status* newStatus)
 	//Status* newStatus = new Status();
 
 	cout << "Please insert your status: ";
-	cin.ignore();
 	cin.getline(newStatus->_text, MAX_CHARACTERS);	//TODO shrink?
+	cout << endl;
 
 	//// for debugging: ////
-
-	cout << "\nyou entered: ";
+	/*cout << "\nyou entered: ";
 	cout << newStatus->_text;
 	cout << "\non date: ";
 	cout << setw(2) << setfill('0') << newStatus->_time._day << ".";
@@ -36,7 +35,7 @@ void Status::getStatusInfo(Status* newStatus)
 	cout << "\non time: ";
 	cout << setw(2) << setfill('0') << newStatus->_time._hours << ":";
 	cout << setw(2) << setfill('0') << newStatus->_time._minutes << ":";
-	cout << setw(2) << setfill('0') << newStatus->_time._seconds << endl;
+	cout << setw(2) << setfill('0') << newStatus->_time._seconds << endl;*/
 }
 
 Status::~Status()

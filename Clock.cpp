@@ -65,12 +65,12 @@ Clock::Clock(int day, int month, int year)
 
 void Clock::displayDate()
 {
-	cout << _day << "." << _month << "." << _year << endl;
+	cout << _day << "." << _month << "." << _year;
 }
 
 void Clock::displayTime()
 {
-	cout << _hours << ":" << _minutes << ":" << _seconds << endl;
+	cout << " " << _hours << ":" << _minutes << ":" << _seconds;
 }
 
 Clock Clock::getBirthdayInput()

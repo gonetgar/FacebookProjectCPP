@@ -1,6 +1,40 @@
 #include <iostream>
-using namespace std;
 #include "Functions.h"
+using namespace std;
+
+
+User** initiateUsers()
+{
+	User** initUsers = new User * [5];
+
+	User* user1 = new User("Keren Kalif", Clock(15, 4, 1980));
+	initUsers[0] = user1;
+	User* user2 = new User("Steve Jobs", Clock(1, 3, 1960));
+	initUsers[1] = user2;
+	User* user3 = new User("Mark Zuckerberg", Clock(6, 8, 1976));
+	initUsers[2] = user3;
+	User* user4 = new User("Ori Nurieli", Clock(1, 7, 1997));
+	initUsers[3] = user4;
+	User* user5 = new User("Gon Etgar", Clock(21, 10, 1996));
+	initUsers[4] = user5;
+
+	return initUsers;
+}
+
+Page** initiatePages()
+{
+	Page** initPages = new Page * [3];
+
+	Page* page1 = new Page("Maccabi Haifa");
+	initPages[0] = page1;
+	Page* page2 = new Page("Harry Potter");
+	initPages[1] = page2;
+	Page* page3 = new Page("Pink Floyd");
+	initPages[2] = page3;
+
+	return initPages;
+}
+
 
 int displayMenu()
 {
@@ -187,3 +221,20 @@ void getUserOrPageInput(int userChoice, Operation* system)
 	}
 }
 
+Page* getPageDetails(Operation* system)
+{
+	Page** allPages = system->getAllPages();
+	char pageName[256];
+	int index = 0;
+
+	cout << "Enter page name: \n";
+	cin.ignore();
+	cin.getline(pageName, 256);
+
+	index = doesPageExist(pageName, system);
+
+	if (index >= 0)
+		return allPages[index];
+	else
+		return nullptr;
+}

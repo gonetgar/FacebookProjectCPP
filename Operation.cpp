@@ -37,7 +37,7 @@ void Operation::addUserToOperation(User* userToAdd)
 		for (i = 0; i < _numOfUsers; i++)
 			newUsers[i] = _allUsers[i];
 
-		delete[] _allUsers;
+		//delete[] _allUsers;
 		_allUsers = newUsers;
 	}
 
@@ -45,7 +45,7 @@ void Operation::addUserToOperation(User* userToAdd)
 	_allUsers[_numOfUsers] = userToAdd;
 	_numOfUsers++;
 
-	cout << "Hey, " << userToAdd->getName() << " Welcome to Facebook :) " << endl << endl;
+	cout << endl << "Hey, " << userToAdd->getName() << " Welcome to Facebook :) " << endl << endl;
 
 }
 
@@ -60,7 +60,7 @@ void Operation::addPageToOperation(Page* pageToAdd)
 		for (i = 0; i < _numOfPages; i++)
 			newPages[i] = _allPages[i];
 
-		delete[] _allPages;
+		//delete[] _allPages; // ERROR
 		_allPages = newPages;
 	}
 
@@ -72,7 +72,7 @@ void Operation::addPageToOperation(Page* pageToAdd)
 
 void Operation::displayAllEntities()
 {
-	cout << endl << "ALL ENTITIES: " << endl;
+	cout << endl << "ALL ENTITIES: " << endl << endl;
 	cout << "Current User: " << endl;
 	cout << _currentUser.getName() << endl;
 
@@ -97,7 +97,6 @@ void Operation::getCurrentMember()
 	cout << endl;
 
 	Clock birthDate = birthDate.getBirthdayInput();
-	birthDate.displayDate();
 
 	_currentUser.setName(username);
 	_currentUser.setBirthday(birthDate);
@@ -110,9 +109,9 @@ void Operation::getCurrentMember()
 
 void Operation::handleMenu(int userChoice)
 {
-	Page** allPages = getAllPages();
-	char pageName[256];
-	int index = 0;
+	Page* newPage;
+	Page* removePage;
+	char friendToDisplay[256];
 
 	if (userChoice > 0 && userChoice < 13) {
 		switch (userChoice)
@@ -130,10 +129,10 @@ void Operation::handleMenu(int userChoice)
 			getUserOrPageInput(4, this);
 			break;
 		case 5:
-			char friendToDisplay[256];
 			cout << "Your Friend's Name: \n";
-			cin >> friendToDisplay;
-			_currentUser.displayRecentStatusesOfaFriend(friendToDisplay);
+			cin.ignore();
+			cin.getline(friendToDisplay, 256);
+			_currentUser.displayRecentStatusesOfaFriend(friendToDisplay, this);
 			break;
 		case 6:
 			_currentUser.addFriend(_allUsers, this); // error: return different friend
@@ -145,18 +144,16 @@ void Operation::handleMenu(int userChoice)
 			_currentUser.cancelFriendship(this); // ORI i changed the call to function
 			break;
 		case 8:
-			// turn this to a fucntion getPageDetails()
-
-			cout << "Enter page name to like: \n";
-			cin.ignore();
-			cin.getline(pageName, 256);
-
-			index = doesPageExist(pageName, this);
-
-			_currentUser.likePage(allPages[index]);
+			newPage = getPageDetails(this);
+			if (newPage)
+				_currentUser.likePage(newPage);
+			else cout << "no page found :(" << endl << endl;
 			break;
 		case 9:
-			_currentUser.dislikePage();
+			removePage = getPageDetails(this);
+			if (removePage)
+				_currentUser.dislikePage(removePage);
+			else cout << "no page found :(" << endl << endl;
 			break;
 		case 10:
 			displayAllEntities();
