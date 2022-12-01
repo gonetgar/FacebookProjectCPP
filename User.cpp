@@ -10,7 +10,7 @@ User::User()
 	_name = new char[256];
 	_name = _strdup("ori the king");
 
-	_birthday = Clock(2, 2, 2000);
+	_birthday = Clock(1, 1, 2000);
 	_statuses = new Status * [_maxNumOfStatuses];
 	_likedPages = new Page * [_maxNumOfPages];
 	_friendsList = new User * [_maxNumOfFriends];
@@ -42,7 +42,7 @@ void User::createStatus()
 		for (int i = 0; i < _numOfStatuses; i++)
 			newStatuses[i] = _statuses[i];
 
-		// delete[] _statuses; // ERROR doesnt delete the array for some reason
+		delete[] _statuses;
 		_statuses = newStatuses;
 	}
 
@@ -51,10 +51,20 @@ void User::createStatus()
 	_statuses[_numOfStatuses] = newStatus;
 	_numOfStatuses++;
 
-	// for debugging:
-	cout << "_numOfStatuses: " << _numOfStatuses << endl;
-	cout << "number of statuses: " << _numOfStatuses << endl;
-	cout << "text: " << _statuses[_numOfStatuses - 1]->_text << endl; // todo: getStatusText()
+
+	// ################################################ // for debugging // TODO delete later
+	cout << "\n--------------------------------\n";
+	cout << "List of statuses:\n\n";
+	for (int i = 0; i < _numOfStatuses; i++)
+	{
+		cout << "Text: " << _statuses[i]->getText() << endl;
+		cout << "Date: ";
+		_statuses[i]->getDateAndHour().displayDate();
+		cout << "\nHour: ";
+		_statuses[i]->getDateAndHour().displayTime();
+		cout << endl << endl;
+	}
+	cout << "--------------------------------\n";
 }
 
 // this function connect 2 users to be friends
@@ -238,6 +248,7 @@ void User::cancelFriendship(Operation* system)
 	cout << "\n\n";*/
 }
 
+
 void User::likePage(Page* newPage) // todo: change to ref&
 {
 	bool isPageInLikedPages = false;
@@ -346,43 +357,22 @@ void User::displayAllStatuses()
 
 void User::displayAllFriends()
 {
-	cout << _name << " friends:";
+	cout << "\n" << _name << "'s friends:" << endl;
 
 	if (_numOfFriends == 0)
-		cout << " none :(" << endl;
-	else {
+		cout << "None :(" << endl;
+	else
+	{
 		cout << endl;
 		for (int i = 0; i < _numOfFriends; i++)
 		{
 			cout << "friend #" << i + 1 << ":\n";
-			cout << "name: " << _friendsList[i]->getName() << endl;
-			cout << "birthday: ";
+			cout << "Name: " << _friendsList[i]->getName() << endl;
+			cout << "Birthday: ";
 			_friendsList[i]->_birthday.displayDate();
-			cout << endl;
+			cout << endl << endl;
 		}
 	}
-}
-
-// adds more space in array "friendsList"
-void User::reallocFriendList(User** friendsList, int logSize, int phySize)
-{
-	User** newFriendsList = new User * [phySize];
-
-	for (int i = 0; i < logSize; i++)
-	{
-		newFriendsList[i] = friendsList[i];
-	}
-	delete[] friendsList;
-	friendsList = newFriendsList;
-
-	/*currectUser->_numOfFriends *= 2;
-	User** newFriendsList = new User * [currectUser->_numOfFriends];
-	for (int i = 0; i < currectUser->_numOfFriends; i++)
-	{
-		newFriendsList[i] = currectUser->_friendsList[i];
-	}
-	delete[] currectUser->_friendsList;
-	currectUser->_friendsList = newFriendsList;*/
 }
 
 User::~User()

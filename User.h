@@ -60,8 +60,6 @@ public:
 	void displayAllStatuses();
 	void displayAllFriends();
 
-	void reallocFriendList(User** friendsList, int logSize, int phySize);
-
 	~User();
 };
 

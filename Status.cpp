@@ -16,26 +16,21 @@ Status::Status(char* text, Clock time)
 	_time = time;
 }
 
+char* Status::getText()
+{
+	return _text;
+}
+
+Clock Status::getDateAndHour()
+{
+	return _time;
+}
 
 void Status::getStatusInfo(Status* newStatus)
 {
-	//Status* newStatus = new Status();
-
 	cout << "Please insert your status: ";
 	cin.getline(newStatus->_text, MAX_CHARACTERS);	//TODO shrink?
 	cout << endl;
-
-	//// for debugging: ////
-	/*cout << "\nyou entered: ";
-	cout << newStatus->_text;
-	cout << "\non date: ";
-	cout << setw(2) << setfill('0') << newStatus->_time._day << ".";
-	cout << setw(2) << setfill('0') << newStatus->_time._month << ".";
-	cout << setw(2) << setfill('0') << newStatus->_time._year << endl;
-	cout << "\non time: ";
-	cout << setw(2) << setfill('0') << newStatus->_time._hours << ":";
-	cout << setw(2) << setfill('0') << newStatus->_time._minutes << ":";
-	cout << setw(2) << setfill('0') << newStatus->_time._seconds << endl;*/
 }
 
 Status::~Status()

@@ -18,6 +18,8 @@ public:
 	Status();
 	Status(char* text, Clock time);
 
+	char* getText();
+	Clock getDateAndHour();
 	void getStatusInfo(Status* newStatus); // maybe it will be in here and inside the user/page we'll add it to his list of statuses.
 
 	~Status();
