@@ -48,8 +48,11 @@ public:
 	void reallocateFriendList(User*** allUsers, int user_index);
 	void addFriendToFriendList(User*** allUsers, int user_index, int friend_index);
 
-
 	void cancelFriendship(Operation* system);
+	int searchFriendInFriendList(User** allUsers, int userIndex, int friendIndex);
+	void removeFriendFromFriendList(User** all_users, int user_index, int friend_to_delete);
+
+
 
 	void likePage(Page* newPage);
 	void dislikePage(Page* removePage);
