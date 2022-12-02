@@ -23,22 +23,19 @@ public:
 	Page() = delete; // we don't want to create a new page without a page name
 	Page(const char* name);
 	Page(const Page* page) = delete; //  Prevent duplicate
-	~Page();
 
 	const char* getName() const { return _name; };
 	const int getNumOfFans() const { return _numOfFans; };
 	User** getFanList() const { return _fansList; }
-
 	char* setName(char* name) { _name = name; };
 
 	void addFanToPage(Operation* system, User* current_user);
-	void addFanORI(User* newUser);
 	void removeFan(User* removeUser);
-
 	void createStatus();
-
 	void displayAllStatuses();
 	void displayAllFans();
+
+	~Page();
 };
 
 #endif // __PAGE_H

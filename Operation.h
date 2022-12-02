@@ -9,7 +9,7 @@ class Operation
 private:
 	User** _allUsers;
 	Page** _allPages;
-	User _currentUser;
+	User _currentUser; // TODO- delete current user
 
 	// numbers according to init data
 	int _numOfUsers = 5;
@@ -37,7 +37,6 @@ public:
 	bool isValidUserName(char* userName); // sort & binary serach?
 	bool isValidPageName(char* pageName);
 	~Operation();
-
 };
 
 #endif // __OPERATION_H

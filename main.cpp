@@ -23,7 +23,7 @@ int main()
 	system.getCurrentMemberInput();
 
 	//// ################################ Menu ################################ 
-	userChoice = displayMenu();
+	userChoice = displayMenu(); // todo - do while
 	system.handleMenu(userChoice);
 
 	while (userChoice > 0 || userChoice < 13)
@@ -32,7 +32,7 @@ int main()
 		system.handleMenu(userChoice);
 	}
 
-	cout << "end of main()." << endl;
+	cout << "end of main()." << endl; // todo - delete this?
 
 	return 0;
 }

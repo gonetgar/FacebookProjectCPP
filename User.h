@@ -31,13 +31,14 @@ public:
 	User(const char* name, Clock birthday, int maxNumFriends, int numFriends, int maxPages, int numPages);
 	User(const User&) = delete; // we delete the copy c'tor because we dont want to duplicate a user
 
-	const char* getName() const { return _name; };
+	const char* getName() const { return _name; }// ERROR
+	// - is falling with the realloc of the all users array I DONT KNOW WHY ORI
 	User** getFriendsList() { return _friendsList; }
 	Page** getLikedPagesList() { return _likedPages; }
 	const int getNumOfStatuses() const { return _numOfStatuses; };
 	const int getNumOfFriends() const { return _numOfFriends; }
 	const int getNumOfPages() const { return _numOfPages; }
-	Status** getAllStatuses() { return _statuses; };
+	Status** getAllStatuses() { return _statuses; }
 	void setName(char* username);
 	void setBirthday(Clock birthday) { _birthday = birthday; }
 	const Clock getBirthday() const { return _birthday; }
@@ -54,8 +55,7 @@ public:
 	void removeFriendFromFriendList(User** all_users, int user_index, int friend_to_delete);
 
 	void likePage(Page* pageToLike, Operation* system);
-	//void likePage(Operation* system, User* current_user, Page* pageLiked);
-	//void likePageORI(Page* newPage);
+	void addPageToLikedPagesList(Operation* system, Page* pageToLike);
 
 	void dislikePage(Page* removePage);
 	void displayRecentStatusesOfaFriend(char* friendToDisplay, Operation* system); // 10 most recent statuses of all his friends

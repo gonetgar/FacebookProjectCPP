@@ -143,11 +143,11 @@ int doesPageExist(const char* name, Operation* system)
 
 void getUserInput(Operation* system)
 {
-	char* username = new char[256];
+	char* username = new char[MAX_CHARACTERS];
 
 	cout << "Please enter your username: ";
 	cin.ignore();
-	cin.getline(username, 256);
+	cin.getline(username, MAX_CHARACTERS);
 
 	// validate username
 	if (doesUserExist(username, system) >= 0) {

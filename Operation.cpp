@@ -13,19 +13,12 @@ Operation::Operation()
 	_allPages = nullptr;
 }
 
-
 void Operation::initiateData(User** initUsers, Page** initPages)
 {
 	_allUsers = initUsers;
 	_allPages = initPages;
 	initiateStatuses(this);
 }
-
-
-//User** Operation::getAllUsers()
-//{
-//	return _allUsers;
-//}
 
 void Operation::addUserToOperation(User* userToAdd)
 {
@@ -38,16 +31,13 @@ void Operation::addUserToOperation(User* userToAdd)
 		for (i = 0; i < _numOfUsers; i++)
 			newUsers[i] = _allUsers[i];
 
-		//delete[] _allUsers;
 		_allUsers = newUsers;
+		delete[] newUsers;
 	}
-
 
 	_allUsers[_numOfUsers] = userToAdd;
 	_numOfUsers++;
-
 	cout << endl << "Hey, " << userToAdd->getName() << " Welcome to Facebook :) " << endl << endl;
-
 }
 
 void Operation::addPageToOperation(Page* pageToAdd)
@@ -78,11 +68,11 @@ void Operation::displayAllEntities()
 
 	cout << endl << "Users: " << endl;
 	for (int i = 0; i < _numOfUsers; i++)
-		cout << _allUsers[i]->getName() << ", " << endl;
+		cout << _allUsers[i]->getName() << endl;
 
 	cout << endl << "Pages: " << endl;
 	for (int i = 0; i < _numOfPages; i++)
-		cout << _allPages[i]->getName() << ", " << endl;
+		cout << _allPages[i]->getName() << endl;
 
 	cout << endl;
 }
@@ -92,7 +82,7 @@ User* Operation::getCurrentUser()
 	return &_currentUser;
 }
 
-void Operation::getCurrentMemberInput()
+void Operation::getCurrentMemberInput() // todo - delete this?
 {
 	char* username = new char[256];
 
@@ -116,7 +106,7 @@ void Operation::handleMenu(int userChoice)
 	User* current_user = nullptr;
 	Page* newPage;
 	Page* removePage;
-	char friendToDisplay[256];
+	char friendToDisplay[MAX_CHARACTERS];
 
 	if (userChoice > 0 && userChoice < 13) {
 		switch (userChoice)
@@ -149,7 +139,7 @@ void Operation::handleMenu(int userChoice)
 			current_user = askForUsername(this);
 			current_user->likePage(nullptr, this);
 			break;
-		case 9:
+		case 9: // TODO not working
 			removePage = getPageDetails(this);
 			if (removePage)
 				_currentUser.dislikePage(removePage);
@@ -176,7 +166,7 @@ void Operation::handleMenu(int userChoice)
 
 bool Operation::isValidUserName(char* userName)
 {
-	return true; // only for complier
+	return true; // only for complier - TODO ori ? what is this
 }
 
 bool Operation::isValidPageName(char* pageName)

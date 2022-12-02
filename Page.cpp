@@ -23,9 +23,8 @@ void Page::createStatus()
 		for (int i = 0; i < _numOfStatuses; i++)
 			newStatuses[i] = _statuses[i];
 
+		delete[] _statuses;
 		_statuses = newStatuses;
-		// todo delete newStatuses
-		// error - delete[] newStatuses
 	}
 
 	Status* newStatus = new Status();
@@ -37,20 +36,30 @@ void Page::createStatus()
 
 void Page::displayAllStatuses()
 {
-	cout << _name << " Statuses: " << endl;
+	cout << endl << _name << " Statuses: " << endl;
 	for (int i = 0; i < _numOfStatuses; i++)
-		cout << _statuses[i]->getText() << ", " << endl;
+	{
+		cout << "---------------------------------" << endl;
+		cout << "Status #" << i + 1 << ":\n";
+		cout << "Text: " << _statuses[i]->getText() << endl;
+		cout << "Uploaded on: ";
+		_statuses[i]->getDateAndHour().displayDate();
+		cout << " | ";
+		_statuses[i]->getDateAndHour().displayTime();
+		cout << endl << "---------------------------------" << endl << endl;
+	}
+	cout << endl;
 }
 
 void Page::displayAllFans()
 {
-	cout << _name << " Fans: ";
+	cout << _name << " Fans:\n";
 
 	if (_numOfFans == 0)
 		cout << "none :(" << endl;
 	else {
 		for (int i = 0; i < _numOfFans; i++)
-			cout << _fansList[i]->getName() << " , ";
+			cout << _fansList[i]->getName() << endl;
 	}
 
 	cout << endl << endl;
@@ -74,31 +83,9 @@ void Page::addFanToPage(Operation* system, User* current_user)
 
 	_fansList[_numOfFans] = current_user;
 	_numOfFans++;
-
-	//cout << current_user->getName() << " is now a fan of: " << this->getName() << endl;
 }
 
-// I AM CHANING LIKE PAGE SO I AM CHANING THIS FUNC - TODO DELETE LATER
-//void Page::addFanORI(User* newUser)
-//{
-//	if (_maxFans == _numOfFans) {
-//		_maxFans *= 2;
-//		User** newFans = new User * [_maxFans];
-//		for (int i = 0; i < _numOfFans; i++)
-//			newFans[i] = _fansList[i];
-//
-//		delete[] _fansList;
-//		_fansList = newFans;
-//	}
-//
-//	_fansList[_numOfFans] = newUser;
-//	_numOfFans++;
-//
-//	newUser->likePageORI(this);
-//
-//	cout << newUser->getName() << " is now a fan of: " << this->getName();
-//}
-
+// TODO not working
 void Page::removeFan(User* removeUser)
 {
 	for (int i = 0; i < _numOfFans; i++)
@@ -113,9 +100,7 @@ void Page::removeFan(User* removeUser)
 			removeUser->dislikePage(this);
 		}
 	}
-
 	cout << endl << removeUser->getName() << " is no more a fan of:  " << this->getName() << endl << endl;
-
 }
 
 Page::~Page()
