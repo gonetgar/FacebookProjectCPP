@@ -56,7 +56,7 @@ void User::createStatus(Status* initStatus)
 	else {
 		Status* newStatus = new Status();
 		newStatus->getStatusInfo(newStatus);
-		cout << "Status Uploaded!" << endl;
+		cout << endl << "Status Uploaded!" << endl;
 		_statuses[_numOfStatuses] = newStatus;
 	}
 	_numOfStatuses++;
