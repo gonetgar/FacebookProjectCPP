@@ -81,7 +81,7 @@ void Page::addFanToPage(Operation* system, User* current_user)
 		for (int i = 0; i < _numOfFans; i++)
 			newFans[i] = _fansList[i];
 
-		delete _fansList;
+		delete[] _fansList;
 		_fansList = newFans;
 	}
 

@@ -193,25 +193,6 @@ void User::cancelFriendship(Operation* system)
 	if (friend_index < 0)
 		return;
 
-	// debugging - TODO delete the debugging coutim
-	/*cout << "\nBEFORE: list of friends:\n";
-	cout << "for " << all_users[user_index]->_name << ":\n";
-	cout << "number of friends: " << all_users[user_index]->_numOfFriends << endl;
-	cout << "max number of friends: " << all_users[user_index]->_maxNumOfFriends << endl << endl;
-	for (int i = 0; i < all_users[user_index]->_numOfFriends; i++)
-	{
-		cout << "Friend #" << i + 1 << ": " << all_users[user_index]->_friendsList[i]->getName() << endl;
-	}
-	cout << "\nfor " << all_users[friend_index]->_name << ":\n";
-	cout << "number of friends: " << all_users[friend_index]->_numOfFriends << endl;
-	cout << "max number of friends: " << all_users[friend_index]->_maxNumOfFriends << endl << endl;
-	for (int i = 0; i < all_users[friend_index]->_numOfFriends; i++)
-	{
-		cout << "Friend #" << i + 1 << ": " << all_users[friend_index]->_friendsList[i]->getName() << endl;
-	}
-	cout << "\n\n";*/
-
-
 	int iFriendToDelete = searchFriendInFriendList(all_users, user_index, friend_index);
 	if (iFriendToDelete == NOT_FOUND)
 		return;
@@ -224,24 +205,6 @@ void User::cancelFriendship(Operation* system)
 	removeFriendFromFriendList(all_users, friend_index, iUserToDelete);
 
 	cout << "\nHello " << all_users[user_index]->getName() << ", you have removed " << all_users[friend_index]->getName() << " from your friend list." << endl << endl;
-
-	// debugging: - TODO delete the debugging coutim
-	/*cout << "\n\n\n######## Updated list of friends: #########\n\n";
-	cout << "for " << all_users[user_index]->_name << ":\n";
-	cout << "number of friends: " << all_users[user_index]->_numOfFriends << endl;
-	cout << "max number of friends: " << all_users[user_index]->_maxNumOfFriends << endl << endl;
-	for (int i = 0; i < all_users[user_index]->_numOfFriends; i++)
-	{
-		cout << "Friend #" << i + 1 << ": " << all_users[user_index]->_friendsList[i]->getName() << endl;
-	}
-	cout << "\nfor " << all_users[friend_index]->_name << ":\n";
-	cout << "number of friends: " << all_users[friend_index]->_numOfFriends << endl;
-	cout << "max number of friends: " << all_users[friend_index]->_maxNumOfFriends << endl << endl;
-	for (int i = 0; i < all_users[friend_index]->_numOfFriends; i++)
-	{
-		cout << "Friend #" << i + 1 << ": " << all_users[friend_index]->_friendsList[i]->getName() << endl;
-	}
-	cout << "\n\n";*/
 }
 
 
