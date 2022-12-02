@@ -60,7 +60,6 @@ void Operation::addPageToOperation(Page* pageToAdd)
 		for (i = 0; i < _numOfPages; i++)
 			newPages[i] = _allPages[i];
 
-		//delete[] _allPages; // ERROR
 		_allPages = newPages;
 	}
 
@@ -142,24 +141,14 @@ void Operation::handleMenu(int userChoice)
 			_currentUser.displayRecentStatusesOfaFriend(friendToDisplay, this);
 			break;
 		case 6:
-			_currentUser.addFriend(this); // error: return different friend
+			_currentUser.addFriend(this);
 			break;
 		case 7:
-			//char friendToDelete[256]; // may cause error char[] and char*
-			//cout << "Your Friend's Name: \n";
-			//cin >> friendToDisplay; /// ORI you can delete it! :-)
 			_currentUser.cancelFriendship(this); // ORI i changed the call to function
 			break;
 		case 8:
-			// ORI I AM CHANGING IT //
 			current_user = askForUsername(this);
 			current_user->likePage(this, current_user);
-
-			// ORI this is yours - can delete
-			/*newPage = getPageDetails(this);
-			if (newPage)
-				_currentUser.likePage(newPage);
-			else cout << "no page found :(" << endl << endl;*/
 			break;
 		case 9:
 			removePage = getPageDetails(this);
