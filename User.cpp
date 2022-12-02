@@ -5,6 +5,8 @@ using namespace std;
 #include "Functions.h"
 #define NOT_FOUND -1
 
+class Page;
+
 User::User()
 {
 	_name = new char[256];
@@ -81,24 +83,6 @@ void User::addFriend(Operation* system)
 	addFriendToFriendList(&all_users, friend_index, user_index);
 
 	cout << "\nHello " << all_users[user_index]->getName() << ", you have added " << all_users[friend_index]->getName() << " to your friend list." << endl << endl;
-
-	// ################################################ //
-	//debugging - TODO delete later
-	/*cout << "\n\n### debugging: ###\n";
-	cout << all_users[user_index]->_name << "'s friend list:\n";
-	for (int i = 0; i < all_users[user_index]->_numOfFriends; i++)
-	{
-		cout << "friend #" << i + 1 << ": ";
-		cout << all_users[user_index]->_friendsList[i]->_name << endl;
-	}
-	cout << endl;
-	cout << all_users[friend_index]->_name << "'s friend list:\n";
-	for (int i = 0; i < all_users[friend_index]->_numOfFriends; i++)
-	{
-		cout << "friend #" << i + 1 << ": ";
-		cout << all_users[friend_index]->_friendsList[i]->_name << endl;
-	}
-	cout << endl << endl;*/
 }
 
 // ask for name and search it on allUsers array, returns the user's index, or -1 if not found
@@ -208,47 +192,113 @@ void User::cancelFriendship(Operation* system)
 }
 
 
-void User::likePage(Operation* system, User* current_user, Page* pageLiked)
+// receives pointer to a page or null
+// TODO לסדר את הפונקציה היא מבולגנת
+void User::likePage(Page* pageToLike, Operation* system)
 {
-	Page* new_page;
-
-	if (current_user == nullptr)
-		return;
-
-	if (pageLiked != nullptr) // function recevied pointer to page, add the page to current_user
+	if (pageToLike != nullptr) // we need to add this page to user
 	{
-		new_page = pageLiked;
-	}
-	else // the function recevied null, ask the user to input page name
-	{
-		// ask for page name and search it in the system:
-		new_page = getPageDetails(system);
-		if (new_page == nullptr) // the page user inserted wasn't found
+		if (_numOfPages == _maxNumOfPages)
 		{
-			cout << "Page doesn't exist." << endl << endl;
+			_maxNumOfPages *= 2;
+			Page** new_liked_pages = new Page * [_maxNumOfPages];
+
+			for (int i = 0; i < _numOfPages; i++)
+				new_liked_pages[i] = _likedPages[i];
+
+			_likedPages = new_liked_pages;
+			new_liked_pages = nullptr;
+			delete[] _likedPages;
+		}
+
+		_likedPages[_numOfPages] = pageToLike;
+		_numOfPages++;
+
+		// here add fan to page:
+		pageToLike->addFanToPage(system, this);
+
+		cout << _name << " liked " << pageToLike->getName() << endl;
+	}
+	else // we need to ask the user which page to add
+	{
+		Page* new_page = getPageDetails(system);
+
+		if (new_page == nullptr)
+		{
+			cout << "Page doesn't exist.\n";
 			return;
 		}
-	}	
+		
+		// *page exists*
 
-	// add to user's likes pages
-	if (_maxNumOfPages == _numOfPages)
-	{
-		_maxNumOfPages *= 2;
-		Page** newPagesArray = new Page * [_maxNumOfPages];
-		for (int i = 0; i < _numOfPages; i++)
-			newPagesArray[i] = _likedPages[i];
+		if (_numOfPages == _maxNumOfPages)
+		{
+			_maxNumOfPages *= 2;
+			Page** new_liked_pages = new Page * [_maxNumOfPages];
 
-		delete[] _likedPages;
-		_likedPages = newPagesArray;
+			for (int i = 0; i < _numOfPages; i++)
+				new_liked_pages[i] = _likedPages[i];
+
+			_likedPages = new_liked_pages;
+			new_liked_pages = nullptr;
+			delete[] _likedPages;
+		}
+
+		_likedPages[_numOfPages] = new_page;
+		_numOfPages++;
+
+		// here add fan to page:
+		new_page->addFanToPage(system, this);
+
+		cout << _name << " liked " << new_page->getName() << endl;
 	}
 
-	_likedPages[_numOfPages] = new_page;
-	_numOfPages++;
-
-	new_page->addFanToPage(system, this); // check
-
-	//cout << endl << this->getName() << " liked " << new_page->getName() << endl << endl;
+	
 }
+
+
+
+//void User::likePage(Operation* system, User* current_user, Page* pageLiked)
+//{
+//	Page* new_page;
+//
+//	if (current_user == nullptr)
+//		return;
+//
+//	if (pageLiked != nullptr) // function recevied pointer to page, add the page to current_user
+//	{
+//		new_page = pageLiked;
+//	}
+//	else // the function recevied null, ask the user to input page name
+//	{
+//		// ask for page name and search it in the system:
+//		new_page = getPageDetails(system);
+//		if (new_page == nullptr) // the page user inserted wasn't found
+//		{
+//			cout << "Page doesn't exist." << endl << endl;
+//			return;
+//		}
+//	}	
+//
+//	// add to user's likes pages
+//	if (_maxNumOfPages == _numOfPages)
+//	{
+//		_maxNumOfPages *= 2;
+//		Page** newPagesArray = new Page * [_maxNumOfPages];
+//		for (int i = 0; i < _numOfPages; i++)
+//			newPagesArray[i] = _likedPages[i];
+//
+//		delete[] _likedPages;
+//		_likedPages = newPagesArray;
+//	}
+//
+//	_likedPages[_numOfPages] = new_page;
+//	_numOfPages++;
+//
+//	new_page->addFanToPage(system, this); // check
+//
+//	//cout << endl << this->getName() << " liked " << new_page->getName() << endl << endl;
+//}
 
 // i changed the function
 //void User::likePageORI(Page* newPage) // todo: change to ref&

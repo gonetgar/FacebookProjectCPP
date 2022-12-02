@@ -57,19 +57,20 @@ Page** initiatePages(Operation* system, User** allUsers)
 	Page* cakes = new Page("Cakes");
 	initPages[4] = cakes;
 
-	// add fans to pages: ORI THIS IS WHAT DIDNT WORK FOR ME
-	//maccabi_haifa->addFanToPage(system, allUsers[3]); // add ori to maccabi haifa
-	//harry_potter->addFanToPage(system, allUsers[4]); // add gon to harry potter
-	//led_zeppelin->addFanToPage(system, allUsers[1]); // add steve jobs to led zeppelin
-	//cakes->addFanToPage(system, allUsers[0]); // add keren kalif to cakes
+	initiatePageLikes(system, allUsers, initPages);
 
 	return initPages;
 }
 
 // initiate likes on pages from users
-void initiatePageLikes()
+void initiatePageLikes(Operation* system, User** allUsers, Page** pages)
 {
-
+	pages[0]->addFanToPage(system, allUsers[3]);
+	pages[1]->addFanToPage(system, allUsers[4]);
+	pages[3]->addFanToPage(system, allUsers[1]);
+	pages[4]->addFanToPage(system, allUsers[0]);
+	pages[4]->addFanToPage(system, allUsers[3]);
+	pages[4]->addFanToPage(system, allUsers[4]);
 }
 
 void initiateStatuses(Operation* system)

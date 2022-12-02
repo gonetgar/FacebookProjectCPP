@@ -147,8 +147,7 @@ void Operation::handleMenu(int userChoice)
 			break;
 		case 8:
 			current_user = askForUsername(this);
-			current_user->likePage(this, current_user, nullptr);
-			//current_user->likePageORI(nullptr);
+			current_user->likePage(nullptr, this);
 			break;
 		case 9:
 			removePage = getPageDetails(this);
