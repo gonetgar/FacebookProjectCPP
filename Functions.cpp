@@ -260,7 +260,7 @@ Page* getPageDetails(Operation* system)
 	int index = 0;
 
 	cout << "Enter page name:\n";
-	//cin.ignore();
+	cin.ignore();
 	cin.getline(pageName, MAX_CHARACTERS);
 
 	index = doesPageExist(pageName, system);

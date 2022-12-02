@@ -88,28 +88,28 @@ void Page::addFanToPage(Operation* system, User* current_user)
 	_fansList[_numOfFans] = current_user;
 	_numOfFans++;
 
-	//cout << current_user->getName() << " is now a fan of: " << this->getName() << endl;
+	cout << current_user->getName() << " is now a fan of: " << this->getName() << endl << endl;
 }
 
-void Page::addFanORI(User* newUser)
-{
-	if (_maxFans == _numOfFans) {
-		_maxFans *= 2;
-		User** newFans = new User * [_maxFans];
-		for (int i = 0; i < _numOfFans; i++)
-			newFans[i] = _fansList[i];
-
-		delete[] _fansList;
-		_fansList = newFans;
-	}
-
-	_fansList[_numOfFans] = newUser;
-	_numOfFans++;
-
-	newUser->likePageORI(this);
-
-	cout << newUser->getName() << " is now a fan of: " << this->getName();
-}
+//void Page::addFanORI(User* newUser)
+//{
+//	if (_maxFans == _numOfFans) {
+//		_maxFans *= 2;
+//		User** newFans = new User * [_maxFans];
+//		for (int i = 0; i < _numOfFans; i++)
+//			newFans[i] = _fansList[i];
+//
+//		delete[] _fansList;
+//		_fansList = newFans;
+//	}
+//
+//	_fansList[_numOfFans] = newUser;
+//	_numOfFans++;
+//
+//	newUser->likePageORI(this);
+//
+//	cout << newUser->getName() << " is now a fan of: " << this->getName();
+//}
 
 void Page::removeFan(User* removeUser)
 {

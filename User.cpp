@@ -81,24 +81,6 @@ void User::addFriend(Operation* system)
 	addFriendToFriendList(&all_users, friend_index, user_index);
 
 	cout << "\nHello " << all_users[user_index]->getName() << ", you have added " << all_users[friend_index]->getName() << " to your friend list." << endl << endl;
-
-	// ################################################ //
-	//debugging - TODO delete later
-	/*cout << "\n\n### debugging: ###\n";
-	cout << all_users[user_index]->_name << "'s friend list:\n";
-	for (int i = 0; i < all_users[user_index]->_numOfFriends; i++)
-	{
-		cout << "friend #" << i + 1 << ": ";
-		cout << all_users[user_index]->_friendsList[i]->_name << endl;
-	}
-	cout << endl;
-	cout << all_users[friend_index]->_name << "'s friend list:\n";
-	for (int i = 0; i < all_users[friend_index]->_numOfFriends; i++)
-	{
-		cout << "friend #" << i + 1 << ": ";
-		cout << all_users[friend_index]->_friendsList[i]->_name << endl;
-	}
-	cout << endl << endl;*/
 }
 
 // ask for name and search it on allUsers array, returns the user's index, or -1 if not found
@@ -193,25 +175,6 @@ void User::cancelFriendship(Operation* system)
 	if (friend_index < 0)
 		return;
 
-	// debugging - TODO delete the debugging coutim
-	/*cout << "\nBEFORE: list of friends:\n";
-	cout << "for " << all_users[user_index]->_name << ":\n";
-	cout << "number of friends: " << all_users[user_index]->_numOfFriends << endl;
-	cout << "max number of friends: " << all_users[user_index]->_maxNumOfFriends << endl << endl;
-	for (int i = 0; i < all_users[user_index]->_numOfFriends; i++)
-	{
-		cout << "Friend #" << i + 1 << ": " << all_users[user_index]->_friendsList[i]->getName() << endl;
-	}
-	cout << "\nfor " << all_users[friend_index]->_name << ":\n";
-	cout << "number of friends: " << all_users[friend_index]->_numOfFriends << endl;
-	cout << "max number of friends: " << all_users[friend_index]->_maxNumOfFriends << endl << endl;
-	for (int i = 0; i < all_users[friend_index]->_numOfFriends; i++)
-	{
-		cout << "Friend #" << i + 1 << ": " << all_users[friend_index]->_friendsList[i]->getName() << endl;
-	}
-	cout << "\n\n";*/
-
-
 	int iFriendToDelete = searchFriendInFriendList(all_users, user_index, friend_index);
 	if (iFriendToDelete == NOT_FOUND)
 		return;
@@ -265,7 +228,7 @@ void User::likePage(Operation* system, User* current_user, Page* pageLiked)
 			cout << "Page doesn't exist." << endl << endl;
 			return;
 		}
-	}	
+	}
 
 	// add to user's likes pages
 	if (_maxNumOfPages == _numOfPages)
@@ -282,12 +245,8 @@ void User::likePage(Operation* system, User* current_user, Page* pageLiked)
 	_numOfPages++;
 
 	new_page->addFanToPage(system, this); // check
-
-	//cout << endl << this->getName() << " liked " << page_liked->getName() << endl << endl;
-	//cout << endl << this->getName() << " liked " << new_page->getName() << endl << endl;
 }
 
-// i changed the function
 //void User::likePageORI(Page* newPage) // todo: change to ref&
 //{
 //	bool isPageInLikedPages = false;
@@ -333,7 +292,7 @@ void User::dislikePage(Page* removePage) // todo: change to ref&
 		}
 	}
 
-	cout << endl << this->getName() << " disliked  " << removePage->getName() << endl << endl;
+	cout << endl << this->getName() << " disliked " << removePage->getName() << endl << endl;
 
 }
 
