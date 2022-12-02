@@ -91,6 +91,16 @@ Clock::Clock(int day, int month, int year)
 	_seconds = 0;
 }
 
+Clock Clock::getDate()
+{
+	return *this;
+}
+
+Clock Clock::getHour()
+{
+	return *this;
+}
+
 void Clock::displayDate()
 {
 	cout << _day << "." << _month << "." << _year;
