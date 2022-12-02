@@ -81,7 +81,7 @@ void Page::addFanToPage(Operation* system, User* current_user)
 		for (int i = 0; i < _numOfFans; i++)
 			newFans[i] = _fansList[i];
 
-		delete[] _fansList;
+		//delete[] _fansList;
 		_fansList = newFans;
 	}
 
@@ -91,26 +91,25 @@ void Page::addFanToPage(Operation* system, User* current_user)
 	cout << current_user->getName() << " is now a fan of: " << this->getName() << endl;
 }
 
-// I AM CHANING LIKE PAGE SO I AM CHANING THIS FUNC - TODO DELETE LATER
-//void Page::addFanORI(User* newUser)
-//{
-//	if (_maxFans == _numOfFans) {
-//		_maxFans *= 2;
-//		User** newFans = new User * [_maxFans];
-//		for (int i = 0; i < _numOfFans; i++)
-//			newFans[i] = _fansList[i];
-//
-//		delete[] _fansList;
-//		_fansList = newFans;
-//	}
-//
-//	_fansList[_numOfFans] = newUser;
-//	_numOfFans++;
-//
-//	newUser->likePageORI(this);
-//
-//	cout << newUser->getName() << " is now a fan of: " << this->getName();
-//}
+void Page::addFanORI(User* newUser)
+{
+	if (_maxFans == _numOfFans) {
+		_maxFans *= 2;
+		User** newFans = new User * [_maxFans];
+		for (int i = 0; i < _numOfFans; i++)
+			newFans[i] = _fansList[i];
+
+		delete[] _fansList;
+		_fansList = newFans;
+	}
+
+	_fansList[_numOfFans] = newUser;
+	_numOfFans++;
+
+	newUser->likePageORI(this);
+
+	cout << newUser->getName() << " is now a fan of: " << this->getName();
+}
 
 void Page::removeFan(User* removeUser)
 {

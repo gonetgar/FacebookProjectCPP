@@ -35,8 +35,8 @@ public:
 	User** getFriendsList() { return _friendsList; }
 	Page** getLikedPagesList() { return _likedPages; }
 	const int getNumOfStatuses() const { return _numOfStatuses; };
-	const int getNumOfFriends() const { return _numOfFriends;  }
-	const int getNumOfPages() const { return _numOfPages;  }
+	const int getNumOfFriends() const { return _numOfFriends; }
+	const int getNumOfPages() const { return _numOfPages; }
 	Status** getAllStatuses() { return _statuses; };
 	void setName(char* username);
 	void setBirthday(Clock birthday) { _birthday = birthday; }
@@ -55,7 +55,7 @@ public:
 
 	//void likePage(Page* newPage);
 	void likePage(Operation* system, User* current_user);
-	//void likePageORI(Page* newPage);
+	void likePageORI(Page* newPage);
 
 	void dislikePage(Page* removePage);
 	void displayRecentStatusesOfaFriend(char* friendToDisplay, Operation* system); // 10 most recent statuses of all his friends

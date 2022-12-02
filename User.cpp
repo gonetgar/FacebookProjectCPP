@@ -278,7 +278,6 @@ void User::likePage(Operation* system, User* current_user)
 		for (int i = 0; i < _numOfPages; i++)
 			newPagesArray[i] = _likedPages[i];
 
-		delete[] _likedPages;
 		_likedPages = newPagesArray;
 	}
 
@@ -287,39 +286,38 @@ void User::likePage(Operation* system, User* current_user)
 
 	page_liked->addFanToPage(system, this); // check
 
-	cout << endl << this->getName() << " liked " << page_liked->getName() << endl << endl;
+	//cout << endl << this->getName() << " liked " << page_liked->getName() << endl << endl;
 }
 
-// i changed the function
-//void User::likePageORI(Page* newPage) // todo: change to ref&
-//{
-//	bool isPageInLikedPages = false;
-//
-//	for (int i = 0; i < _numOfPages; i++)
-//	{
-//		if (newPage == _likedPages[i]) // addresses compare
-//			isPageInLikedPages = true;
-//	}
-//
-//	if (!isPageInLikedPages) // stop infinite loop
-//	{
-//		if (_maxNumOfPages == _numOfPages) {
-//			_maxNumOfPages *= 2;
-//			Page** newPagesArray = new Page * [_maxNumOfPages];
-//			for (int i = 0; i < _numOfPages; i++)
-//				newPagesArray[i] = _likedPages[i];
-//
-//			delete[] _likedPages;
-//			_likedPages = newPagesArray;
-//		}
-//
-//		_likedPages[_numOfPages] = newPage;
-//		_numOfPages++;
-//
-//		newPage->addFanORI(this);
-//		cout << endl << this->getName() << " liked  " << newPage->getName() << endl << endl;
-//	}
-//}
+void User::likePageORI(Page* newPage) // todo: change to ref&
+{
+	bool isPageInLikedPages = false;
+
+	for (int i = 0; i < _numOfPages; i++)
+	{
+		if (newPage == _likedPages[i]) // addresses compare
+			isPageInLikedPages = true;
+	}
+
+	if (!isPageInLikedPages) // stop infinite loop
+	{
+		if (_maxNumOfPages == _numOfPages) {
+			_maxNumOfPages *= 2;
+			Page** newPagesArray = new Page * [_maxNumOfPages];
+			for (int i = 0; i < _numOfPages; i++)
+				newPagesArray[i] = _likedPages[i];
+
+			delete[] _likedPages;
+			_likedPages = newPagesArray;
+		}
+
+		_likedPages[_numOfPages] = newPage;
+		_numOfPages++;
+
+		newPage->addFanORI(this);
+		cout << endl << this->getName() << " liked  " << newPage->getName() << endl << endl;
+	}
+}
 
 void User::dislikePage(Page* removePage) // todo: change to ref&
 {
