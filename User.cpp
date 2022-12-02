@@ -7,6 +7,9 @@ using namespace std;
 
 User::User()
 {
+	static int counter;
+
+	cout << counter << ": $$$ start of default c'tor User $$$\n";
 	_name = new char[256];
 	_name = _strdup("ori the king");
 
@@ -14,11 +17,15 @@ User::User()
 	_statuses = new Status * [_maxNumOfStatuses];
 	_likedPages = new Page * [_maxNumOfPages];
 	_friendsList = new User * [_maxNumOfFriends];
+	cout << counter << ": $$$ end of default c'tor User $$$\n\n";
+
+	counter++;
 }
 
-//TODO gon (delete later) option to send max num of friends for the init friend list
-User::User(const char* name, Clock birthday, int maxNumFriends, int numFriends)
+User::User(const char* name, Clock birthday, int maxNumFriends, int numFriends, int maxPages, int numPages)
 {
+	static int counter;
+	cout << counter << ": $$$ start of C'TOR User $$$\n";
 	_name = new char[256];
 	_name = _strdup(name);
 	_birthday = birthday;
@@ -26,9 +33,15 @@ User::User(const char* name, Clock birthday, int maxNumFriends, int numFriends)
 	_maxNumOfFriends = maxNumFriends;
 	_numOfFriends = numFriends;
 
+	_maxNumOfPages = maxPages;
+	_numOfPages = numPages;
+
 	_statuses = new Status * [_maxNumOfStatuses];
 	_likedPages = new Page * [_maxNumOfPages];
 	_friendsList = new User * [_maxNumOfFriends];
+	cout << counter << ": $$$ end of C'TOR User $$$\n\n";
+
+	counter++;
 }
 
 void User::setName(char* username)
@@ -262,7 +275,7 @@ void User::likePage(Operation* system, User* current_user)
 
 	if (page_liked == nullptr)
 	{
-		cout << "Page doesn't exist.\n";
+		cout << "Page doesn't exist." << endl << endl;
 		return;
 	}
 

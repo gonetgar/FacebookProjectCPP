@@ -14,7 +14,7 @@ int doesPageExist(const char* name, Operation* system);
 
 User** initiateUsers(); // TODO move to reference
 void initiateFriendships(User** allUsers);
-Page** initiatePages();
+Page** initiatePages(User** allUsers);
 void initiatePageLikes(); // initiate likes on pages from users
 void initiateStatuses();
 

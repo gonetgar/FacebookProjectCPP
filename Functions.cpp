@@ -7,15 +7,15 @@ User** initiateUsers()
 {
 	User** initUsers = new User * [5];
 
-	User* user1 = new User("Keren Kalif", Clock(15, 4, 1980), 2, 2);
+	User* user1 = new User("Keren Kalif", Clock(15, 4, 1990), 2, 2, 2, 1);
 	initUsers[0] = user1;
-	User* user2 = new User("Steve Jobs", Clock(1, 3, 1960), 2, 2);
+	User* user2 = new User("Steve Jobs", Clock(24, 2, 1955), 2, 2, 2, 1);
 	initUsers[1] = user2;
-	User* user3 = new User("Mark Zuckerberg", Clock(6, 8, 1976), 4, 3);
+	User* user3 = new User("Mark Zuckerberg", Clock(14, 5, 1984), 4, 3, 2, 2);
 	initUsers[2] = user3;
-	User* user4 = new User("Ori Nurieli", Clock(1, 7, 1997), 2, 1);
+	User* user4 = new User("Ori Nurieli", Clock(1, 7, 1997), 2, 1, 4, 3);
 	initUsers[3] = user4;
-	User* user5 = new User("Gon Etgar", Clock(21, 10, 1996), 2, 2);
+	User* user5 = new User("Gon Etgar", Clock(21, 10, 1996), 2, 2, 4, 3);
 	initUsers[4] = user5;
 
 	initiateFriendships(initUsers);
@@ -42,20 +42,54 @@ void initiateFriendships(User** allUsers)
 }
 
 // fills the pages array with pages
-Page** initiatePages()
+Page** initiatePages(User** allUsers)
 {
 	Page** initPages = new Page * [5];
 
-	Page* page1 = new Page("Maccabi Haifa");
-	initPages[0] = page1;
-	Page* page2 = new Page("Harry Potter");
-	initPages[1] = page2;
-	Page* page3 = new Page("Pink Floyd");
-	initPages[2] = page3;
-	Page* page4 = new Page("Led Zeppelin");
-	initPages[3] = page4;
-	Page* page5 = new Page("Dogs");
-	initPages[4] = page5;
+	Page* maccabi_haifa = new Page("Maccabi Haifa");
+	initPages[0] = maccabi_haifa;
+	Page* harry_potter = new Page("Harry Potter");
+	initPages[1] = harry_potter;
+	Page* pink_floyd = new Page("Pink Floyd");
+	initPages[2] = pink_floyd;
+	Page* led_zeppelin = new Page("Led Zeppelin");
+	initPages[3] = led_zeppelin;
+	Page* cakes = new Page("Cakes");
+	initPages[4] = cakes;
+
+	// add fans to pages:
+
+	maccabi_haifa->getFanList()[0] = allUsers[3];
+	allUsers[3]->getLikedPagesList()[0] = maccabi_haifa;
+
+	/*User** maccabi_fan_list = maccabi_haifa->getFanList();
+	Page** ori_page_list = allUsers[3]->getLikedPagesList();
+
+	maccabi_fan_list[0] = allUsers[3];
+	ori_page_list[0] = maccabi_haifa;*/
+
+
+	//maccabi_haifa->getFanList()[0] = all_users[3]; // add ori to maccabi haifa
+	//all_users[3]->getLikedPagesList()[0] = maccabi_haifa;
+
+	//harry_potter->getFanList()[0] = all_users[4]; // add gon to harry potter
+	//all_users[4]->getLikedPagesList()[0] = harry_potter;
+
+	//led_zeppelin->getFanList()[0] = all_users[1]; // add steve jobs to led zeppelin
+	//all_users[1]->getLikedPagesList()[0] = led_zeppelin;
+
+	//cakes->getFanList()[0] = all_users[0]; // add keren kalif to cakes
+	//all_users[0]->getLikedPagesList()[0] = cakes;
+
+	//// check if i can add another fan to a page
+
+	//cout << "@@@@ checking: @@@@@\n";
+	//cout << "Page: " << maccabi_haifa->getName() << endl;
+	//cout << "Fans: " << maccabi_haifa->getFanList()[0] << endl;
+
+	//cout << "Name: " << all_users[3]->getName() << endl;
+	//cout << "Likes: " << all_users[3]->getLikedPagesList()[0] << endl;
+
 
 	return initPages;
 }
@@ -146,7 +180,7 @@ void getUserInput(Operation* system)
 
 	Clock birthday = birthday.getBirthdayInput();
 
-	User* userToAdd = new User(username, birthday, 1, 0);
+	User* userToAdd = new User(username, birthday, 1, 0, 1, 0);
 
 	system->addUserToOperation(userToAdd);
 }

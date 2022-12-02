@@ -18,7 +18,7 @@ int main()
 
 	// ################################ initiate data ################################ 
 	initUsers = initiateUsers();
-	initPages = initiatePages();
+	initPages = initiatePages(initUsers);
 	system.initiateData(initUsers, initPages);
 	system.getCurrentMemberInput();
 
