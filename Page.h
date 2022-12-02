@@ -26,9 +26,12 @@ public:
 
 	const char* getName() const { return _name; };
 	const int getNumOfFans() const { return _numOfFans; };
+	User** getFanListGON() const { return _fansList;  } // TODO delete later
 
 	char* setName(char* name) { _name = name; };
-	void addFan(User* newUser);
+
+	void addFanToPage(Operation* system, User* current_user);
+	//void addFanORI(User* newUser);
 	void removeFan(User* removeUser);
 
 	void createStatus();

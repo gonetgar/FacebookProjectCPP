@@ -52,9 +52,10 @@ public:
 	int searchFriendInFriendList(User** allUsers, int userIndex, int friendIndex);
 	void removeFriendFromFriendList(User** all_users, int user_index, int friend_to_delete);
 
+	//void likePage(Page* newPage);
+	void likePage(Operation* system, User* current_user);
+	//void likePageORI(Page* newPage);
 
-
-	void likePage(Page* newPage);
 	void dislikePage(Page* removePage);
 	void displayRecentStatusesOfaFriend(char* friendToDisplay, Operation* system); // 10 most recent statuses of all his friends
 	void displayAllStatuses();

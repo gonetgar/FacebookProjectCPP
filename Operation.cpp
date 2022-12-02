@@ -109,6 +109,7 @@ void Operation::getCurrentMember()
 
 void Operation::handleMenu(int userChoice)
 {
+	User* current_user = nullptr;
 	Page* newPage;
 	Page* removePage;
 	char friendToDisplay[256];
@@ -144,10 +145,15 @@ void Operation::handleMenu(int userChoice)
 			_currentUser.cancelFriendship(this); // ORI i changed the call to function
 			break;
 		case 8:
-			newPage = getPageDetails(this);
+			// ORI I AM CHANGING IT //
+			current_user = askForUsername(this);
+			current_user->likePage(this, current_user);
+
+			// ORI this is yours - can delete
+			/*newPage = getPageDetails(this);
 			if (newPage)
 				_currentUser.likePage(newPage);
-			else cout << "no page found :(" << endl << endl;
+			else cout << "no page found :(" << endl << endl;*/
 			break;
 		case 9:
 			removePage = getPageDetails(this);

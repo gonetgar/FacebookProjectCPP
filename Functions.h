@@ -18,6 +18,7 @@ void getUserInput(Operation* system);
 void addPageToSystem(Operation* system);
 void getUserOrPageInput(int userChoice, Operation* system);
 Page* getPageDetails(Operation* system);
+User* askForUsername(Operation* system);
 
 void initFriendsLists(User*** allUsers, int numOfAllUsers);
 

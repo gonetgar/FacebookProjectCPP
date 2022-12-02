@@ -221,15 +221,17 @@ void getUserOrPageInput(int userChoice, Operation* system)
 	}
 }
 
+// asks for a page name and search it in the system.
+// returns pointer to the page, and null if not found
 Page* getPageDetails(Operation* system)
 {
 	Page** allPages = system->getAllPages();
-	char pageName[256];
+	char pageName[MAX_CHARACTERS];
 	int index = 0;
 
-	cout << "Enter page name: \n";
-	cin.ignore();
-	cin.getline(pageName, 256);
+	cout << "Enter page name:\n";
+	//cin.ignore();
+	cin.getline(pageName, MAX_CHARACTERS);
 
 	index = doesPageExist(pageName, system);
 
@@ -237,4 +239,28 @@ Page* getPageDetails(Operation* system)
 		return allPages[index];
 	else
 		return nullptr;
+}
+
+// ask for name and search it on allUsers array, returns the user's pointer, or nullptr if not found
+User* askForUsername(Operation* system)
+{
+	User* user;
+	char* username = new char[MAX_CHARACTERS];
+	int userIndex;
+
+	cout << "Please enter your username: ";
+	cin.ignore();
+	cin.getline(username, MAX_CHARACTERS);
+	userIndex = doesUserExist(username, system);
+	delete[] username;
+
+	if (userIndex == -1)
+	{
+		cout << "User not found!\n\n";
+		user = nullptr;
+	}
+	else
+		user = system->getAllUsers()[userIndex];
+	
+	return user;
 }
