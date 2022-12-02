@@ -30,5 +30,5 @@ void Status::getStatusInfo(Status* newStatus)
 
 Status::~Status()
 {
-	delete[] _text;
+	delete _text;
 }
