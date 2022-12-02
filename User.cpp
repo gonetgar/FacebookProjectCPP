@@ -16,17 +16,20 @@ User::User()
 	_friendsList = new User * [_maxNumOfFriends];
 }
 
-User::User(const char* name, Clock birthday)
+//TODO gon (delete later) option to send max num of friends for the init friend list
+User::User(const char* name, Clock birthday, int maxNumFriends, int numFriends)
 {
 	_name = new char[256];
 	_name = _strdup(name);
 	_birthday = birthday;
 
+	_maxNumOfFriends = maxNumFriends;
+	_numOfFriends = numFriends;
+
 	_statuses = new Status * [_maxNumOfStatuses];
 	_likedPages = new Page * [_maxNumOfPages];
 	_friendsList = new User * [_maxNumOfFriends];
 }
-
 
 void User::setName(char* username)
 {
@@ -352,41 +355,40 @@ void User::displayRecentStatusesOfaFriend(char* friendToDisplay, Operation* syst
 	{
 		statuses = userToDisplay->getAllStatuses();
 
-		cout << endl << userToDisplay->getName() << " Recent 10 statuses: " << endl << endl;
+		cout << endl << userToDisplay->getName() << "'s Recent 10 statuses:" << endl;
 		for (int i = 0; i < numOfStatuses || numOfStatuses == NUM_STATUSES_TO_DISPLAY; i++)
 		{
-			cout << "Status #" << i;
-			cout << endl << "------------------------" << endl;
+			cout << "---------------------------------" << endl;
+			cout << "Status #" << i + 1 << endl;
+			cout << "Text: " << statuses[i]->getText() << endl;
 			cout << "Date and time: ";
-			statuses[i]->_time.displayDate();
-			statuses[i]->_time.displayTime();
+			statuses[i]->getStatusTime().displayDate();
+			statuses[i]->getStatusTime().displayTime();
 			cout << endl;
-
-			cout << "Text: " << statuses[i]->_text << endl;
-			cout << "------------------------" << endl;
-			cout << endl;
+			cout << "---------------------------------" << endl << endl;
 		}
+		cout << endl;
 	}
 	else cout << "No statuses to display." << endl << endl;
 }
 
 void User::displayAllStatuses()
 {
-	cout << _name << " statuses: ";
-	if (_numOfStatuses == 0) cout << "none" << endl;
+	cout << endl << _name << "'s Statuses:\n";
+	if (_numOfStatuses == 0) cout << "None." << endl;
 	else {
 		for (int i = 0; i < _numOfStatuses; i++)
 		{
-			cout << endl << "------------------------" << endl;
+			cout << "---------------------------------" << endl;
+			cout << "Status #" << i + 1 << endl;
 			cout << "Date and time: ";
-			_statuses[i]->_time.displayDate();
-			_statuses[i]->_time.displayTime();
+			_statuses[i]->getStatusTime().displayDate();
+			_statuses[i]->getStatusTime().displayTime();
 			cout << endl;
-
-			cout << "Text: " << _statuses[i]->_text << endl;
-			cout << "------------------------" << endl;
-			cout << endl;
+			cout << "Text: " << _statuses[i]->getText() << endl;
+			cout << "---------------------------------" << endl << endl;
 		}
+		cout << endl;
 	}
 }
 

@@ -87,8 +87,14 @@ void Operation::displayAllEntities()
 	cout << endl;
 }
 
+// ori i added this func i need user
+User* Operation::getCurrentUser()
+{
+	return &_currentUser;
+}
 
-void Operation::getCurrentMember()
+// ORI i changed the name
+void Operation::getCurrentMemberInput()
 {
 	char* username = new char[256];
 

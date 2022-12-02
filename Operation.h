@@ -14,8 +14,8 @@ private:
 	// numbers according to init data
 	int _numOfUsers = 5;
 	int _maxUsers = 8;
-	int _numOfPages = 3;
-	int _maxPages = 4;
+	int _numOfPages = 5;
+	int _maxPages = 8;
 
 public:
 	Operation();
@@ -24,7 +24,8 @@ public:
 
 	User** getAllUsers() { return _allUsers; };
 	Page** getAllPages() { return _allPages; };
-	void getCurrentMember();
+	User* getCurrentUser(); // ORI I ADDED THIS
+	void getCurrentMemberInput();
 	const char* getCurrentMemberName() const { return _currentUser.getName(); };
 	const int getNumOfPages() const { return _numOfPages; };
 	const int getNumOfUsers() const { return _numOfUsers; };

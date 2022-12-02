@@ -12,9 +12,7 @@ class Operation;
 
 class User
 {
-private:
 	char* _name;
-	//Date _birthday;
 	Clock _birthday;
 
 	int _numOfFriends = 0;
@@ -30,13 +28,14 @@ private:
 
 public:
 	User(); // TODO: add delete. we don't want to create a new user without a name
-	User(const char* name, Clock birthday);
-	User(const User&) = delete; // copy c'tor - we delete cause we dont want to duplicate user
+	User(const char* name, Clock birthday, int maxNumFriends, int numFriends);
+	User(const User&) = delete; // we delete the copy c'tor because we dont want to duplicate a user
 
 	const char* getName() const { return _name; };
+	User** getFriendsList() { return _friendsList; }
 	const int getNumOfStatuses() const { return _numOfStatuses; };
+	const int getNumOfFriends() const { return _numOfFriends;  }
 	Status** getAllStatuses() { return _statuses; };
-
 	void setName(char* username);
 	void setBirthday(Clock birthday) { _birthday = birthday; }
 	const Clock getBirthday() const { return _birthday; }

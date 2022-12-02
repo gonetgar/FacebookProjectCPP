@@ -7,23 +7,48 @@ User** initiateUsers()
 {
 	User** initUsers = new User * [5];
 
-	User* user1 = new User("Keren Kalif", Clock(15, 4, 1980));
+	User* user1 = new User("Keren Kalif", Clock(15, 4, 1980), 2, 2);
 	initUsers[0] = user1;
-	User* user2 = new User("Steve Jobs", Clock(1, 3, 1960));
+	User* user2 = new User("Steve Jobs", Clock(1, 3, 1960), 2, 2);
 	initUsers[1] = user2;
-	User* user3 = new User("Mark Zuckerberg", Clock(6, 8, 1976));
+	User* user3 = new User("Mark Zuckerberg", Clock(6, 8, 1976), 4, 3);
 	initUsers[2] = user3;
-	User* user4 = new User("Ori Nurieli", Clock(1, 7, 1997));
+	User* user4 = new User("Ori Nurieli", Clock(1, 7, 1997), 2, 1);
 	initUsers[3] = user4;
-	User* user5 = new User("Gon Etgar", Clock(21, 10, 1996));
+	User* user5 = new User("Gon Etgar", Clock(21, 10, 1996), 2, 2);
 	initUsers[4] = user5;
+
+	// keren and steve jobs -> todo delete later remarks
+	user1->getFriendsList()[0] = user2;
+	user2->getFriendsList()[0] = user1;
+
+	// keren and mark
+	user1->getFriendsList()[1] = user3;
+	user3->getFriendsList()[0] = user1;
+
+	// steve and mark
+	user2->getFriendsList()[1] = user3;
+	user3->getFriendsList()[1] = user2;
+
+	// gon and ori
+	user5->getFriendsList()[0] = user4;
+	user4->getFriendsList()[0] = user5;
+
+	// gon and mark
+	user5->getFriendsList()[1] = user3;
+	user3->getFriendsList()[2] = user5;
 
 	return initUsers;
 }
 
+void initiateFriendships(User** allUsers)
+{
+	
+}
+
 Page** initiatePages()
 {
-	Page** initPages = new Page * [3];
+	Page** initPages = new Page * [5];
 
 	Page* page1 = new Page("Maccabi Haifa");
 	initPages[0] = page1;
@@ -31,10 +56,23 @@ Page** initiatePages()
 	initPages[1] = page2;
 	Page* page3 = new Page("Pink Floyd");
 	initPages[2] = page3;
+	Page* page4 = new Page("Led Zeppelin");
+	initPages[3] = page4;
+	Page* page5 = new Page("Dogs");
+	initPages[4] = page5;
 
 	return initPages;
 }
 
+void initiateStatuses()
+{
+
+}
+
+void initiatePageLikes() // initiate likes on pages from users
+{
+
+}
 
 int displayMenu()
 {
@@ -111,7 +149,7 @@ void getUserInput(Operation* system)
 
 	Clock birthday = birthday.getBirthdayInput();
 
-	User* userToAdd = new User(username, birthday);
+	User* userToAdd = new User(username, birthday, 1, 0);
 
 	system->addUserToOperation(userToAdd);
 }
@@ -134,22 +172,6 @@ void addPageToSystem(Operation* system)
 	Page* pageToAdd = new Page(pageName);
 
 	system->addPageToOperation(pageToAdd);
-}
-
-void initFriendsLists(User*** allUsers, int numOfAllUsers)
-{
-	cout << "hello :-)";
-	//// keren and steve jobs:
-	//(*allUsers)[0]->addFriendToFriendList(*allUsers, *allUsers[0], *allUsers[1]);
-	//(*allUsers)[1]->addFriendToFriendList(*allUsers, *allUsers[1], *allUsers[0]);
-
-	//// keren and ori:
-	//(*allUsers)[0]->addFriendToFriendList(*allUsers, *allUsers[0], *allUsers[3]);
-	//(*allUsers)[3]->addFriendToFriendList(*allUsers, *allUsers[3], *allUsers[0]);
-
-	//// gon and ori:
-	//(*allUsers)[4]->addFriendToFriendList(*allUsers, *allUsers[4], *allUsers[3]);
-	//(*allUsers)[3]->addFriendToFriendList(*allUsers, *allUsers[3], *allUsers[4]);
 }
 
 void getUserOrPageInput(int userChoice, Operation* system)

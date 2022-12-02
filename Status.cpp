@@ -16,12 +16,7 @@ Status::Status(char* text, Clock time)
 	_time = time;
 }
 
-char* Status::getText()
-{
-	return _text;
-}
-
-Clock Status::getDateAndHour()
+Clock Status::getStatusTime()
 {
 	return _time;
 }

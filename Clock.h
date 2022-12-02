@@ -27,6 +27,9 @@ public:
 	int getMinutes() { return _minutes;  }
 	int getSeconds() { return _seconds;  }
 
+	Clock getDate();
+	Clock getHour();
+
 	void displayDate(); 
 	void displayTime();
 	Clock getBirthdayInput();

@@ -20,8 +20,7 @@ int main()
 	initUsers = initiateUsers();
 	initPages = initiatePages();
 	system.initiateData(initUsers, initPages);
-	system.getCurrentMember();
-
+	system.getCurrentMemberInput();
 
 	//// ################################ Menu ################################ 
 	userChoice = displayMenu();
