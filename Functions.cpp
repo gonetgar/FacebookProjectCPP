@@ -66,8 +66,16 @@ void initiatePageLikes()
 
 }
 
-void initiateStatuses()
+void initiateStatuses(Operation* system)
 {
+	User** allUsers = system->getAllUsers();
+
+	for (int i = 0; i < system->getNumOfUsers(); i++)
+	{
+		Clock date;
+		Status* newStatus = new Status("Hello world", date.getDate());
+		allUsers[i]->createStatus(newStatus);
+	}
 
 }
 
@@ -101,7 +109,6 @@ int displayMenu()
 int doesUserExist(const char* name, Operation* system)
 {
 	int index;
-	// for now we do O(n) // TODO -> change to binary search
 	User** allUsers = system->getAllUsers();
 
 	for (index = 0; index < system->getNumOfUsers(); index++)
@@ -117,7 +124,6 @@ int doesUserExist(const char* name, Operation* system)
 int doesPageExist(const char* name, Operation* system)
 {
 	int index;
-	// for now we do O(n) // TODO -> change to binary search
 	Page** allPages = system->getAllPages();
 
 	for (index = 0; index < system->getNumOfPages(); index++)
@@ -198,7 +204,7 @@ void getUserOrPageInput(int userChoice, Operation* system)
 			switch (userChoice)
 			{
 			case 3:
-				allUsers[friendIndex]->createStatus();
+				allUsers[friendIndex]->createStatus(nullptr);
 				break;
 			case 4:
 				allUsers[friendIndex]->displayAllStatuses();
@@ -280,6 +286,6 @@ User* askForUsername(Operation* system)
 	}
 	else
 		user = system->getAllUsers()[userIndex];
-	
+
 	return user;
 }

@@ -34,14 +34,14 @@ public:
 	const char* getName() const { return _name; };
 	User** getFriendsList() { return _friendsList; }
 	const int getNumOfStatuses() const { return _numOfStatuses; };
-	const int getNumOfFriends() const { return _numOfFriends;  }
+	const int getNumOfFriends() const { return _numOfFriends; }
 	Status** getAllStatuses() { return _statuses; };
 	void setName(char* username);
 	void setBirthday(Clock birthday) { _birthday = birthday; }
 	const Clock getBirthday() const { return _birthday; }
 
-	void createStatus();
-	
+	void createStatus(Status* status);
+
 	void addFriend(Operation* system);
 	int askForName(Operation* system, int flag);
 	void reallocateFriendList(User*** allUsers, int user_index);

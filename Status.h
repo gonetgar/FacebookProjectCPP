@@ -16,9 +16,9 @@ class Status
 
 public:
 	Status();
-	Status(char* text, Clock time);
+	Status(const char* text, Clock time);
 
-	char* getText() { return _text;  }
+	char* getText() { return _text; }
 	Clock getDateAndHour() { return _time; }
 	Clock getStatusTime();
 	void getStatusInfo(Status* newStatus);

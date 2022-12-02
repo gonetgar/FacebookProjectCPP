@@ -16,7 +16,37 @@ Page::Page(const char* name)
 
 void Page::createStatus()
 {
-	cout << "createStatus" << endl;
+	if (_maxStatuses == _numOfStatuses)
+	{
+		_maxStatuses *= 2;
+		Status** newStatuses = new Status * [_maxStatuses];
+		for (int i = 0; i < _numOfStatuses; i++)
+			newStatuses[i] = _statuses[i];
+
+		_statuses = newStatuses;
+		// todo delete newStatuses
+		// error - delete[] newStatuses
+	}
+
+	Status* newStatus = new Status();
+	newStatus->getStatusInfo(newStatus);
+	_statuses[_numOfStatuses] = newStatus;
+	_numOfStatuses++;
+
+
+	// ################################################ // for debugging // TODO delete later
+	cout << "\n--------------------------------\n";
+	cout << "List of statuses:\n\n";
+	for (int i = 0; i < _numOfStatuses; i++)
+	{
+		cout << "Text: " << _statuses[i]->getText() << endl;
+		cout << "Date: ";
+		_statuses[i]->getDateAndHour().displayDate();
+		cout << "\nHour: ";
+		_statuses[i]->getDateAndHour().displayTime();
+		cout << endl << endl;
+	}
+	cout << "--------------------------------\n";
 }
 
 void Page::displayAllStatuses()
@@ -24,7 +54,6 @@ void Page::displayAllStatuses()
 	cout << _name << " Statuses: " << endl;
 	for (int i = 0; i < _numOfStatuses; i++)
 		cout << _statuses[i]->getText() << ", " << endl;
-		//cout << _statuses[i]->_text << ", " << endl; // TODO DELETE LATER
 }
 
 void Page::displayAllFans()

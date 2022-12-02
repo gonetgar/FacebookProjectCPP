@@ -12,11 +12,11 @@ int displayMenu();
 int doesUserExist(const char* name, Operation* system);
 int doesPageExist(const char* name, Operation* system);
 
-User** initiateUsers(); // TODO move to reference
+User** initiateUsers();
 void initiateFriendships(User** allUsers);
 Page** initiatePages();
 void initiatePageLikes(); // initiate likes on pages from users
-void initiateStatuses();
+void initiateStatuses(Operation* system);
 
 void getUserInput(Operation* system);
 void addPageToSystem(Operation* system);

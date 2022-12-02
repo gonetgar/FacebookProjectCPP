@@ -10,9 +10,9 @@ Status::Status()
 	_time = Clock();
 }
 
-Status::Status(char* text, Clock time)
+Status::Status(const char* text, Clock time)
 {
-	_text = text;
+	_text = _strdup(text);
 	_time = time;
 }
 

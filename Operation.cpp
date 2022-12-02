@@ -18,6 +18,7 @@ void Operation::initiateData(User** initUsers, Page** initPages)
 {
 	_allUsers = initUsers;
 	_allPages = initPages;
+	initiateStatuses(this);
 }
 
 
@@ -86,13 +87,11 @@ void Operation::displayAllEntities()
 	cout << endl;
 }
 
-// ori i added this func i need user
 User* Operation::getCurrentUser()
 {
 	return &_currentUser;
 }
 
-// ORI i changed the name
 void Operation::getCurrentMemberInput()
 {
 	char* username = new char[256];
@@ -144,7 +143,7 @@ void Operation::handleMenu(int userChoice)
 			_currentUser.addFriend(this);
 			break;
 		case 7:
-			_currentUser.cancelFriendship(this); // ORI i changed the call to function
+			_currentUser.cancelFriendship(this);
 			break;
 		case 8:
 			current_user = askForUsername(this);

@@ -36,7 +36,7 @@ void User::setName(char* username)
 	_name = username;
 }
 
-void User::createStatus()
+void User::createStatus(Status* initStatus)
 {
 	if (_maxNumOfStatuses == _numOfStatuses)
 	{
@@ -49,35 +49,26 @@ void User::createStatus()
 		_statuses = newStatuses;
 	}
 
-	Status* newStatus = new Status();
-	newStatus->getStatusInfo(newStatus);
-	_statuses[_numOfStatuses] = newStatus;
+	if (initStatus != nullptr) _statuses[_numOfStatuses] = initStatus;
+
+	else {
+		Status* newStatus = new Status();
+		newStatus->getStatusInfo(newStatus);
+		cout << "Status Uploaded!" << endl;
+		_statuses[_numOfStatuses] = newStatus;
+	}
 	_numOfStatuses++;
 
-
-	// ################################################ // for debugging // TODO delete later
-	cout << "\n--------------------------------\n";
-	cout << "List of statuses:\n\n";
-	for (int i = 0; i < _numOfStatuses; i++)
-	{
-		cout << "Text: " << _statuses[i]->getText() << endl;
-		cout << "Date: ";
-		_statuses[i]->getDateAndHour().displayDate();
-		cout << "\nHour: ";
-		_statuses[i]->getDateAndHour().displayTime();
-		cout << endl << endl;
-	}
-	cout << "--------------------------------\n";
 }
 
-// this function connect 2 users to be friends
+// this function connects 2 users to be friends
 void User::addFriend(Operation* system)
 {
 	User** all_users = system->getAllUsers();
 
 	cin.ignore(numeric_limits<streamsize>::max(), '\n');
 	int user_index = askForName(system, 0);
-	if(user_index < 0)
+	if (user_index < 0)
 		return;
 
 	int friend_index = askForName(system, 1);
@@ -156,7 +147,7 @@ int User::searchFriendInFriendList(User** allUsers, int userIndex, int friendInd
 	int friend_to_delete = NOT_FOUND;
 
 	// search this friend in the friend list:
-	for (int i = 0; i < allUsers[userIndex]->_numOfFriends ; i++)
+	for (int i = 0; i < allUsers[userIndex]->_numOfFriends; i++)
 	{
 		if (strcmp(allUsers[userIndex]->_friendsList[i]->_name, allUsers[friendIndex]->_name) == 0)
 		{
@@ -361,13 +352,13 @@ void User::displayRecentStatusesOfaFriend(char* friendToDisplay, Operation* syst
 			cout << "---------------------------------" << endl;
 			cout << "Status #" << i + 1 << endl;
 			cout << "Text: " << statuses[i]->getText() << endl;
-			cout << "Date and time: ";
+			cout << "Uploaded on: ";
 			statuses[i]->getStatusTime().displayDate();
+			cout << " | ";
 			statuses[i]->getStatusTime().displayTime();
 			cout << endl;
 			cout << "---------------------------------" << endl << endl;
 		}
-		cout << endl;
 	}
 	else cout << "No statuses to display." << endl << endl;
 }
@@ -381,14 +372,14 @@ void User::displayAllStatuses()
 		{
 			cout << "---------------------------------" << endl;
 			cout << "Status #" << i + 1 << endl;
-			cout << "Date and time: ";
+			cout << "Text: " << _statuses[i]->getText() << endl;
+			cout << "Uploaded on: ";
 			_statuses[i]->getStatusTime().displayDate();
+			cout << " | ";
 			_statuses[i]->getStatusTime().displayTime();
 			cout << endl;
-			cout << "Text: " << _statuses[i]->getText() << endl;
 			cout << "---------------------------------" << endl << endl;
 		}
-		cout << endl;
 	}
 }
 
