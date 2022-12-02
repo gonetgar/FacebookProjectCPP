@@ -7,7 +7,7 @@ using namespace std;
 #include "Clock.h"
 
 // takes a string of char numbers from a certain place, and returns the number
-int stringToNumber(char* str, int start, int end)
+int Clock::stringToNumber(char* str, int start, int end)
 {
 	int res = 0;
 	for (int i = start; i <= end; i++)
@@ -19,8 +19,28 @@ int stringToNumber(char* str, int start, int end)
 	return res;
 }
 
+// TODO GON delete unneccesasary things
 // returns current date and hour
-const std::string currentDateTime(Clock* clock)
+//const std::string currentDateTimeGON(Clock* clock)
+//{
+//	time_t now = time(0);
+//	struct tm tstruct;
+//	char buf[80];
+//	tstruct = *localtime(&now);
+//	strftime(buf, sizeof(buf), "%d-%m-%Y : %X", &tstruct);
+//
+//	clock->_day = stringToNumber(buf, 0, 1);
+//	clock->_month = stringToNumber(buf, 3, 4);
+//	clock->_year = stringToNumber(buf, 6, 9);
+//	clock->_hours = tstruct.tm_hour;
+//	clock->_minutes = tstruct.tm_min;
+//	clock->_seconds = tstruct.tm_sec;
+//
+//	return buf;
+//}
+
+// returns current date and hour
+char* Clock::currentDateTime()
 {
 	time_t now = time(0);
 	struct tm tstruct;
@@ -28,12 +48,19 @@ const std::string currentDateTime(Clock* clock)
 	tstruct = *localtime(&now);
 	strftime(buf, sizeof(buf), "%d-%m-%Y : %X", &tstruct);
 
-	clock->_day = stringToNumber(buf, 0, 1);
+	_day = stringToNumber(buf, 0, 1);
+	_month = stringToNumber(buf, 3, 4);
+	_year = stringToNumber(buf, 6, 9);
+	_hours = tstruct.tm_hour;
+	_minutes = tstruct.tm_min;
+	_seconds = tstruct.tm_sec;
+
+	/*clock->_day = stringToNumber(buf, 0, 1);
 	clock->_month = stringToNumber(buf, 3, 4);
 	clock->_year = stringToNumber(buf, 6, 9);
 	clock->_hours = tstruct.tm_hour;
 	clock->_minutes = tstruct.tm_min;
-	clock->_seconds = tstruct.tm_sec;
+	clock->_seconds = tstruct.tm_sec;*/
 
 	return buf;
 }
@@ -47,7 +74,8 @@ Clock::Clock()
 	_month = 0;
 	_year = 0;
 
-	currentDateTime(this);
+	currentDateTime();
+	//currentDateTimeGON(this);
 }
 
 // to enter date manually

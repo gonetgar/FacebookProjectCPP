@@ -18,6 +18,16 @@ public:
 public:
 	Clock();
 	Clock(int day, int month, int year); // to enter date manually (like in birthday)
+	
+	int stringToNumber(char* str, int start, int end);
+	char* currentDateTime();
+	int getDay() { return _day;  }
+	int getMonth() { return _month;  }
+	int getYear() { return _year;  }
+	int getHours() { return _hours;  }
+	int getMinutes() { return _minutes;  }
+	int getSeconds() { return _seconds;  }
+
 	void displayDate(); 
 	void displayTime();
 	Clock getBirthdayInput();
