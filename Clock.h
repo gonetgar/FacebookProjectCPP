@@ -7,7 +7,6 @@
 
 class Clock
 {
-public:
 	int _day;
 	int _month;
 	int _year;
