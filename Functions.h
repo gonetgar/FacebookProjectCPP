@@ -14,7 +14,7 @@ int doesPageExist(const char* name, Operation* system);
 
 User** initiateUsers();
 void initiateFriendships(User** allUsers);
-Page** initiatePages();
+Page** initiatePages(User** allUsers);
 void initiatePageLikes(); // initiate likes on pages from users
 void initiateStatuses(Operation* system);
 

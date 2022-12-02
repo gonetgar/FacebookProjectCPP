@@ -15,7 +15,7 @@ private:
 	Status** _statuses;
 
 	int _numOfFans = 0;
-	int _maxFans = 1;
+	int _maxFans = 2;
 	int _numOfStatuses = 0;
 	int _maxStatuses = 1;
 
@@ -27,7 +27,7 @@ public:
 
 	const char* getName() const { return _name; };
 	const int getNumOfFans() const { return _numOfFans; };
-	User** getFanListGON() const { return _fansList; } // TODO delete later
+	User** getFanList() const { return _fansList; }
 
 	char* setName(char* name) { _name = name; };
 
