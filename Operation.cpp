@@ -189,3 +189,19 @@ bool Operation::isValidPageName(char* pageName)
 {
 	return true; // only for complier
 }
+
+Operation::~Operation()
+{
+	for (int i = 0; i < _numOfUsers; i++)
+	{
+		delete[] _allUsers[i];
+	}
+	delete[] _allUsers;
+
+	for (int i = 0; i < _numOfPages; i++)
+	{
+		delete[] _allPages[i];
+	}
+	delete[] _allPages;
+
+}

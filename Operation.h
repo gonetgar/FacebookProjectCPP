@@ -35,7 +35,7 @@ public:
 
 	bool isValidUserName(char* userName); // sort & binary serach?
 	bool isValidPageName(char* pageName);
-	//	~Operation(); // TODO: free all memory here
+	~Operation();
 
 };
 

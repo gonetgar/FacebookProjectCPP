@@ -100,3 +100,20 @@ void Page::removeFan(User* removeUser)
 	cout << endl << removeUser->getName() << " is no more a fan of:  " << this->getName() << endl << endl;
 
 }
+
+Page::~Page()
+{
+	delete _name; //  we dont use delete[] for char* only for const char*  
+
+	for (int i = 0; i < _numOfStatuses; i++)
+	{
+		delete[] _statuses[i];
+	}
+	delete[] _statuses;
+
+	for (int i = 0; i < _numOfFans; i++)
+	{
+		delete[] _fansList[i];
+	}
+	delete[] _fansList;
+}
