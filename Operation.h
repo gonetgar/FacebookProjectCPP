@@ -24,7 +24,7 @@ public:
 
 	User** getAllUsers() { return _allUsers; };
 	Page** getAllPages() { return _allPages; };
-	User* getCurrentUser(); // ORI I ADDED THIS
+	User* getCurrentUser();
 	void getCurrentMemberInput();
 	const char* getCurrentMemberName() const { return _currentUser.getName(); };
 	const int getNumOfPages() const { return _numOfPages; };

@@ -42,8 +42,8 @@ public:
 	void setBirthday(Clock birthday) { _birthday = birthday; }
 	const Clock getBirthday() const { return _birthday; }
 
-	void createStatus();
-	
+	void createStatus(Status* status);
+
 	void addFriend(Operation* system);
 	int askForName(Operation* system, int flag);
 	void reallocateFriendList(User*** allUsers, int user_index);
