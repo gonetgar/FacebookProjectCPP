@@ -42,7 +42,7 @@ void initiateFriendships(User** allUsers)
 }
 
 // fills the pages array with pages
-Page** initiatePages(User** allUsers)
+Page** initiatePages(Operation* system, User** allUsers)
 {
 	Page** initPages = new Page * [5];
 
@@ -57,39 +57,11 @@ Page** initiatePages(User** allUsers)
 	Page* cakes = new Page("Cakes");
 	initPages[4] = cakes;
 
-	// add fans to pages:
-
-	maccabi_haifa->getFanList()[0] = allUsers[3];
-	allUsers[3]->getLikedPagesList()[0] = maccabi_haifa;
-
-	/*User** maccabi_fan_list = maccabi_haifa->getFanList();
-	Page** ori_page_list = allUsers[3]->getLikedPagesList();
-
-	maccabi_fan_list[0] = allUsers[3];
-	ori_page_list[0] = maccabi_haifa;*/
-
-
-	//maccabi_haifa->getFanList()[0] = all_users[3]; // add ori to maccabi haifa
-	//all_users[3]->getLikedPagesList()[0] = maccabi_haifa;
-
-	//harry_potter->getFanList()[0] = all_users[4]; // add gon to harry potter
-	//all_users[4]->getLikedPagesList()[0] = harry_potter;
-
-	//led_zeppelin->getFanList()[0] = all_users[1]; // add steve jobs to led zeppelin
-	//all_users[1]->getLikedPagesList()[0] = led_zeppelin;
-
-	//cakes->getFanList()[0] = all_users[0]; // add keren kalif to cakes
-	//all_users[0]->getLikedPagesList()[0] = cakes;
-
-	//// check if i can add another fan to a page
-
-	//cout << "@@@@ checking: @@@@@\n";
-	//cout << "Page: " << maccabi_haifa->getName() << endl;
-	//cout << "Fans: " << maccabi_haifa->getFanList()[0] << endl;
-
-	//cout << "Name: " << all_users[3]->getName() << endl;
-	//cout << "Likes: " << all_users[3]->getLikedPagesList()[0] << endl;
-
+	// add fans to pages: ORI THIS IS WHAT DIDNT WORK FOR ME
+	//maccabi_haifa->addFanToPage(system, allUsers[3]); // add ori to maccabi haifa
+	//harry_potter->addFanToPage(system, allUsers[4]); // add gon to harry potter
+	//led_zeppelin->addFanToPage(system, allUsers[1]); // add steve jobs to led zeppelin
+	//cakes->addFanToPage(system, allUsers[0]); // add keren kalif to cakes
 
 	return initPages;
 }
@@ -110,7 +82,6 @@ void initiateStatuses(Operation* system)
 		Status* newStatus = new Status("Hello world", date.getDate());
 		allUsers[i]->createStatus(newStatus);
 	}
-
 }
 
 int displayMenu()

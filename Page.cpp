@@ -88,7 +88,7 @@ void Page::addFanToPage(Operation* system, User* current_user)
 	_fansList[_numOfFans] = current_user;
 	_numOfFans++;
 
-	cout << current_user->getName() << " is now a fan of: " << this->getName() << endl;
+	//cout << current_user->getName() << " is now a fan of: " << this->getName() << endl;
 }
 
 void Page::addFanORI(User* newUser)
