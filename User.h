@@ -35,8 +35,8 @@ public:
 	User** getFriendsList() { return _friendsList; }
 	Page** getLikedPagesList() { return _likedPages; }
 	const int getNumOfStatuses() const { return _numOfStatuses; };
-	const int getNumOfFriends() const { return _numOfFriends;  }
-	const int getNumOfPages() const { return _numOfPages;  }
+	const int getNumOfFriends() const { return _numOfFriends; }
+	const int getNumOfPages() const { return _numOfPages; }
 	Status** getAllStatuses() { return _statuses; };
 	void setName(char* username);
 	void setBirthday(Clock birthday) { _birthday = birthday; }

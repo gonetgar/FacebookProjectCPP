@@ -32,7 +32,7 @@ public:
 	char* setName(char* name) { _name = name; };
 
 	void addFanToPage(Operation* system, User* current_user);
-	//void addFanORI(User* newUser);
+	void addFanORI(User* newUser);
 	void removeFan(User* removeUser);
 
 	void createStatus();
