@@ -7,9 +7,6 @@ using namespace std;
 
 User::User()
 {
-	static int counter;
-
-	cout << counter << ": $$$ start of default c'tor User $$$\n";
 	_name = new char[256];
 	_name = _strdup("ori the king");
 
@@ -17,15 +14,10 @@ User::User()
 	_statuses = new Status * [_maxNumOfStatuses];
 	_likedPages = new Page * [_maxNumOfPages];
 	_friendsList = new User * [_maxNumOfFriends];
-	cout << counter << ": $$$ end of default c'tor User $$$\n\n";
-
-	counter++;
 }
 
 User::User(const char* name, Clock birthday, int maxNumFriends, int numFriends, int maxPages, int numPages)
 {
-	static int counter;
-	cout << counter << ": $$$ start of C'TOR User $$$\n";
 	_name = new char[256];
 	_name = _strdup(name);
 	_birthday = birthday;
@@ -39,9 +31,6 @@ User::User(const char* name, Clock birthday, int maxNumFriends, int numFriends, 
 	_statuses = new Status * [_maxNumOfStatuses];
 	_likedPages = new Page * [_maxNumOfPages];
 	_friendsList = new User * [_maxNumOfFriends];
-	cout << counter << ": $$$ end of C'TOR User $$$\n\n";
-
-	counter++;
 }
 
 void User::setName(char* username)
@@ -256,19 +245,27 @@ void User::cancelFriendship(Operation* system)
 }
 
 
-void User::likePage(Operation* system, User* current_user)
+void User::likePage(Operation* system, User* current_user, Page* pageLiked)
 {
+	Page* new_page;
+
 	if (current_user == nullptr)
 		return;
 
-	// ask for page name and search it in the system:
-	Page* page_liked = getPageDetails(system);
-
-	if (page_liked == nullptr)
+	if (pageLiked != nullptr) // function recevied pointer to page, add the page to current_user
 	{
-		cout << "Page doesn't exist." << endl << endl;
-		return;
+		new_page = pageLiked;
 	}
+	else // the function recevied null, ask the user to input page name
+	{
+		// ask for page name and search it in the system:
+		new_page = getPageDetails(system);
+		if (new_page == nullptr) // the page user inserted wasn't found
+		{
+			cout << "Page doesn't exist." << endl << endl;
+			return;
+		}
+	}	
 
 	// add to user's likes pages
 	if (_maxNumOfPages == _numOfPages)
@@ -282,12 +279,12 @@ void User::likePage(Operation* system, User* current_user)
 		_likedPages = newPagesArray;
 	}
 
-	_likedPages[_numOfPages] = page_liked;
+	_likedPages[_numOfPages] = new_page;
 	_numOfPages++;
 
-	page_liked->addFanToPage(system, this); // check
+	new_page->addFanToPage(system, this); // check
 
-	cout << endl << this->getName() << " liked " << page_liked->getName() << endl << endl;
+	//cout << endl << this->getName() << " liked " << new_page->getName() << endl << endl;
 }
 
 // i changed the function

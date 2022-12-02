@@ -54,7 +54,7 @@ public:
 	void removeFriendFromFriendList(User** all_users, int user_index, int friend_to_delete);
 
 	//void likePage(Page* newPage);
-	void likePage(Operation* system, User* current_user);
+	void likePage(Operation* system, User* current_user, Page* pageLiked);
 	//void likePageORI(Page* newPage);
 
 	void dislikePage(Page* removePage);

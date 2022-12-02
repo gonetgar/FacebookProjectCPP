@@ -81,14 +81,14 @@ void Page::addFanToPage(Operation* system, User* current_user)
 		for (int i = 0; i < _numOfFans; i++)
 			newFans[i] = _fansList[i];
 
-		delete[] _fansList;
+		delete _fansList;
 		_fansList = newFans;
 	}
 
 	_fansList[_numOfFans] = current_user;
 	_numOfFans++;
 
-	cout << current_user->getName() << " is now a fan of: " << this->getName() << endl;
+	//cout << current_user->getName() << " is now a fan of: " << this->getName() << endl;
 }
 
 // I AM CHANING LIKE PAGE SO I AM CHANING THIS FUNC - TODO DELETE LATER
