@@ -144,7 +144,7 @@ void getUserInput(Operation* system)
 {
 	char* username = new char[256];
 
-	cout << "Please enter your username: " << endl;
+	cout << "Please enter your username: ";
 	cin.ignore();
 	cin.getline(username, 256);
 
@@ -166,7 +166,7 @@ void addPageToSystem(Operation* system)
 {
 	char* pageName = new char[256];
 
-	cout << "Please enter page name: " << endl;
+	cout << "Please enter page name: ";
 	cin.ignore();
 	cin.getline(pageName, 256);
 
@@ -199,7 +199,7 @@ void getUserOrPageInput(int userChoice, Operation* system)
 	cin >> isUserToDisplay;
 
 	if (isUserToDisplay) { // the choice was User
-		cout << "Please enter username: " << endl;
+		cout << "Please enter username: ";
 		cin.ignore();
 		cin.getline(username, 256);
 
@@ -225,7 +225,7 @@ void getUserOrPageInput(int userChoice, Operation* system)
 	}
 	else  // choice was Page
 	{
-		cout << "Please enter page name: " << endl;
+		cout << "Please enter page name: ";
 		cin.ignore();
 		cin.getline(pageName, 256);
 
@@ -260,7 +260,7 @@ Page* getPageDetails(Operation* system)
 	int index = 0;
 
 	cout << "Enter page name:\n";
-	cin.ignore();
+	//cin.ignore();
 	cin.getline(pageName, MAX_CHARACTERS);
 
 	index = doesPageExist(pageName, system);

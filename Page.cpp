@@ -31,22 +31,8 @@ void Page::createStatus()
 	Status* newStatus = new Status();
 	newStatus->getStatusInfo(newStatus);
 	_statuses[_numOfStatuses] = newStatus;
+	cout << "Status Uploaded!" << endl << endl;
 	_numOfStatuses++;
-
-
-	// ################################################ // for debugging // TODO delete later
-	cout << "\n--------------------------------\n";
-	cout << "List of statuses:\n\n";
-	for (int i = 0; i < _numOfStatuses; i++)
-	{
-		cout << "Text: " << _statuses[i]->getText() << endl;
-		cout << "Date: ";
-		_statuses[i]->getDateAndHour().displayDate();
-		cout << "\nHour: ";
-		_statuses[i]->getDateAndHour().displayTime();
-		cout << endl << endl;
-	}
-	cout << "--------------------------------\n";
 }
 
 void Page::displayAllStatuses()

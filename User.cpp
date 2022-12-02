@@ -56,7 +56,7 @@ void User::createStatus(Status* initStatus)
 	else {
 		Status* newStatus = new Status();
 		newStatus->getStatusInfo(newStatus);
-		cout << endl << "Status Uploaded!" << endl;
+		cout << "Status Uploaded!" << endl << endl;
 		_statuses[_numOfStatuses] = newStatus;
 	}
 	_numOfStatuses++;
@@ -80,7 +80,7 @@ void User::addFriend(Operation* system)
 	addFriendToFriendList(&all_users, user_index, friend_index);
 	addFriendToFriendList(&all_users, friend_index, user_index);
 
-	cout << "\nHello " << all_users[user_index]->getName() << ", you have added " << all_users[friend_index]->getName() << " to your friend list." << endl << endl;
+	cout << "\n " << all_users[user_index]->getName() << ", you have added " << all_users[friend_index]->getName() << " to your friend list." << endl << endl;
 }
 
 // ask for name and search it on allUsers array, returns the user's index, or -1 if not found
@@ -186,7 +186,7 @@ void User::cancelFriendship(Operation* system)
 	removeFriendFromFriendList(all_users, user_index, iFriendToDelete);
 	removeFriendFromFriendList(all_users, friend_index, iUserToDelete);
 
-	cout << "\nHello " << all_users[user_index]->getName() << ", you have removed " << all_users[friend_index]->getName() << " from your friend list." << endl << endl;
+	cout << "\n" << all_users[user_index]->getName() << ", you have removed " << all_users[friend_index]->getName() << " from your friend list." << endl << endl;
 }
 
 
@@ -339,7 +339,7 @@ void User::displayAllFriends()
 	cout << "\n" << _name << "'s friends:" << endl;
 
 	if (_numOfFriends == 0)
-		cout << "None :(" << endl;
+		cout << "None :(" << endl << endl;
 	else
 	{
 		cout << endl;
