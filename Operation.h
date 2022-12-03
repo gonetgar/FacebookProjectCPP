@@ -34,8 +34,6 @@ public:
 	void addPageToOperation(Page* page);
 	void displayAllEntities();
 
-	bool isValidUserName(char* userName); // sort & binary serach?
-	bool isValidPageName(char* pageName);
 	~Operation();
 };
 

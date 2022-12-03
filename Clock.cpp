@@ -77,11 +77,12 @@ void Clock::displayDate()
 	cout << _day << "." << _month << "." << _year;
 }
 
-void Clock::displayTime()
+void Clock::displayHour()
 {
 	cout << " " << _hours << ":" << _minutes << ":" << _seconds;
 }
 
+// to enter a date manually
 Clock Clock::getBirthdayInput()
 {
 	int d, m, y;

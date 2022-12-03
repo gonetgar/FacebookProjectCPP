@@ -6,7 +6,6 @@
 #include <ctime>  
 #include <string.h>
 const int MAX_CHARACTERS = 256;
-#include "Date.h"
 #include "Clock.h"
 
 class Status

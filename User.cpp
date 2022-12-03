@@ -250,12 +250,13 @@ void User::dislikePage(Operation* system) // todo: change to ref&
 	{
 		if (page_to_dislike == _likedPages[i]) // page is in likedPages
 		{
-			if ((_numOfPages == 1) || (i == _numOfPages - 1))
-			{ // the only page on the array || the last page on the array
+			// there is only one page in the array, or the page to dislike is the last one
+			if (i == _numOfPages - 1)
+			{
 				_likedPages[i] = nullptr;
 			}
 			else // in the "middle"
-			{ // swap the one we remove, with the last one
+			{ // swap the one we dislike, with the last one
 				_likedPages[i] = _likedPages[_numOfPages - 1];
 				_likedPages[_numOfPages - 1] = nullptr;
 			}
@@ -266,7 +267,7 @@ void User::dislikePage(Operation* system) // todo: change to ref&
 	}
 
 	if (!found)
-		cout << "Page was not found on your Liked Pages list." << endl;
+		cout << "Page was not found on your Liked Pages list." << endl << endl;
 	else
 		cout << endl << this->getName() << " disliked " << page_to_dislike->getName() << endl << endl;
 }
@@ -276,7 +277,9 @@ void User::displayRecentStatusesOfaFriend(Operation* system)
 {
 	const int NUM_STATUSES_TO_DISPLAY = 10;
 
-	for (int i = 0; i < _numOfFriends; i++) // go over friend list
+	if (_numOfFriends == 0)
+		cout << "No friends to display." << endl << endl;
+	for (int i = 0; i < _numOfFriends; i++) // go over friends list
 	{
 		cout << "---------------------------------" << endl;
 		cout << "Friend's name: " << _friendsList[i]->getName() << endl;
@@ -298,7 +301,7 @@ void User::displayRecentStatusesOfaFriend(Operation* system)
 				cout << "Uploaded On: ";
 				friend_status_list[j]->getStatusTime().displayDate();
 				cout << " |";
-				friend_status_list[j]->getStatusTime().displayTime();
+				friend_status_list[j]->getStatusTime().displayHour();
 				cout << endl;
 			}
 		}
@@ -306,6 +309,7 @@ void User::displayRecentStatusesOfaFriend(Operation* system)
 	}
 }
 
+// shows all statuses of a chosen user
 void User::displayAllStatuses()
 {
 	cout << endl << _name << "'s Statuses:\n";
@@ -319,13 +323,14 @@ void User::displayAllStatuses()
 			cout << "Uploaded on: ";
 			_statuses[i]->getStatusTime().displayDate();
 			cout << " |";
-			_statuses[i]->getStatusTime().displayTime();
+			_statuses[i]->getStatusTime().displayHour();
 			cout << endl;
 			cout << "---------------------------------" << endl << endl;
 		}
 	}
 }
 
+// shows all friends of a user
 void User::displayAllFriends()
 {
 	cout << "\n" << _name << "'s friends:" << endl;

@@ -27,19 +27,19 @@ User** initiateUsers()
 // fills list of friends for some members to initiate the program
 void initiateFriendships(User** allUsers)
 {
-	allUsers[0]->getFriendsList()[0] = allUsers[1]; // keren kalif & steve jobs
+	allUsers[0]->getFriendsList()[0] = allUsers[1];
 	allUsers[1]->getFriendsList()[0] = allUsers[0];
 
-	allUsers[0]->getFriendsList()[1] = allUsers[2]; // keren kalif & mark zuckerberg
+	allUsers[0]->getFriendsList()[1] = allUsers[2];
 	allUsers[2]->getFriendsList()[0] = allUsers[0];
 
-	allUsers[1]->getFriendsList()[1] = allUsers[2]; // steve jobs & mark zuckerberg
+	allUsers[1]->getFriendsList()[1] = allUsers[2];
 	allUsers[2]->getFriendsList()[1] = allUsers[1];
 
-	allUsers[4]->getFriendsList()[0] = allUsers[3]; // gon etgar & ori nurieli
+	allUsers[4]->getFriendsList()[0] = allUsers[3];
 	allUsers[3]->getFriendsList()[0] = allUsers[4];
 
-	allUsers[4]->getFriendsList()[1] = allUsers[2]; // gon etgar & mark zuckerberg
+	allUsers[4]->getFriendsList()[1] = allUsers[2];
 	allUsers[2]->getFriendsList()[2] = allUsers[4];
 }
 
@@ -75,6 +75,7 @@ void initiatePageLikes(Operation* system, User** allUsers, Page** pages)
 	pages[4]->addFanToPage(system, allUsers[4]);
 }
 
+// initiate status for each user
 void initiateStatuses(Operation* system)
 {
 	User** allUsers = system->getAllUsers();
@@ -143,6 +144,7 @@ int doesPageExist(const char* name, Operation* system)
 	return NOT_FOUND;
 }
 
+// to enter a new user to the system
 void getUserInput(Operation* system)
 {
 	char* username = new char[MAX_CHARACTERS];
@@ -155,6 +157,7 @@ void getUserInput(Operation* system)
 	if (doesUserExist(username, system) >= 0)
 	{
 		cout << "username is already taken" << endl << endl;
+		delete[] username;
 		return;
 	}
 

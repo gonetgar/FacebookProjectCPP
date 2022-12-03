@@ -128,7 +128,8 @@ void Operation::handleMenu(int userChoice)
 			cout << endl;
 			current_user = askForUsername(this);
 			cout << endl;
-			current_user->displayRecentStatusesOfaFriend(this);
+			if(current_user)
+				current_user->displayRecentStatusesOfaFriend(this);
 			break;
 		case 6:
 			_currentUser.addFriend(this);
@@ -138,11 +139,13 @@ void Operation::handleMenu(int userChoice)
 			break;
 		case 8:
 			current_user = askForUsername(this);
-			current_user->likePage(nullptr, this);
+			if(current_user)
+				current_user->likePage(nullptr, this);
 			break;
 		case 9:
 			current_user = askForUsername(this);
-			current_user->dislikePage(this);
+			if(current_user)
+				current_user->dislikePage(this);
 			break;
 		case 10:
 			displayAllEntities();
@@ -161,16 +164,6 @@ void Operation::handleMenu(int userChoice)
 		cout << endl << "Invalid Input, try again." << endl << endl;
 		return;
 	}
-}
-
-bool Operation::isValidUserName(char* userName)
-{
-	return true; // only for complier - TODO ori ? what is this
-}
-
-bool Operation::isValidPageName(char* pageName)
-{
-	return true; // only for complier
 }
 
 Operation::~Operation()

@@ -16,7 +16,7 @@ class Clock
 
 public:
 	Clock();
-	Clock(int day, int month, int year); // to enter date manually (like in birthday)
+	Clock(int day, int month, int year); // to enter date manually (e.g. in birthday)
 	
 	int stringToNumber(char* str, int start, int end);
 	char* currentDateTime();
@@ -31,7 +31,7 @@ public:
 	Clock getHour();
 
 	void displayDate(); 
-	void displayTime();
+	void displayHour();
 	Clock getBirthdayInput();
 };
 

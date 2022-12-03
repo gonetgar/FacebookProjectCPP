@@ -46,7 +46,7 @@ void Page::displayAllStatuses()
 		cout << "Uploaded on: ";
 		_statuses[i]->getDateAndHour().displayDate();
 		cout << " | ";
-		_statuses[i]->getDateAndHour().displayTime();
+		_statuses[i]->getDateAndHour().displayHour();
 		cout << endl << "---------------------------------" << endl << endl;
 	}
 	cout << endl;
@@ -104,7 +104,6 @@ void Page::removeFan(User* removeUser)
 			_numOfFans--;
 		}
 	}
-	cout << endl << removeUser->getName() << " is no more a fan of:  " << this->getName() << endl << endl;
 }
 
 Page::~Page()

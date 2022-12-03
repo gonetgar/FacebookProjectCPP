@@ -23,8 +23,16 @@ Clock Status::getStatusTime()
 
 void Status::getStatusInfo(Status* newStatus)
 {
+	char* tempStr = new char[MAX_CHARACTERS];
+
 	cout << "Please insert your status: ";
-	cin.getline(newStatus->_text, MAX_CHARACTERS);	//TODO shrink?
+	cin.getline(tempStr, MAX_CHARACTERS);
+	int size = strlen(tempStr) + 1;
+
+	newStatus->_text = tempStr;
+	tempStr = nullptr;
+	delete[] tempStr;
+
 	cout << endl;
 }
 
