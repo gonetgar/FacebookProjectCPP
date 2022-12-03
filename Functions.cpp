@@ -2,6 +2,8 @@
 #include "Functions.h"
 using namespace std;
 
+#define NOT_FOUND -1
+
 // fills allUsers array with members
 User** initiateUsers()
 {
@@ -123,7 +125,7 @@ int doesUserExist(const char* name, Operation* system)
 			return index;
 	}
 
-	return -1;
+	return NOT_FOUND;
 }
 
 // returns the page's index in the allPages array, or -1 if is not found
@@ -138,7 +140,7 @@ int doesPageExist(const char* name, Operation* system)
 			return index;
 	}
 
-	return -1;
+	return NOT_FOUND;
 }
 
 void getUserInput(Operation* system)
@@ -150,26 +152,24 @@ void getUserInput(Operation* system)
 	cin.getline(username, MAX_CHARACTERS);
 
 	// validate username
-	if (doesUserExist(username, system) >= 0) {
-		cout << "username is already taken" << endl;
-		getUserInput(system);
+	if (doesUserExist(username, system) >= 0)
+	{
+		cout << "username is already taken" << endl << endl;
 		return;
 	}
 
 	Clock birthday = birthday.getBirthdayInput();
-
 	User* userToAdd = new User(username, birthday, 1, 0, 1, 0);
-
 	system->addUserToOperation(userToAdd);
 }
 
 void addPageToSystem(Operation* system)
 {
-	char* pageName = new char[256];
+	char* pageName = new char[MAX_CHARACTERS];
 
 	cout << "Please enter page name: ";
 	cin.ignore();
-	cin.getline(pageName, 256);
+	cin.getline(pageName, MAX_CHARACTERS);
 
 	// validate username
 	if (doesPageExist(pageName, system) >= 0) {
@@ -187,8 +187,8 @@ void getUserOrPageInput(int userChoice, Operation* system)
 {
 	// userChoice is according to handleMenu()
 
-	char* username = new char[256];
-	char* pageName = new char[256];
+	char* username = new char[MAX_CHARACTERS];
+	char* pageName = new char[MAX_CHARACTERS];
 
 	User** allUsers = system->getAllUsers();
 	Page** allPages = system->getAllPages();
@@ -202,7 +202,7 @@ void getUserOrPageInput(int userChoice, Operation* system)
 	if (isUserToDisplay) { // the choice was User
 		cout << "Please enter username: ";
 		cin.ignore();
-		cin.getline(username, 256);
+		cin.getline(username, MAX_CHARACTERS);
 
 		int friendIndex = doesUserExist(username, system);
 
@@ -228,7 +228,7 @@ void getUserOrPageInput(int userChoice, Operation* system)
 	{
 		cout << "Please enter page name: ";
 		cin.ignore();
-		cin.getline(pageName, 256);
+		cin.getline(pageName, MAX_CHARACTERS);
 
 		int pageIndex = doesPageExist(pageName, system);
 
@@ -285,7 +285,7 @@ User* askForUsername(Operation* system)
 	userIndex = doesUserExist(username, system);
 	delete[] username;
 
-	if (userIndex == -1)
+	if (userIndex == NOT_FOUND)
 	{
 		cout << "User not found!\n\n";
 		user = nullptr;

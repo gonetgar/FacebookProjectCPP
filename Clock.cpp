@@ -19,26 +19,6 @@ int Clock::stringToNumber(char* str, int start, int end)
 	return res;
 }
 
-// TODO GON delete unneccesasary things
-// returns current date and hour
-//const std::string currentDateTimeGON(Clock* clock)
-//{
-//	time_t now = time(0);
-//	struct tm tstruct;
-//	char buf[80];
-//	tstruct = *localtime(&now);
-//	strftime(buf, sizeof(buf), "%d-%m-%Y : %X", &tstruct);
-//
-//	clock->_day = stringToNumber(buf, 0, 1);
-//	clock->_month = stringToNumber(buf, 3, 4);
-//	clock->_year = stringToNumber(buf, 6, 9);
-//	clock->_hours = tstruct.tm_hour;
-//	clock->_minutes = tstruct.tm_min;
-//	clock->_seconds = tstruct.tm_sec;
-//
-//	return buf;
-//}
-
 // returns current date and hour
 char* Clock::currentDateTime()
 {
@@ -55,13 +35,6 @@ char* Clock::currentDateTime()
 	_minutes = tstruct.tm_min;
 	_seconds = tstruct.tm_sec;
 
-	/*clock->_day = stringToNumber(buf, 0, 1);
-	clock->_month = stringToNumber(buf, 3, 4);
-	clock->_year = stringToNumber(buf, 6, 9);
-	clock->_hours = tstruct.tm_hour;
-	clock->_minutes = tstruct.tm_min;
-	clock->_seconds = tstruct.tm_sec;*/
-
 	return buf;
 }
 
@@ -75,7 +48,6 @@ Clock::Clock()
 	_year = 0;
 
 	currentDateTime();
-	//currentDateTimeGON(this);
 }
 
 // to enter date manually
@@ -85,8 +57,7 @@ Clock::Clock(int day, int month, int year)
 	_month = month;
 	_year = year;
 
-	// in birthday the hour is not important
-	_hours = 0;
+	_hours = 0; // in birthday the hour is not important
 	_minutes = 0;
 	_seconds = 0;
 }

@@ -32,12 +32,21 @@ void Operation::addUserToOperation(User* userToAdd)
 			newUsers[i] = _allUsers[i];
 
 		_allUsers = newUsers;
+		newUsers = nullptr;
 		delete[] newUsers;
 	}
 
 	_allUsers[_numOfUsers] = userToAdd;
 	_numOfUsers++;
 	cout << endl << "Hey, " << userToAdd->getName() << " Welcome to Facebook :) " << endl << endl;
+
+	//debugging: // todo delete later
+	cout << "\nlist of people:\n";
+	for (int i = 0; i < _numOfUsers; i++)
+	{
+		cout << "#" << i + 1 << ": ";
+		cout << _allUsers[i]->getName() << endl;
+	}
 }
 
 void Operation::addPageToOperation(Page* pageToAdd)
@@ -84,10 +93,10 @@ User* Operation::getCurrentUser()
 
 void Operation::getCurrentMemberInput() // todo - delete this?
 {
-	char* username = new char[256];
+	char* username = new char[MAX_CHARACTERS];
 
 	cout << "Hello, please enter your name for varification: ";
-	cin.getline(username, 256);
+	cin.getline(username, MAX_CHARACTERS);
 	cout << endl;
 
 	Clock birthDate = birthDate.getBirthdayInput();
@@ -108,7 +117,8 @@ void Operation::handleMenu(int userChoice)
 	Page* removePage;
 	char friendToDisplay[MAX_CHARACTERS];
 
-	if (userChoice > 0 && userChoice < 13) {
+	if (userChoice > 0 && userChoice < 13)
+	{
 		switch (userChoice)
 		{
 		case 1:
@@ -126,7 +136,7 @@ void Operation::handleMenu(int userChoice)
 		case 5:
 			cout << "Your Friend's Name: \n";
 			cin.ignore();
-			cin.getline(friendToDisplay, 256);
+			cin.getline(friendToDisplay, MAX_CHARACTERS);
 			_currentUser.displayRecentStatusesOfaFriend(friendToDisplay, this);
 			break;
 		case 6:

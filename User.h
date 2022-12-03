@@ -14,6 +14,9 @@ class User
 {
 	char* _name;
 	Clock _birthday;
+	User** _friendsList;
+	Status** _statuses;
+	Page** _likedPages;
 
 	int _numOfFriends = 0;
 	int _maxNumOfFriends = 1;
@@ -21,11 +24,6 @@ class User
 	int _maxNumOfStatuses = 1;
 	int _numOfPages = 0;
 	int _maxNumOfPages = 1;
-
-	User** _friendsList;
-	Status** _statuses;
-	Page** _likedPages;
-
 public:
 	User(); // TODO: add delete. we don't want to create a new user without a name
 	User(const char* name, Clock birthday, int maxNumFriends, int numFriends, int maxPages, int numPages);
