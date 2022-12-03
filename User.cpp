@@ -271,40 +271,39 @@ void User::dislikePage(Operation* system) // todo: change to ref&
 		cout << endl << this->getName() << " disliked " << page_to_dislike->getName() << endl << endl;
 }
 
-void User::displayRecentStatusesOfaFriend(char* friendToDisplay, Operation* system) // 10 most recent statuses of all his friends
+// 10 most recent statuses of all his friends
+void User::displayRecentStatusesOfaFriend(Operation* system)
 {
 	const int NUM_STATUSES_TO_DISPLAY = 10;
-	User** allUsers = system->getAllUsers();
-	User* userToDisplay;
-	Status** statuses;
-	int index = 0;
-	int numOfStatuses = 0;
 
-	// find friend using index = doesFriendExist()
-	index = doesUserExist(friendToDisplay, system);
-	userToDisplay = allUsers[index];
-	// loop friendToDisplay[index].statuses
-	numOfStatuses = userToDisplay->getNumOfStatuses();
-
-	if (numOfStatuses > 0)
+	for (int i = 0; i < _numOfFriends; i++) // go over friend list
 	{
-		statuses = userToDisplay->getAllStatuses();
+		cout << "---------------------------------" << endl;
+		cout << "Friend's name: " << _friendsList[i]->getName() << endl;
+		cout << _friendsList[i]->getName() << "'s 10 Most Recent Statuses Are:" << endl;
+		Status** friend_status_list = _friendsList[i]->getAllStatuses();
+		int num_statuses = _friendsList[i]->getNumOfStatuses();
 
-		cout << endl << userToDisplay->getName() << "'s Recent 10 statuses:" << endl;
-		for (int i = 0; i < numOfStatuses || numOfStatuses == NUM_STATUSES_TO_DISPLAY; i++)
+		if(num_statuses == 0)
+			cout << "No statuses to display." << endl;
+		else
 		{
-			cout << "---------------------------------" << endl;
-			cout << "Status #" << i + 1 << endl;
-			cout << "Text: " << statuses[i]->getText() << endl;
-			cout << "Uploaded on: ";
-			statuses[i]->getStatusTime().displayDate();
-			cout << " | ";
-			statuses[i]->getStatusTime().displayTime();
-			cout << endl;
-			cout << "---------------------------------" << endl << endl;
+			int stop_loop;
+			(num_statuses < NUM_STATUSES_TO_DISPLAY) ? (stop_loop = 0) : (stop_loop = num_statuses - NUM_STATUSES_TO_DISPLAY);
+
+			for (int j = num_statuses - 1; j >= stop_loop; j--)
+			{
+				cout << endl << "Status:" << endl;
+				cout << "Text: " << friend_status_list[j]->getText() << endl;
+				cout << "Uploaded On: ";
+				friend_status_list[j]->getStatusTime().displayDate();
+				cout << " |";
+				friend_status_list[j]->getStatusTime().displayTime();
+				cout << endl;
+			}
 		}
+		cout << "---------------------------------" << endl;
 	}
-	else cout << "No statuses to display." << endl << endl;
 }
 
 void User::displayAllStatuses()
@@ -319,7 +318,7 @@ void User::displayAllStatuses()
 			cout << "Text: " << _statuses[i]->getText() << endl;
 			cout << "Uploaded on: ";
 			_statuses[i]->getStatusTime().displayDate();
-			cout << " | ";
+			cout << " |";
 			_statuses[i]->getStatusTime().displayTime();
 			cout << endl;
 			cout << "---------------------------------" << endl << endl;

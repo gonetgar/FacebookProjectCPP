@@ -96,7 +96,7 @@ int displayMenu()
 	cout << "2. Add new page\n";
 	cout << "3. Create a new status\n";
 	cout << "4. Display all statuses\n";
-	cout << "5. Display all 10 recent statuses\n";
+	cout << "5. Display all 10 recent statuses of all your friends\n";
 	cout << "6. Add a new friend\n";
 	cout << "7. Unfriend\n";
 	cout << "8. Like a page\n";

@@ -125,10 +125,10 @@ void Operation::handleMenu(int userChoice)
 			getUserOrPageInput(4, this);
 			break;
 		case 5:
-			cout << "Your Friend's Name: \n";
-			cin.ignore();
-			cin.getline(friendToDisplay, MAX_CHARACTERS);
-			_currentUser.displayRecentStatusesOfaFriend(friendToDisplay, this);
+			cout << endl;
+			current_user = askForUsername(this);
+			cout << endl;
+			current_user->displayRecentStatusesOfaFriend(this);
 			break;
 		case 6:
 			_currentUser.addFriend(this);

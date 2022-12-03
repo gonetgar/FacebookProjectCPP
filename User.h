@@ -56,7 +56,7 @@ public:
 	void addPageToLikedPagesList(Operation* system, Page* pageToLike);
 
 	void dislikePage(Operation* system);
-	void displayRecentStatusesOfaFriend(char* friendToDisplay, Operation* system); // 10 most recent statuses of all his friends
+	void displayRecentStatusesOfaFriend(Operation* system); // 10 most recent statuses of all his friends
 	void displayAllStatuses();
 	void displayAllFriends();
 
