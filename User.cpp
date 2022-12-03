@@ -235,23 +235,40 @@ void User::likePage(Page* pageToLike, Operation* system)
 	}	
 }
 
-void User::dislikePage(Page* removePage) // todo: change to ref&
+void User::dislikePage(Operation* system) // todo: change to ref&
 {
-	for (int i = 0; i < _numOfPages; i++)
+	Page* page_to_dislike = getPageDetails(system);
+	bool found = false;
+
+	if (page_to_dislike == nullptr)
 	{
-		if (removePage == _likedPages[i]) // page is in likedPages
+		cout << "Page was not found." << endl;
+		return;
+	}
+
+	for (int i = 0; i < _numOfPages && !found ; i++)
+	{
+		if (page_to_dislike == _likedPages[i]) // page is in likedPages
 		{
-			// Swap the page with last element
-			swap(_likedPages[i], _likedPages[_numOfPages - 1]);
-			// decrement log size of array
+			if ((_numOfPages == 1) || (i == _numOfPages - 1))
+			{ // the only page on the array || the last page on the array
+				_likedPages[i] = nullptr;
+			}
+			else // in the "middle"
+			{ // swap the one we remove, with the last one
+				_likedPages[i] = _likedPages[_numOfPages - 1];
+				_likedPages[_numOfPages - 1] = nullptr;
+			}
 			_numOfPages--;
-			// call within page (this)
-			removePage->removeFan(this);
+			page_to_dislike->removeFan(this);
+			found = true;
 		}
 	}
 
-	cout << endl << this->getName() << " disliked " << removePage->getName() << endl << endl;
-
+	if (!found)
+		cout << "Page was not found on your Liked Pages list." << endl;
+	else
+		cout << endl << this->getName() << " disliked " << page_to_dislike->getName() << endl << endl;
 }
 
 void User::displayRecentStatusesOfaFriend(char* friendToDisplay, Operation* system) // 10 most recent statuses of all his friends

@@ -39,14 +39,6 @@ void Operation::addUserToOperation(User* userToAdd)
 	_allUsers[_numOfUsers] = userToAdd;
 	_numOfUsers++;
 	cout << endl << "Hey, " << userToAdd->getName() << " Welcome to Facebook :) " << endl << endl;
-
-	//debugging: // todo delete later
-	cout << "\nlist of people:\n";
-	for (int i = 0; i < _numOfUsers; i++)
-	{
-		cout << "#" << i + 1 << ": ";
-		cout << _allUsers[i]->getName() << endl;
-	}
 }
 
 void Operation::addPageToOperation(Page* pageToAdd)
@@ -114,7 +106,6 @@ void Operation::handleMenu(int userChoice)
 {
 	User* current_user = nullptr;
 	Page* newPage;
-	Page* removePage;
 	char friendToDisplay[MAX_CHARACTERS];
 
 	if (userChoice > 0 && userChoice < 13)
@@ -149,11 +140,9 @@ void Operation::handleMenu(int userChoice)
 			current_user = askForUsername(this);
 			current_user->likePage(nullptr, this);
 			break;
-		case 9: // TODO not working
-			removePage = getPageDetails(this);
-			if (removePage)
-				_currentUser.dislikePage(removePage);
-			else cout << "no page found :(" << endl << endl;
+		case 9:
+			current_user = askForUsername(this);
+			current_user->dislikePage(this);
 			break;
 		case 10:
 			displayAllEntities();

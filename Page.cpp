@@ -14,6 +14,7 @@ Page::Page(const char* name)
 	_statuses = new Status * [1];
 }
 
+// creates a status for a page
 void Page::createStatus()
 {
 	if (_maxStatuses == _numOfStatuses)
@@ -56,13 +57,13 @@ void Page::displayAllFans()
 	cout << _name << " Fans:\n";
 
 	if (_numOfFans == 0)
-		cout << "none :(" << endl;
+		cout << "None :(" << endl;
 	else {
 		for (int i = 0; i < _numOfFans; i++)
 			cout << _fansList[i]->getName() << endl;
 	}
 
-	cout << endl << endl;
+	cout << endl;
 }
 
 // receives fan and adds him to the page's fan list
@@ -85,19 +86,22 @@ void Page::addFanToPage(Operation* system, User* current_user)
 	_numOfFans++;
 }
 
-// TODO not working
+// this function receives pointer to a user and removes it from array of fans.
 void Page::removeFan(User* removeUser)
 {
-	for (int i = 0; i < _numOfFans; i++)
+	for (int i = 0; i < _numOfFans ; i++)
 	{
 		if (removeUser == _fansList[i]) // user is a fan
 		{
-			// Swap the page with last element
-			swap(_fansList[i], _fansList[_numOfFans - 1]);
-			// decrement log size of array
+			// page is the only one on the array, or it is the last one on the array
+			if (i == _numOfFans - 1)
+				_fansList[i] = nullptr;
+			else
+			{
+				_fansList[i] = _fansList[_numOfFans - 1];
+				_fansList[_numOfFans - 1] = nullptr;
+			}
 			_numOfFans--;
-			// call within page (this)
-			removeUser->dislikePage(this);
 		}
 	}
 	cout << endl << removeUser->getName() << " is no more a fan of:  " << this->getName() << endl << endl;
@@ -105,7 +109,7 @@ void Page::removeFan(User* removeUser)
 
 Page::~Page()
 {
-	delete _name; //  we dont use delete[] for char* only for const char*  
+	delete _name; 
 
 	for (int i = 0; i < _numOfStatuses; i++)
 	{
