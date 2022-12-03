@@ -9,29 +9,25 @@ using namespace std;
 
 int main()
 {
-	int userChoice = 0;
-
 	Operation system;
 	User** initUsers = new User * [5];
 	Page** initPages = new Page * [3];
+	int userChoice = 0;
 
-	// ################################ initiate data ################################ 
+	// ################################ initiate data ################################
+
 	initUsers = initiateUsers();
 	initPages = initiatePages(&system, initUsers);
 	system.initiateData(initUsers, initPages);
-	system.getCurrentMemberInput();
+	
+	cout << "Hello, Welcome To Facebook :)" << endl << endl;
 
 	//// ################################ Menu ################################ 
-	userChoice = displayMenu(); // todo - do while
-	system.handleMenu(userChoice);
 
-	while (userChoice > 0 || userChoice < 13)
-	{
+	do {
 		userChoice = displayMenu();
 		system.handleMenu(userChoice);
-	}
-
-	cout << "end of main()." << endl; // todo - delete this?
+	} while (userChoice > 0 || userChoice < 13);
 
 	return 0;
 }

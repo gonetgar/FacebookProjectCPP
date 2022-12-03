@@ -74,12 +74,15 @@ Clock Clock::getHour()
 
 void Clock::displayDate()
 {
-	cout << _day << "." << _month << "." << _year;
+	cout << setfill('0') << setw(2) << _day << ".";
+	cout << setfill('0') << setw(2) << _month << "." << _year;
 }
 
 void Clock::displayHour()
 {
-	cout << " " << _hours << ":" << _minutes << ":" << _seconds;
+	cout << setfill('0') << setw(2) << _hours << ":";
+	cout << setfill('0') << setw(2) << _minutes << ":";
+	cout << setfill('0') << setw(2) << _seconds;
 }
 
 // to enter a date manually

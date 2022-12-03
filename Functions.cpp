@@ -176,8 +176,7 @@ void addPageToSystem(Operation* system)
 
 	// validate username
 	if (doesPageExist(pageName, system) >= 0) {
-		cout << "page name is already taken" << endl;
-		addPageToSystem(system);
+		cout << "Page name is already taken." << endl << endl;
 		return;
 	}
 
@@ -189,7 +188,7 @@ void addPageToSystem(Operation* system)
 void getUserOrPageInput(int userChoice, Operation* system)
 {
 	// userChoice is according to handleMenu()
-
+	// todo change to stati
 	char* username = new char[MAX_CHARACTERS];
 	char* pageName = new char[MAX_CHARACTERS];
 

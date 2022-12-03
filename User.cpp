@@ -300,7 +300,7 @@ void User::displayRecentStatusesOfaFriend(Operation* system)
 				cout << "Text: " << friend_status_list[j]->getText() << endl;
 				cout << "Uploaded On: ";
 				friend_status_list[j]->getStatusTime().displayDate();
-				cout << " |";
+				cout << " | ";
 				friend_status_list[j]->getStatusTime().displayHour();
 				cout << endl;
 			}
@@ -322,7 +322,7 @@ void User::displayAllStatuses()
 			cout << "Text: " << _statuses[i]->getText() << endl;
 			cout << "Uploaded on: ";
 			_statuses[i]->getStatusTime().displayDate();
-			cout << " |";
+			cout << " | ";
 			_statuses[i]->getStatusTime().displayHour();
 			cout << endl;
 			cout << "---------------------------------" << endl << endl;

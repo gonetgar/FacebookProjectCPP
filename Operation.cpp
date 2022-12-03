@@ -63,9 +63,7 @@ void Operation::addPageToOperation(Page* pageToAdd)
 
 void Operation::displayAllEntities()
 {
-	cout << endl << "ALL ENTITIES: " << endl << endl;
-	cout << "Current User: " << endl;
-	cout << _currentUser.getName() << endl;
+	cout << endl << "ALL ENTITIES: " << endl;
 
 	cout << endl << "Users: " << endl;
 	for (int i = 0; i < _numOfUsers; i++)
@@ -83,37 +81,17 @@ User* Operation::getCurrentUser()
 	return &_currentUser;
 }
 
-void Operation::getCurrentMemberInput() // todo - delete this?
-{
-	char* username = new char[MAX_CHARACTERS];
-
-	cout << "Hello, please enter your name for varification: ";
-	cin.getline(username, MAX_CHARACTERS);
-	cout << endl;
-
-	Clock birthDate = birthDate.getBirthdayInput();
-
-	_currentUser.setName(username);
-	_currentUser.setBirthday(birthDate);
-
-	addUserToOperation(&_currentUser);
-
-	cout << _currentUser.getName() << "," << endl;
-}
-
-
+// this function navigates the user's choice from the menu to the relevent functions
 void Operation::handleMenu(int userChoice)
 {
 	User* current_user = nullptr;
-	Page* newPage;
-	char friendToDisplay[MAX_CHARACTERS];
 
 	if (userChoice > 0 && userChoice < 13)
 	{
 		switch (userChoice)
 		{
 		case 1:
-			getUserInput(this); // this == system
+			getUserInput(this);
 			break;
 		case 2:
 			addPageToSystem(this);
@@ -179,5 +157,4 @@ Operation::~Operation()
 		delete[] _allPages[i];
 	}
 	delete[] _allPages;
-
 }

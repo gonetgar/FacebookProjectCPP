@@ -38,6 +38,7 @@ void Page::createStatus()
 void Page::displayAllStatuses()
 {
 	cout << endl << _name << " Statuses: " << endl;
+	if (_numOfStatuses == 0) cout << "None." << endl;
 	for (int i = 0; i < _numOfStatuses; i++)
 	{
 		cout << "---------------------------------" << endl;
