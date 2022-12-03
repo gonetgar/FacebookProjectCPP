@@ -9,7 +9,6 @@ class Operation
 private:
 	User** _allUsers;
 	Page** _allPages;
-	User _currentUser; // TODO- delete current user
 
 	// numbers according to init data
 	int _numOfUsers = 5;
@@ -24,8 +23,6 @@ public:
 
 	User** getAllUsers() { return _allUsers; };
 	Page** getAllPages() { return _allPages; };
-	User* getCurrentUser();
-	const char* getCurrentMemberName() const { return _currentUser.getName(); };
 	const int getNumOfPages() const { return _numOfPages; };
 	const int getNumOfUsers() const { return _numOfUsers; };
 

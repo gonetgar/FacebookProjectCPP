@@ -76,11 +76,6 @@ void Operation::displayAllEntities()
 	cout << endl;
 }
 
-User* Operation::getCurrentUser()
-{
-	return &_currentUser;
-}
-
 // this function navigates the user's choice from the menu to the relevent functions
 void Operation::handleMenu(int userChoice)
 {
