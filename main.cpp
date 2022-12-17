@@ -15,7 +15,7 @@ int main()
 	Page** initPages = new Page * [3];
 	int userChoice = 0;
 
-	//  initiate data #################################
+	// ################################ initiate data #################################
 
 	initUsers = initiateUsers();
 	initPages = initiatePages(&system, initUsers);
